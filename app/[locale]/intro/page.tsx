@@ -2,27 +2,13 @@
 import { useTranslations } from 'next-intl';
 import React, { useState, useEffect } from 'react';
 import { Link } from '@/i18n/routing';
+import InfinitySlider from '@/components/slider/InfinitySlider';
 
 const Page = () => {
     const t = useTranslations('intro');
-    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const images = [
-        '/maint.jpg',
-        '/maint.jpg',
-        '/maint.jpg',
-        '/maint.jpg',
-    ];
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) =>
-                prevIndex === images.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 3000);
 
-        return () => clearInterval(interval);
-    }, [images.length]);
 
     return (
         <div className="flex flex-col overflow-hidden items-center justify-center min-h-screen px-4 bg-gray-100 text-gray-800">
@@ -33,17 +19,7 @@ const Page = () => {
 
             {/* Custom Carousel */}
             <div className="w-screen mb-6 relative">
-                <div className="relative overflow-hidden w-full h-64 md:h-80">
-                    {images.map((src, index) => (
-                        <img
-                            key={index}
-                            src={src}
-                            alt={`Slide ${index + 1}`}
-                            className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'
-                                }`}
-                        />
-                    ))}
-                </div>
+                <InfinitySlider />
             </div>
 
             {/* Paragraph */}

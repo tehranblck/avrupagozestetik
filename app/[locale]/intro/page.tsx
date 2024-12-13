@@ -18,7 +18,7 @@ const Page = () => {
 
 
             {/* Paragraph and Title Section */}
-            <div className="bg-blue-900 px-4 py-3 w-full flex flex-col items-start md:w-3/4 lg:w-2/3 rounded-lg shadow-lg">
+            <div className="bg-blue-900 mt-12 px-4 py-3 w-full flex flex-col items-start md:w-3/4 lg:w-2/3 rounded-lg shadow-lg">
 
                 <p className="text-lg md:text-xl text-left md:text-center text-white leading-relaxed">
                     {t('para')}

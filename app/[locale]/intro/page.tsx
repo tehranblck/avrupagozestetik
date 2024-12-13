@@ -8,7 +8,7 @@ const Page = () => {
     const t = useTranslations('intro');
 
     return (
-        <div className="flex flex-col overflow-hidden items-center justify-center min-h-screen bg-gray-100 text-gray-800">
+        <div className="flex flex-col overflow-hidden items-center  min-h-screen bg-gray-100 text-gray-800">
             {/* Custom Carousel */}
             <div className="w-screen  relative">
                 <InfinitySlider />

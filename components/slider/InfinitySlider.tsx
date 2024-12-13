@@ -13,6 +13,16 @@ const InfinitySlider = () => {
         "/slider/slider8.png",
         "/slider/slider9.png",
         "/slider/slider10.png",
+        "/slider/slider1.png",
+        "/slider/slider2.png",
+        "/slider/slider3.png",
+        "/slider/slider4.png",
+        "/slider/slider5.png",
+        "/slider/slider6.png",
+        "/slider/slider7.png",
+        "/slider/slider8.png",
+        "/slider/slider9.png",
+        "/slider/slider10.png",
     ];
 
     return (

@@ -31,16 +31,17 @@ const Page = () => {
                     <h1 className="text-4xl md:text-5xl font-bold text-left md:text-center text-white mb-6">
                         {t('title')}
                     </h1>
-                    <p className="text-lg md:text-xl text-left md:text-center text-white leading-relaxed mb-6">
-                        {t('para')}
-                    </p>
                     <Link
                         href={'/home'}
-                        className="mt-4 flex text-center justify-center  items-center self-end gap-2 px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-transform transform hover:-translate-y-1 hover:scale-105"
+                        className="my-4 flex text-center justify-center  items-center self-end gap-2 px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-transform transform hover:-translate-y-1 hover:scale-105"
                     >
                         {t('continue')}
                         <FaArrowRight />
                     </Link>
+                    <p className="text-lg md:text-xl text-left md:text-center text-white leading-relaxed mb-6">
+                        {t('para')}
+                    </p>
+
                 </div>
             </div>
         </div>

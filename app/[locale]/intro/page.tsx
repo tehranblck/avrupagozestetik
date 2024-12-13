@@ -36,7 +36,7 @@ const Page = () => {
                     </p>
                     <Link
                         href={'/home'}
-                        className="mt-4 flex text-center justify-center items-center self-end gap-2 px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-transform transform hover:-translate-y-1 hover:scale-105"
+                        className="mt-4 flex text-center justify-center  items-center self-end gap-2 px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-transform transform hover:-translate-y-1 hover:scale-105"
                     >
                         {t('continue')}
                         <FaArrowRight />

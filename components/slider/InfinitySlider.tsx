@@ -16,7 +16,7 @@ const InfinitySlider = () => {
     ];
 
     return (
-        <div className="overflow-hidden w-full bg-gray-100 py-8">
+        <div className="overflow-hidden w-full bg-gray-100 pt-8 pb-1">
             {/* Row 1 - Slides Right */}
             <div className="flex space-x-4 animate-slideRight">
                 {items.map((item, index) => (
@@ -50,7 +50,7 @@ const InfinitySlider = () => {
             </div>
 
             {/* Row 2 - Slides Left */}
-            <div className="flex space-x-4 animate-slideLeft mt-6">
+            <div className="flex space-x-4 animate-slideLeft mt-3">
                 {items.map((item, index) => (
                     <div
                         key={`row2-${index}`}

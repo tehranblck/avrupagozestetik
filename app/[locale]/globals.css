@@ -24,3 +24,7 @@
     animation: gradient 8s ease infinite;
   }
 }
+.custom-bg{
+background: rgb(0,98,251);
+background: radial-gradient(circle, rgba(0,98,251,1) 0%, rgba(255,0,0,1) 60%);
+}

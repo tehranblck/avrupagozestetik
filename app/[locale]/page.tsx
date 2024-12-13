@@ -17,9 +17,10 @@ export default function Home() {
     { locale: 'de', label: t('german'), flag: 'De' },
   ];
   return (
-    <div style={{ backgroundImage: 'url(/bg.png)', backgroundSize: 'cover' }} className="flex flex-col items-center justify-center h-screen  text-white px-4">
+    <div className="flex relative flex-col items-center justify-center h-screen  text-white px-4">
+
       <div>
-        <Image src={'/logo.svg'} width={200} height={200} alt="logo" />
+        <Image src={'/logo.svg'} width={200} height={200} className="z-50" alt="logo" />
       </div>
       <ul className="flex flex-col gap-4 w-full max-w-md">
         {languages.map(({ locale, label, flag }) => (

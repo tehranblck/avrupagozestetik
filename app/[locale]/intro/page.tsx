@@ -1,32 +1,11 @@
 'use client';
 import { useTranslations } from 'next-intl';
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React, { useState, useEffect } from 'react';
 import { Link } from '@/i18n/routing';
 
 const Page = () => {
     const t = useTranslations('intro');
-
-    const sliderSettings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    };
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     const images = [
         '/maint.jpg',
@@ -35,6 +14,16 @@ const Page = () => {
         '/maint.jpg',
     ];
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) =>
+                prevIndex === images.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [images.length]);
+
     return (
         <div className="flex flex-col overflow-hidden items-center justify-center min-h-screen px-4 bg-gray-100 text-gray-800">
             {/* Title */}
@@ -42,19 +31,19 @@ const Page = () => {
                 {t('title')}
             </h1>
 
-            {/* Carousel */}
-            <div className="w-screen mb-6">
-                <Slider {...sliderSettings}>
+            {/* Custom Carousel */}
+            <div className="w-screen mb-6 relative">
+                <div className="relative overflow-hidden w-full h-64 md:h-80">
                     {images.map((src, index) => (
-                        <div key={index} className="flex justify-center">
-                            <img
-                                src={src}
-                                alt={`Slide ${index + 1}`}
-                                className="w-screen h-64 md:h-80 object-cover"
-                            />
-                        </div>
+                        <img
+                            key={index}
+                            src={src}
+                            alt={`Slide ${index + 1}`}
+                            className={`absolute w-full h-full object-cover transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'
+                                }`}
+                        />
                     ))}
-                </Slider>
+                </div>
             </div>
 
             {/* Paragraph */}

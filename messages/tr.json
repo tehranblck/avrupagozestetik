@@ -1,0 +1,15 @@
+{
+    "Home": {
+        "selectLanguage": "Bir dil seçin",
+        "turkish": "Türkçeyi seç ve devam et",
+        "english": "Choose English and continue",
+        "arabic": "اختر العربية واستمر",
+        "russian": "Выберите русский и продолжайте",
+        "german": "Wählen Sie Deutsch und fahren Sie fort"
+    },
+    "intro": {
+        "title": "Avrupa Göz hastanesine hoş geldiniz!",
+        "para": "Avrupa Göz Estetik kliniği olarak başta göz estetiği uygulamaları olmak üzere plastik cerrahi ve medikal estetik gibi alanlarda faaliyet gösteren bir kurum olarak faaliyet gösteriyoruz. Biz, estetik cerrahi alanında lider bir ekibiz ve her bir müşterimizin hayallerini gerçekleştirmek için tutkuyla çalışıyoruz. Müşterilerimizin güvenini kazanmak için, her adımda dürüstlük, şeffaflık ve samimiyet ilkesini benimsiyoruz. Amacımız, müşterilerimizin ihtiyaçlarını anlamak ve en iyi çözümleri sunmak için onlarla yakın bir ilişki kurmaktır. Kendinizi evinizde hissedeceğiniz sıcak bir ortamda, deneyimli ve dostane bir ekip tarafından karşılanacaksınız.",
+        "continue": "Devam et."
+    }
+}

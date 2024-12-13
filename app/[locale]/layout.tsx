@@ -4,7 +4,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "./globals.css";
-import Header from "@/components/Header/Header";
 
 
 export const metadata: Metadata = {
@@ -20,7 +19,7 @@ export default async function RootLayout({
   params: { locale: Locale };
 }>) {
   const { locale } = await params;
-  if (!routing.locales.includes(locale as Locale)) {
+  if (!routing.locales.includes(locale as any)) {
     notFound();
   }
   // Providing all messages to the client
@@ -30,8 +29,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body
       >
-        <NextIntlClientProvider messages={messages}>
-          <Header />
+        <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
       </body>

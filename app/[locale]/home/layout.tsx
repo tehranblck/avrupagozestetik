@@ -9,8 +9,8 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = async ({ children }) => {
-    const locale = await getLocale();
-    const categories = await fetchCategories(locale);
+    // const locale = await getLocale();
+    // const categories = await fetchCategories(locale);
 
     return (
         <div >

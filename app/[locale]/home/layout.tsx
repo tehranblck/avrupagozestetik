@@ -14,9 +14,9 @@ const Layout: React.FC<LayoutProps> = async ({ children }) => {
 
     return (
         <div >
-            <div style={{ borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px' }} className='gradient-header'>
+            <div style={{ borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px' }} className='bg-white fixed top-0 right-0 w-full'>
                 <Header />
-                <HeaderBottom categories={categories} />
+                {/* <HeaderBottom categories={categories} /> */}
             </div>
 
             <main >{children}</main>

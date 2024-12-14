@@ -41,7 +41,7 @@ const HeaderBottom = ({ categories }: any) => {
                             {/* Category Name */}
                             <span
                                 style={{ fontSize: '10px' }}
-                                className="text-xs sm:text-sm text-white font-semibold"
+                                className="text-xs sm:text-sm text-black font-semibold"
                             >
                                 {category.title}
                             </span>
@@ -59,12 +59,12 @@ const HeaderBottom = ({ categories }: any) => {
             </div>
 
             {/* Paragraph */}
-            <div className="px-4 mt-4 text-center">
+            {/* <div className="px-4 mt-4 text-center">
                 <p className="text-sm sm:text-base text-white">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus placeat,
                     eum corporis odit saepe reiciendis tempore itaque minima quo praesentium.
                 </p>
-            </div>
+            </div> */}
         </div>
     );
 };

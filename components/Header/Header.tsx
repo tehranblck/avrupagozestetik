@@ -59,7 +59,7 @@ const Header: React.FC = () => {
                 <div className="relative flex items-center">
                     <button
                         ref={buttonRef}
-                        style={{ fontSize: '15px' }}
+                        style={{ fontSize: '13px' }}
                         className={`flex items-center px-2 py-2 !bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300 ${isDropdownOpen
                             ? 'bg-blue-700 text-white hover:bg-blue-800'
                             : 'bg-white text-blue-600 hover:bg-gray-100'
@@ -94,10 +94,10 @@ const Header: React.FC = () => {
 
                 {/* Links on the Right */}
                 <nav className="flex space-x-2 px-4 text-lg">
-                    <Link style={{ fontSize: '16px' }} href="/about" className="hover:text-gray-200 border-[1px] border-white px-2 py-1 rounded-lg">
+                    <Link style={{ fontSize: '16px' }} href="/about" className="hover:text-gray-200 border-[1px]  text-white bg-[#0069FF] px-2 py-1 rounded-lg">
                         {t('about')}
                     </Link>
-                    <Link style={{ fontSize: '16px' }} href="/contact" className="hover:text-gray-200 border-[1px] border-white px-2 py-1 rounded-lg">
+                    <Link style={{ fontSize: '16px' }} href="/contact" className="hover:text-gray-200 border-[1px] text-white bg-[#0069FF] px-2 py-1 rounded-lg">
                         {t('contact')}
                     </Link>
                 </nav>

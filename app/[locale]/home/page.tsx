@@ -1,9 +1,16 @@
-import React from 'react'
+import { fetchCategories } from '@/components/fetchCategories';
+import HeaderBottom from '@/components/Header/HeaderBottom';
+import { getLocale } from 'next-intl/server';
+import React from 'react';
 
-const page = () => {
+const Page = () => {
+
+
     return (
-        <div>page</div>
-    )
-}
+        <div>
 
-export default page
+        </div>
+    );
+};
+
+export default Page;

@@ -19,19 +19,16 @@ export default function Home() {
 
   return (
     <div
-      style={{ backgroundImage: 'url(/bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+
       className="flex relative flex-col items-center justify-center h-screen text-white px-4"
     >
       {/* Blurred Background Layer */}
-      <div
-        style={{ backdropFilter: 'blur(10px) brightness(0.7)' }}
-        className="absolute inset-0 z-0 bg-black bg-opacity-50 pointer-events-none"
-      ></div>
+
 
       {/* Logo - Ensure it is above the blurred layer */}
       <div className="relative z-20 mb-8">
         <Image
-          src={'/logo.png'}
+          src={'/logo.svg'}
           width={200}
           height={200}
           className="rounded-lg"

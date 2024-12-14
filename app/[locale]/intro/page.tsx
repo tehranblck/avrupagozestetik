@@ -1,17 +1,54 @@
 'use client';
 import { useTranslations } from 'next-intl';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from '@/i18n/routing';
 import InfinitySlider from '@/components/slider/InfinitySlider';
 import { FaArrowRight } from "react-icons/fa";
+import { gsap } from 'gsap';
 
 const Page = () => {
     const t = useTranslations('intro');
 
+    // Refs for GSAP animations
+    const sliderRef = useRef(null);
+    const titleRef = useRef(null);
+    const paraRef = useRef(null);
+    const buttonRef = useRef(null);
+
+    useEffect(() => {
+        // Slider Animation
+        gsap.fromTo(
+            sliderRef.current,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }
+        );
+
+        // Title Animation
+        gsap.fromTo(
+            titleRef.current,
+            { opacity: 0, x: -50 },
+            { opacity: 1, x: 0, duration: 1, delay: 0.5, ease: 'power2.out' }
+        );
+
+        // Paragraph Animation
+        gsap.fromTo(
+            paraRef.current,
+            { opacity: 0, x: 50 },
+            { opacity: 1, x: 0, duration: 1, delay: 0.7, ease: 'power2.out' }
+        );
+
+        // Button Animation
+        gsap.fromTo(
+            buttonRef.current,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 1, delay: 1, ease: 'bounce.out' }
+        );
+    }, []);
+
     return (
         <div className="flex flex-col overflow-hidden items-center min-h-screen bg-gray-100 text-gray-800">
             {/* Custom Carousel */}
-            <div className="w-screen relative">
+            <div ref={sliderRef} className="w-screen relative">
                 <InfinitySlider />
             </div>
 
@@ -23,25 +60,31 @@ const Page = () => {
                 {/* Backdrop Filter Overlay */}
                 <div
                     style={{ backdropFilter: 'blur(10px) brightness(0.7)' }}
-                    className="absolute inset-0  bg-opacity-50 rounded-lg pointer-events-none"
+                    className="absolute inset-0 bg-opacity-50 rounded-lg pointer-events-none"
                 ></div>
 
                 {/* Content */}
                 <div className="relative z-10 w-full">
-                    <h1 className="text-4xl md:text-5xl font-bold text-left md:text-center text-white mb-6">
+                    <h1
+                        ref={titleRef}
+                        className="text-4xl md:text-5xl font-bold text-left md:text-center text-white mb-6"
+                    >
                         {t('title')}
                     </h1>
                     <Link
+                        ref={buttonRef}
                         href={'/home'}
-                        className="my-4 flex text-center justify-center  items-center self-end gap-2 px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-transform transform hover:-translate-y-1 hover:scale-105"
+                        className="my-4 flex text-center justify-center items-center self-end gap-2 px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-transform transform hover:-translate-y-1 hover:scale-105"
                     >
                         {t('continue')}
                         <FaArrowRight />
                     </Link>
-                    <p className="text-lg md:text-xl text-left md:text-center text-white leading-relaxed mb-6">
+                    <p
+                        ref={paraRef}
+                        className="text-lg md:text-xl text-left md:text-center text-white leading-relaxed mb-6"
+                    >
                         {t('para')}
                     </p>
-
                 </div>
             </div>
         </div>

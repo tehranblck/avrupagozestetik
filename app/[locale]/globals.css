@@ -3,6 +3,22 @@
 @tailwind utilities;
 
 
+
+body{
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+}
+
+
+
 @layer utilities {
   @keyframes gradient {
     0% {
@@ -27,4 +43,7 @@
 .custom-bg{
 background: rgb(0,98,251);
 background: radial-gradient(circle, rgba(0,98,251,1) 0%, rgba(255,0,0,1) 60%);
+}
+.gradient-header{
+   background-image: linear-gradient(to right top, #40c9ff, #00b9ff, #35a0ff, #9b78ff, #e81cff);
 }

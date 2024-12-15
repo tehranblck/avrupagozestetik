@@ -1,11 +1,12 @@
 'use client';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
 
 interface VideoPopupProps {
     coverImage: string; // Kapak fotoğrafı için URL
     videoSrc: string; // Video kaynağı için URL
-    className: string;
+    className?: string;
 }
 
 const VideoPopup: React.FC<VideoPopupProps> = ({ coverImage, videoSrc, className }) => {
@@ -20,15 +21,17 @@ const VideoPopup: React.FC<VideoPopupProps> = ({ coverImage, videoSrc, className
     };
 
     return (
-        <div className="flex items-center justify-center mt-2 px-1">
+        <div className="flex items-center justify-center mt-2 px-10">
             {/* Kapak Fotoğrafı ve Play Butonu */}
             <div
                 onClick={openPopup}
-                className={`relative w-full ${className}  bg-gray-300 rounded-lg flex items-center justify-center cursor-pointer`}
+                className={`relative w-full ${className} rounded-lg flex items-center justify-center cursor-pointer`}
             >
                 {/* Kapak Fotoğrafı */}
-                <img
+                <Image
                     src={coverImage}
+                    width={500}
+                    height={500}
                     alt="Video Thumbnail"
                     className="w-full h-auto rounded-lg object-cover"
                 />
@@ -42,11 +45,11 @@ const VideoPopup: React.FC<VideoPopupProps> = ({ coverImage, videoSrc, className
             {/* Video Popup */}
             {isPopupOpen && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+                    className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 overflow-hidden"
                     onClick={closePopup} // Popup dışına tıklandığında kapat
                 >
                     <div
-                        className="relative bg-white rounded-lg p-5 w-[90%] max-w-lg"
+                        className="relative bg-white rounded-lg p-5 w-[90%] max-w-4xl max-h-[90%] overflow-hidden"
                         onClick={(e) => e.stopPropagation()} // Popup içi tıklamaları durdur
                     >
                         {/* Close Button */}
@@ -58,9 +61,9 @@ const VideoPopup: React.FC<VideoPopupProps> = ({ coverImage, videoSrc, className
                         </button>
 
                         {/* Video */}
-                        <div className="relative w-full aspect-video bg-black">
+                        <div className="relative w-full aspect-video">
                             <video
-                                className="w-full h-full"
+                                className="w-full h-full rounded-lg"
                                 controls
                                 src={videoSrc}
                             >

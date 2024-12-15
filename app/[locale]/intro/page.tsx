@@ -37,7 +37,7 @@ const Page = () => {
     }, []);
 
     return (
-        <div style={{ backgroundImage: 'url(/bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} className=" max-h-screen text-gray-800">
+        <div style={{ backgroundImage: 'url(/bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} className=" flex items-center justify-center h-screen text-gray-800">
             {/* Paragraph and Title Section */}
             <div
 

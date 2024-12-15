@@ -7,9 +7,8 @@
 
 
 body{
-  overflow-x: hidden;
+  overflow-x: hidden!important;
   box-sizing: border-box;
-  min-height: 600vh;
 }
 
 .mySwiper .swiper-button-next,

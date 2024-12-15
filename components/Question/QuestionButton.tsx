@@ -24,12 +24,14 @@ const StyledWrapper = styled.div`
     border-radius: 20px;
     background: #fff;
     position: relative;
+     z-index:-1;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     transition: transform 0.2s,;
     cursor: pointer;
+   
   }
 
   /* Background colors from the original gradient */
@@ -37,6 +39,7 @@ const StyledWrapper = styled.div`
     content: "";
     position: absolute;
     width: 100%;
+     z-index:-1;
     height: 100%;
     filter: blur(20px);
     background-color: #faff99;
@@ -52,6 +55,7 @@ const StyledWrapper = styled.div`
   .alert-card::after {
     content: "";
     position: absolute;
+     z-index:-1;
     width: 100%;
     height: 100%;
   }

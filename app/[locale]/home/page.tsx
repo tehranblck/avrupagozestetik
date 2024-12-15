@@ -1,8 +1,6 @@
-import { fetchCategories } from '@/components/fetchCategories';
+
 import Gallery from '@/components/Gallery/Gallery';
-import HeaderBottom from '@/components/Header/HeaderBottom';
 import Card from '@/components/Question/QuestionButton';
-import { getLocale } from 'next-intl/server';
 import React from 'react';
 
 const Page = () => {

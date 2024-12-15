@@ -92,9 +92,9 @@ const Header: React.FC = () => {
                                 }`}
                         />
                     </button>
-                    <div
+                    <div style={{ zIndex: '9999999999' }}
                         ref={dropdownRef}
-                        className={`absolute top-full left-0 mt-2 w-full bg-white text-blue-600 rounded-lg shadow-lg py-2 ${isDropdownOpen ? 'block' : 'hidden'
+                        className={`absolute  top-full left-0 mt-2 w-full bg-white text-blue-600 rounded-lg shadow-lg py-2 ${isDropdownOpen ? 'block' : 'hidden'
                             }`}
                     >
                         {/* Close Button */}

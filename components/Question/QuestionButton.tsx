@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const AlertCard = () => {
     return (
         <StyledWrapper>
-            <div className="alert-card mt-8 px-4">
+            <div className="alert-card mt-12 px-4">
                 <div className="alert-card__content px-4">
                     <p className="alert-card__title px-4">Bunu biliyor muydun?</p>
                     <p className="alert-card__message">

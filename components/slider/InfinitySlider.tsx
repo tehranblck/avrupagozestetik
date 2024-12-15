@@ -32,7 +32,7 @@ const InfinitySlider = () => {
                 {items.map((item, index) => (
                     <div
                         key={`row1-${index}`}
-                        className="flex-none w-40 h-40 bg-blue-500 text-white flex items-center justify-center rounded-md shadow"
+                        className="flex-none w-40 h-40  text-white flex items-center justify-center rounded-md shadow"
                     >
                         <Image
                             alt={`slider-${index}`}

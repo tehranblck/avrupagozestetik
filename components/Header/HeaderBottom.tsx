@@ -23,7 +23,7 @@ const HeaderBottom = () => {
                 borderBottomLeftRadius: '20px',
                 borderBottomRightRadius: '20px',
             }}
-            className="text-white bg-white pt-2 pb-3 "
+            className="text-white pt-0 pb-3 "
         >
             <div className="w-full flex justify-around items-center">
                 {categories.map((category) => (
@@ -37,7 +37,7 @@ const HeaderBottom = () => {
                             <MdCategory />
                         </div>
                         {/* Category Name */}
-                        <span className="text-sm text-black font-semibold">{category.title}</span>
+                        <span className="text-sm text-white font-semibold">{category.title}</span>
                     </Link>
                 ))}
             </div>

@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'; // İkonlar
+import { FaPlay, FaPause } from 'react-icons/fa'; // Play ve Pause ikonları
 import { Link } from '@/i18n/routing';
 
 interface ImageData {
@@ -12,17 +13,58 @@ interface ImageData {
 
 interface GalleryProps {
     hasVideo: boolean;
-    videoLink?: string;
+    videoSrc?: string; // Lokal video kaynağı
     images: ImageData[];
     categoryTitle: string;
     buttonText: string;
 }
 
-const Gallery: React.FC<GalleryProps> = ({ hasVideo, videoLink, images, categoryTitle, buttonText }) => {
+const Gallery: React.FC<GalleryProps> = ({ hasVideo, videoSrc, images, categoryTitle, buttonText }) => {
+    const [isPlaying, setIsPlaying] = useState(false); // Video oynatma durumunu takip eder
+    const videoRef = useRef<HTMLVideoElement>(null); // Video referansı
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const popupRef = useRef<HTMLDivElement>(null);
-    const videoRef = useRef<HTMLIFrameElement>(null);
+
+    const handlePlayPause = () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
+    // Scroll edildikçe video otomatik durdurma
+    useEffect(() => {
+        const observerCallback = (entries: IntersectionObserverEntry[]) => {
+            const entry = entries[0];
+            if (videoRef.current) {
+                if (!entry.isIntersecting && isPlaying) {
+                    videoRef.current.pause();
+                    setIsPlaying(false);
+                }
+            }
+        };
+
+        const observerOptions = {
+            root: null, // Viewport
+            threshold: 0.5, // %50 görünürlük
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        if (videoRef.current) {
+            observer.observe(videoRef.current);
+        }
+
+        return () => {
+            if (videoRef.current) {
+                observer.disconnect();
+            }
+        };
+    }, [isPlaying]);
 
     const openPopup = (index: number) => {
         setCurrentImageIndex(index);
@@ -69,54 +111,31 @@ const Gallery: React.FC<GalleryProps> = ({ hasVideo, videoLink, images, category
         }
     };
 
-    useEffect(() => {
-        const observerCallback = (entries: IntersectionObserverEntry[]) => {
-            const entry = entries[0];
-            if (videoRef.current) {
-                // Video görünür değilse durdur
-                if (!entry.isIntersecting) {
-                    videoRef.current.contentWindow?.postMessage(
-                        '{"event":"command","func":"pauseVideo","args":""}',
-                        '*'
-                    );
-                }
-            }
-        };
-
-        const observerOptions = {
-            root: null, // Viewport
-            threshold: 0.5, // %50 görünürlük
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-        if (videoRef.current) {
-            observer.observe(videoRef.current);
-        }
-
-        return () => {
-            if (videoRef.current) {
-                observer.unobserve(videoRef.current);
-            }
-        };
-    }, []);
-
     return (
-        <div className="flex flex-col items-center gap-2 pt-44 bg-gray-100">
-            {/* YouTube Video */}
-            {hasVideo && videoLink && (
-                <div className="w-full h-64 bg-gray-300 rounded-lg overflow-hidden">
-                    <iframe
+        <div style={{ zIndex: '1' }} className="flex flex-col items-center gap-2 pt-[10.5rem] ">
+            {/* Local Video */}
+            {hasVideo && videoSrc && (
+                <div style={{ borderRadius: '20px', zIndex: '0' }} className="w-full h-fit   overflow-hidden relative">
+                    <video
                         ref={videoRef}
-                        className="w-full h-full"
-                        src={`${videoLink}?enablejsapi=1`}
-                        title="YouTube Video"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
+                        className="w-full h-full "
+                        src={videoSrc}
+                        muted={true}
+                    >
+                        Your browser does not support the video tag.
+                    </video>
+                    {/* Custom Play/Pause Icons */}
+                    <button
+                        onClick={handlePlayPause}
+                        className="absolute inset-0 flex items-center justify-center  text-white text-3xl rounded-full p-3 hover:scale-105 transition-transform"
+                    >
+                        {isPlaying ? <FaPause /> : <FaPlay />}
+                    </button>
                 </div>
             )}
 
             {/* Category Title & Button */}
-            <div className="w-full flex justify-between items-center px-4 py-0 rounded-lg mt-0">
+            <div className="w-full flex justify-between items-center px-4 mt-4 py-0 rounded-lg ">
                 <h1 className="text-lg sm:text-2xl font-bold text-gray-800">{categoryTitle}</h1>
                 <Link
                     href={'/'}
@@ -127,7 +146,7 @@ const Gallery: React.FC<GalleryProps> = ({ hasVideo, videoLink, images, category
             </div>
 
             {/* Image Gallery */}
-            <div className="grid grid-cols-2 gap-12 gap-x-3 w-full px-2 mt-5">
+            <div className="grid grid-cols-2 gap-12 gap-x-3 w-full px-4 mt-5">
                 {images.map((image, index) => (
                     <div
                         key={index}

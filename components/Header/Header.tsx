@@ -72,10 +72,9 @@ const Header: React.FC = () => {
             style={{
                 borderBottomLeftRadius: '10px',
                 borderBottomRightRadius: '10px',
-                borderBottom: '1px solid gray',
                 zIndex: '99999',
             }}
-            className="w-full bg-[#3a7ca0] text-white py-4 px-2  "
+            className="w-full  text-white py-4 px-2  "
         >
             <div className="container mx-auto flex items-center justify-between">
                 {/* Button on the Left */}

@@ -14,7 +14,7 @@ const Page = () => {
 
     return (
         <div>
-            <Gallery buttonText='Devam et' categoryTitle='Göz kapağı estetiği' images={images} hasVideo={true} videoLink='https://www.youtube.com/embed/CR4Ait0f_tU' />
+            <Gallery buttonText='Devam et' categoryTitle='Göz kapağı estetiği' images={images} hasVideo={true} videoSrc='/videos/video_hero.mp4' />
             <Card />
 
         </div>

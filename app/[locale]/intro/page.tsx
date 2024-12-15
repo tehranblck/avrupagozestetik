@@ -2,7 +2,6 @@
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useRef } from 'react';
 import { Link } from '@/i18n/routing';
-import InfinitySlider from '@/components/slider/InfinitySlider';
 import { FaArrowRight } from "react-icons/fa";
 import { gsap } from 'gsap';
 
@@ -10,19 +9,11 @@ const Page = () => {
     const t = useTranslations('intro');
 
     // Refs for GSAP animations
-    const sliderRef = useRef(null);
     const titleRef = useRef(null);
     const paraRef = useRef(null);
     const buttonRef = useRef(null);
 
     useEffect(() => {
-        // Slider Animation
-        gsap.fromTo(
-            sliderRef.current,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 1, ease: 'power2.out' }
-        );
-
         // Title Animation
         gsap.fromTo(
             titleRef.current,
@@ -46,22 +37,13 @@ const Page = () => {
     }, []);
 
     return (
-        <div className="flex flex-col overflow-hidden items-center min-h-screen bg-gray-100 text-gray-800">
-            {/* Custom Carousel */}
-            <div ref={sliderRef} className="w-screen relative">
-                <InfinitySlider />
-            </div>
-
+        <div style={{ backgroundImage: 'url(/bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }} className=" max-h-screen text-gray-800">
             {/* Paragraph and Title Section */}
             <div
-                style={{ backgroundImage: 'url(/bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}
-                className="mt-12 relative px-6 py-8 w-full flex flex-col md:w-3/4 lg:w-2/3 rounded-lg shadow-lg items-start"
+
+                className="relative px-6 py-8 w-full flex flex-col md:w-3/4 lg:w-2/3 items-start"
             >
-                {/* Backdrop Filter Overlay */}
-                <div
-                    style={{ backdropFilter: 'blur(10px) brightness(0.7)' }}
-                    className="absolute inset-0 bg-opacity-50 rounded-lg pointer-events-none"
-                ></div>
+
 
                 {/* Content */}
                 <div className="relative z-10 w-full">
@@ -71,6 +53,13 @@ const Page = () => {
                     >
                         {t('title')}
                     </h1>
+
+                    <p
+                        ref={paraRef}
+                        className="text-lg md:text-xl text-left md:text-center text-white leading-relaxed mb-6"
+                    >
+                        {t('para')}
+                    </p>
                     <Link
                         ref={buttonRef}
                         href={'/home'}
@@ -79,12 +68,6 @@ const Page = () => {
                         {t('continue')}
                         <FaArrowRight />
                     </Link>
-                    <p
-                        ref={paraRef}
-                        className="text-lg md:text-xl text-left md:text-center text-white leading-relaxed mb-6"
-                    >
-                        {t('para')}
-                    </p>
                 </div>
             </div>
         </div>

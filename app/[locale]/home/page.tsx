@@ -19,7 +19,7 @@ const Page = () => {
     return (
         <div>
             <Gallery images={images} />
-            <VideoPopup className='w-64' key={'dfssd'} coverImage='/maint.jpg' videoSrc='https://www.youtube.com/embed/J6RddtseuKk?si=6PghWiK_sGb1P6Dm' />
+            <VideoPopup className='h-64' key={'dfssd'} coverImage='/maint.jpg' videoSrc='https://www.youtube.com/embed/J6RddtseuKk?si=6PghWiK_sGb1P6Dm' />
             <Card />
             <Slider images={images} key={'1232'} />
 

@@ -22,7 +22,7 @@ const StyledWrapper = styled.div`
     padding-right:1rem;
   .alert-card {
     width: 100%;
-              padding-left:1rem;
+    padding-left:1rem;
     padding-right:1rem;
     border-radius: 20px;
     background: #fff;

@@ -138,7 +138,7 @@ const Gallery: React.FC<GalleryProps> = ({ hasVideo, videoSrc, images, categoryT
             )}
 
             {/* Category Title & Button */}
-            <div className="w-full flex justify-between items-center px-4 mt-4 py-0 rounded-lg">
+            <div className="w-full flex justify-between items-center px-4 mt-4 mb-8 py-0 rounded-lg">
                 <h1 className="text-lg sm:text-2xl font-bold text-gray-800">{categoryTitle}</h1>
                 <Link
                     href={'/'}

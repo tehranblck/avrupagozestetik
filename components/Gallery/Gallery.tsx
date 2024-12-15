@@ -112,13 +112,16 @@ const Gallery: React.FC<GalleryProps> = ({ hasVideo, videoSrc, images, categoryT
     };
 
     return (
-        <div style={{ zIndex: '1' }} className="flex flex-col items-center gap-2 pt-[10.5rem] ">
+        <div style={{ zIndex: '1' }} className="flex flex-col items-center gap-2 pt-[10.5rem]">
             {/* Local Video */}
             {hasVideo && videoSrc && (
-                <div style={{ borderRadius: '20px', zIndex: '0' }} className="w-full h-fit   overflow-hidden relative">
+                <div
+                    style={{ borderRadius: '20px', zIndex: '0' }}
+                    className="w-full h-fit overflow-hidden relative"
+                >
                     <video
                         ref={videoRef}
-                        className="w-full h-full "
+                        className="w-full h-full"
                         src={videoSrc}
                         muted={true}
                     >
@@ -127,7 +130,7 @@ const Gallery: React.FC<GalleryProps> = ({ hasVideo, videoSrc, images, categoryT
                     {/* Custom Play/Pause Icons */}
                     <button
                         onClick={handlePlayPause}
-                        className="absolute inset-0 flex items-center justify-center  text-white text-3xl rounded-full p-3 hover:scale-105 transition-transform"
+                        className="absolute inset-0 flex items-center justify-center text-white text-3xl rounded-full p-3 hover:scale-105 transition-transform"
                     >
                         {isPlaying ? <FaPause /> : <FaPlay />}
                     </button>
@@ -135,7 +138,7 @@ const Gallery: React.FC<GalleryProps> = ({ hasVideo, videoSrc, images, categoryT
             )}
 
             {/* Category Title & Button */}
-            <div className="w-full flex justify-between items-center px-4 mt-4 py-0 rounded-lg ">
+            <div className="w-full flex justify-between items-center px-4 mt-4 py-0 rounded-lg">
                 <h1 className="text-lg sm:text-2xl font-bold text-gray-800">{categoryTitle}</h1>
                 <Link
                     href={'/'}
@@ -146,14 +149,20 @@ const Gallery: React.FC<GalleryProps> = ({ hasVideo, videoSrc, images, categoryT
             </div>
 
             {/* Image Gallery */}
-            <div className="grid grid-cols-2 gap-12 gap-x-3 w-full px-4 mt-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 gap-x-3 w-full px-4 mt-5">
                 {images.map((image, index) => (
                     <div
                         key={index}
-                        className="w-full h-32 bg-gray-300 rounded-lg flex items-center justify-center cursor-pointer"
+                        className="w-full h-32 md:h-40 bg-gray-300 rounded-lg flex items-center justify-center cursor-pointer"
                         onClick={() => openPopup(index)}
                     >
-                        <Image className="rounded-lg" src={image.src} alt={image.alt} width={400} height={400} />
+                        <Image
+                            className="rounded-lg"
+                            src={image.src}
+                            alt={image.alt}
+                            width={400}
+                            height={400}
+                        />
                     </div>
                 ))}
             </div>

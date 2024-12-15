@@ -9,11 +9,11 @@ interface ImageData {
     alt: string;
 }
 
-interface GalleryProps {
+interface PopupWithGalleryProps {
     images: ImageData[];
 }
 
-const Gallery: React.FC<GalleryProps> = ({ images }) => {
+const PopupWithGallery: React.FC<PopupWithGalleryProps> = ({ images }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const popupRef = useRef<HTMLDivElement>(null);
@@ -64,13 +64,13 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
     };
 
     return (
-        <div style={{ zIndex: '1' }} className="flex flex-col items-center gap-0 pt-[10.5rem]">
-            {/* Image Gallery */}
+        <div style={{ zIndex: '1' }} className="flex flex-col items-center gap-2  pt-2">
+            {/* Trigger Button or Image Grid */}
             <div className="grid grid-cols-3 gap-1 w-full px-1">
                 {images.map((image, index) => (
                     <div
                         key={index}
-                        className="w-full   rounded-lg flex items-center justify-center cursor-pointer"
+                        className="w-full rounded-lg flex items-center justify-center cursor-pointer"
                         onClick={() => openPopup(index)}
                     >
                         <Image
@@ -140,4 +140,4 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
     );
 };
 
-export default Gallery;
+export default PopupWithGallery;

@@ -1,3 +1,5 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,12 +12,29 @@ body{
   min-height: 600vh;
 }
 
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev {
+    width: 30px; /* Butonun genişliği */
+    height: 30px; /* Butonun yüksekliği */
+    background-color: rgba(0, 0, 0, 0.5); /* Arka plan rengi */
+    color: white; /* İkon rengi */
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* İkon boyutunu küçültme */
+.mySwiper .swiper-button-next::after,
+.mySwiper .swiper-button-prev::after {
+    font-size: 16px;
+}
 .scrollbar-hide {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
 .scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
+    display: none; 
 }
 
 

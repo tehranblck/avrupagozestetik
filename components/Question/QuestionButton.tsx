@@ -3,23 +3,22 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AlertCard = () => {
-    return (
-        <StyledWrapper>
-            <div className="alert-card mt-12 px-4">
-                <div className="alert-card__content px-4">
-                    <p className="alert-card__title px-4">Bunu biliyor muydun?</p>
-                    <p className="alert-card__message">
-                        Göz kapağı estetiği sonrasında genç bir göz çevresine sahip olmak, tüm yüzün görünümünü olumlu yönde değiştirebilir.
-                    </p>
-                </div>
-            </div>
-        </StyledWrapper>
-    );
+  return (
+    <StyledWrapper className='px-1'>
+      <div className="alert-card mt-2 ">
+        <div className="alert-card__content py-4 ">
+          <p className="alert-card__title  ">Bunu biliyor muydun?</p>
+          <p className="alert-card__message">
+            Göz kapağı estetiği sonrasında genç bir göz çevresine sahip olmak, tüm yüzün görünümünü olumlu yönde değiştirebilir.
+          </p>
+        </div>
+      </div>
+    </StyledWrapper>
+  );
 };
 
 const StyledWrapper = styled.div`
-    padding-left:1rem;
-    padding-right:1rem;
+ 
   .alert-card {
     width: 100%;
     padding-left:1rem;
@@ -44,8 +43,7 @@ const StyledWrapper = styled.div`
     width: 100%;
      z-index:-1;
     height: 100%;
-    padding-left:1rem;
-    padding-right:1rem;
+  
     filter: blur(20px);
     background-color: #faff99;
     background-image: radial-gradient(at 33% 82%, hsla(254,71%,69%,1) 0px, transparent 50%),
@@ -63,8 +61,7 @@ const StyledWrapper = styled.div`
      z-index:-1;
     width: 100%;
     height: 100%;
-     padding-left:1rem;
-    padding-right:1rem;
+   
   }
 
   .alert-card:hover {
@@ -77,8 +74,7 @@ const StyledWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding-left:1rem;
-    padding-right:1rem;
+ 
     width: 100%;
   }
 

@@ -46,7 +46,7 @@ const InfinitySlider = () => {
                 {items.map((item, index) => (
                     <div
                         key={`row1-dup-${index}`}
-                        className="flex-none w-40 h-40 bg-blue-500 text-white flex items-center justify-center rounded-md shadow"
+                        className="flex-none w-40 h-40  text-white flex items-center justify-center rounded-md shadow"
                     >
                         <Image
                             alt={`slider-dup-${index}`}
@@ -64,7 +64,7 @@ const InfinitySlider = () => {
                 {items.map((item, index) => (
                     <div
                         key={`row2-${index}`}
-                        className="flex-none w-40 h-40 bg-green-500 text-white flex items-center justify-center rounded-md shadow"
+                        className="flex-none w-40 h-40  text-white flex items-center justify-center rounded-md shadow"
                     >
                         <Image
                             alt={`slider-${index}`}
@@ -78,7 +78,7 @@ const InfinitySlider = () => {
                 {items.map((item, index) => (
                     <div
                         key={`row2-dup-${index}`}
-                        className="flex-none w-40 h-40 bg-green-500 text-white flex items-center justify-center rounded-md shadow"
+                        className="flex-none w-40 h-40  text-white flex items-center justify-center rounded-md shadow"
                     >
                         <Image
                             alt={`slider-dup-${index}`}

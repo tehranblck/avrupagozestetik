@@ -9,14 +9,14 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = async ({ children }) => {
-    // const locale = await getLocale();
-    // const categories = await fetchCategories(locale);
+    const locale = await getLocale();
+    const categories = await fetchCategories(locale);
 
     return (
         <div >
-            <div style={{ borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px' }} className='bg-white fixed top-0 right-0 w-full'>
+            <div style={{ borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px' }} className=' w-full fixed top-0 right-0 !pb-3'>
                 <Header />
-                {/* <HeaderBottom categories={categories} /> */}
+                <HeaderBottom />
             </div>
 
             <main >{children}</main>

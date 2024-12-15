@@ -1,32 +1,47 @@
-
-'use client'
+'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { gsap } from 'gsap';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
-
+import { IoClose } from 'react-icons/io5'; // Close icon (X)
 
 const Header: React.FC = () => {
-
     const t = useTranslations('Navbar'); // Translation namespace
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
-    const buttonRef = useRef<HTMLButtonElement>(null); ''
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     const toggleDropdown = () => {
-        setIsDropdownOpen((prev) => !prev);
         if (!isDropdownOpen) {
+            // Dropdown açılışı
+            setIsDropdownOpen(true);
             gsap.fromTo(
                 dropdownRef.current,
                 { opacity: 0, y: -10 },
                 { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
             );
+        } else {
+            // Dropdown kapanışı
+            gsap.to(dropdownRef.current, {
+                opacity: 0,
+                y: -10,
+                duration: 0.3,
+                ease: 'power2.in',
+                onComplete: () => setIsDropdownOpen(false),
+            });
         }
     };
 
     const closeDropdown = () => {
-        setIsDropdownOpen(false);
+        // Kapanış animasyonu
+        gsap.to(dropdownRef.current, {
+            opacity: 0,
+            y: -10,
+            duration: 0.3,
+            ease: 'power2.in',
+            onComplete: () => setIsDropdownOpen(false),
+        });
     };
 
     useEffect(() => {
@@ -53,17 +68,22 @@ const Header: React.FC = () => {
     }, [isDropdownOpen]);
 
     return (
-        <header style={{ borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px' }} className="w-full   text-white py-4 px-2  fixed top-0 z-50">
+        <header
+            style={{
+                borderBottomLeftRadius: '10px',
+                borderBottomRightRadius: '10px',
+                borderBottom: '1px solid gray',
+                zIndex: '99999',
+            }}
+            className="w-full bg-[#3a7ca0] text-white py-4 px-2  "
+        >
             <div className="container mx-auto flex items-center justify-between">
                 {/* Button on the Left */}
-                <div className="relative flex items-center">
+                <div className="relative flex w-full items-center">
                     <button
                         ref={buttonRef}
-                        style={{ fontSize: '13px' }}
-                        className={`flex items-center px-2 py-2 !bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300 ${isDropdownOpen
-                            ? 'bg-blue-700 text-white hover:bg-blue-800'
-                            : 'bg-white text-blue-600 hover:bg-gray-100'
-                            }`}
+                        style={{ fontSize: '16px' }}
+                        className={`flex items-center w-full px-2 py-2 justify-center bg-[#c42020] text-white rounded-lg font-semibold shadow-md transition-colors duration-300`}
                         onClick={toggleDropdown}
                     >
                         {t('appointment')}
@@ -74,33 +94,32 @@ const Header: React.FC = () => {
                     </button>
                     <div
                         ref={dropdownRef}
-                        className={`absolute top-full left-0 mt-2 w-48 bg-white text-blue-600 rounded-lg shadow-lg py-2 ${isDropdownOpen ? 'block' : 'hidden'
+                        className={`absolute top-full left-0 mt-2 w-full bg-white text-blue-600 rounded-lg shadow-lg py-2 ${isDropdownOpen ? 'block' : 'hidden'
                             }`}
                     >
+                        {/* Close Button */}
+                        <button
+                            className="absolute top-1 right-2 text-red-500 text-lg hover:text-red-700"
+                            onClick={closeDropdown}
+                        >
+                            <IoClose /> {/* X icon */}
+                        </button>
+
+                        {/* Dropdown Links */}
                         <Link
                             href="#"
-                            className="block px-2 py-1 hover:bg-gray-100"
+                            className="block w-full px-2 py-1 hover:bg-gray-100"
                         >
                             {t('whatsappAppointment')}
                         </Link>
                         <Link
                             href="/contact"
-                            className="block px-2 py-1 hover:bg-gray-100"
+                            className="block w-full px-2 py-1 hover:bg-gray-100"
                         >
                             {t('fillForm')}
                         </Link>
                     </div>
                 </div>
-
-                {/* Links on the Right */}
-                <nav className="flex space-x-2 px-4 text-lg">
-                    <Link style={{ fontSize: '16px' }} href="/about" className="hover:text-gray-200 border-[1px]  text-white bg-[#0069FF] px-2 py-1 rounded-lg">
-                        {t('about')}
-                    </Link>
-                    <Link style={{ fontSize: '16px' }} href="/contact" className="hover:text-gray-200 border-[1px] text-white bg-[#0069FF] px-2 py-1 rounded-lg">
-                        {t('contact')}
-                    </Link>
-                </nav>
             </div>
         </header>
     );

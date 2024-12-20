@@ -10,7 +10,7 @@ export default function CategoriesSectionHeader() {
     ];
 
     return (
-        <div className="flex flex-col items-center w-full py-8 pb-3   bg-white">
+        <div className="flex flex-col items-center w-full py-8 pb-3 mt-36  bg-white">
             {/* Hizmetler */}
             <div className="grid grid-cols-4 md:grid-cols-4 gap-1 sm:gap-4 w-full  px-1 sm:px-6">
                 {services.map((service, index) => (

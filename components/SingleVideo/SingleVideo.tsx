@@ -1,49 +1,58 @@
 'use client'
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
+import PopupSingleVideo from './PopupSingleVideo';
 
 interface VideoPlayerProps {
     videoUrl: string;
+    thumbnailUrl: string; // Kapak resmi için URL
     altText?: string;
 }
 
-const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, altText }) => {
-    const videoRef = useRef<HTMLVideoElement | null>(null);
+const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altText }) => {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-    useEffect(() => {
-        const videoElement = videoRef.current;
+    const handleThumbnailClick = () => {
+        setIsPopupOpen(true);
+    };
 
-        if (!videoElement) return;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (!entry.isIntersecting) {
-                        videoElement.pause(); // Video görünmüyorsa durdur
-                    }
-                });
-            },
-            { threshold: 0.5 } // Elementin en az %50'si görünürse tetiklenir
-        );
-
-        observer.observe(videoElement);
-
-        return () => {
-            if (videoElement) observer.unobserve(videoElement);
-        };
-    }, []);
+    const handleClosePopup = () => {
+        setIsPopupOpen(false);
+    };
 
     return (
         <div className="w-[90%] max-w-4xl mt-8 mx-auto">
-            <video
-                ref={videoRef}
-                className="w-full rounded-lg shadow-lg"
-                controls
-                controlsList="nofullscreen"
-                aria-label={altText || 'Video Player'}
+            {/* Kapak Fotoğrafı */}
+            <div
+                className="relative w-full cursor-pointer"
+                onClick={handleThumbnailClick}
             >
-                <source src={videoUrl} type="video/mp4" />
-                Tarayıcınız bu videoyu oynatmayı desteklemiyor.
-            </video>
+                <img
+                    src={thumbnailUrl}
+                    alt={altText || 'Video Thumbnail'}
+                    className="w-full rounded-lg shadow-lg"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
+                    <button
+                        className="text-white text-4xl font-bold"
+                        aria-label="Play Video"
+                    >
+                        ▶
+                    </button>
+                </div>
+            </div>
+
+            {/* Popup içinde Video */}
+            <PopupSingleVideo isOpen={isPopupOpen} onClose={handleClosePopup}>
+                <video
+                    className="w-full rounded-lg shadow-lg"
+                    controls
+                    autoPlay
+                    aria-label={altText || 'Video Player in Popup'}
+                >
+                    <source src={videoUrl} type="video/mp4" />
+                    Tarayıcınız bu videoyu oynatmayı desteklemiyor.
+                </video>
+            </PopupSingleVideo>
         </div>
     );
 };

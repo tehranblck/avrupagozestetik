@@ -21,7 +21,7 @@ const Page = () => {
             {/* <Card /> */}
             <CategoriesSectionHeader />
             <CategoriesText />
-            <SingleVideo videoUrl='/videos/teze.mp4' altText='text' />
+            <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/teze.mp4' altText='text' />
 
 
         </div>

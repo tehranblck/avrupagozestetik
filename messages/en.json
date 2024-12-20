@@ -5,7 +5,8 @@
         "english": "Choose English and continue",
         "arabic": "اختر العربية واستمر",
         "russian": "Выберите русский и продолжайте",
-        "german": "Wählen Sie Deutsch und fahren Sie fort"
+        "german": "Wählen Sie Deutsch und fahren Sie fort",
+        "image_flag": "/tr_flag.png"
     },
     "intro": {
         "title": "Avrupa Göz Estetik",

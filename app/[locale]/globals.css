@@ -1,9 +1,16 @@
 @import 'swiper/css';
 @import 'swiper/css/navigation';
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Glacial Indifference Regular';
+  src: url('/fonts/glacial-indifference.regular.otf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
 
 
 body{

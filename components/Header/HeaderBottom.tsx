@@ -10,7 +10,7 @@ const HeaderBottom = () => {
         { id: 2, image_icon: '/placeholder2.png', title: 'Yorumlar', href: '#' },
         { id: 3, image_icon: '/placeholder3.png', title: 'Hakkimizda', href: '#' },
         { id: 4, image_icon: '/placeholder4.png', title: 'İletişim', href: '#' },
-        { id: 5, image_icon: '/placeholder5.png', title: 'İzle', href: '#' },
+        { id: 5, image_icon: '/placeholder5.png', title: 'Videolar', href: '#' },
     ];
 
     return (

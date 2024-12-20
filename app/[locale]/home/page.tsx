@@ -1,8 +1,7 @@
 
-import Gallery from '@/components/Gallery/Gallery';
+import CategoriesSectionHeader from '@/components/Categories/Categories';
+import CategoriesText from '@/components/Categories/CtegoriesText';
 import Card from '@/components/Question/QuestionButton';
-import Slider from '@/components/Slider';
-import VideoPopup from '@/components/Video1/Video';
 import React from 'react';
 
 const Page = () => {
@@ -18,11 +17,9 @@ const Page = () => {
 
     return (
         <div>
-            <Gallery images={images} />
-            <VideoPopup className='h-64' key={'dfssd'} coverImage='/maint.jpg' videoSrc='https://www.youtube.com/embed/J6RddtseuKk?si=6PghWiK_sGb1P6Dm' />
             <Card />
-            <Slider images={images} key={'1232'} />
-            <VideoPopup className='h-64' key={'dfs'} coverImage='/maint.jpg' videoSrc='https://www.youtube.com/embed/J6RddtseuKk?si=6PghWiK_sGb1P6Dm' />
+            <CategoriesSectionHeader />
+            <CategoriesText />
 
 
         </div>

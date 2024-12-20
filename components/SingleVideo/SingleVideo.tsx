@@ -33,7 +33,7 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, altText }) => {
     }, []);
 
     return (
-        <div className="w-[80%] max-w-4xl mx-auto">
+        <div className="w-[80%] max-w-4xl mt-8 mx-auto">
             <video
                 ref={videoRef}
                 className="w-full rounded-lg shadow-lg"

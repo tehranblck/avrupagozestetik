@@ -21,7 +21,7 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        videoElement.play();
+                        // Video görünür olduğunda durmaz, kullanıcı kontrolü devralır
                     } else {
                         videoElement.pause(); // Video görünür değilse durdur
                     }

@@ -18,7 +18,7 @@ const Page = () => {
 
     return (
         <div className='h-[500vh]'>
-            <Card />
+            {/* <Card /> */}
             <CategoriesSectionHeader />
             <CategoriesText />
             <SingleVideo videoUrl='/videos/single.mp4' altText='text' />

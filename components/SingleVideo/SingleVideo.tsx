@@ -21,9 +21,9 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        // Video görünür olduğunda durmaz, kullanıcı kontrolü devralır
+                        console.log('Video is visible, user can interact with it');
                     } else {
-                        videoElement.pause(); // Video görünür değilse durdur
+                        videoElement.pause();
                     }
                 });
             },
@@ -35,14 +35,14 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
         return () => {
             if (videoElement) observer.unobserve(videoElement);
         };
-    }, []);
+    });
 
     const handleThumbnailClick = () => {
         setIsVideoVisible(true);
     };
 
     return (
-        <div className="w-[90%] max-w-4xl mt-8 mx-auto">
+        <div className="w-[100%]  px-2 mt-8 mx-auto">
             {!isVideoVisible ? (
                 <div
                     className="relative w-full cursor-pointer"
@@ -50,6 +50,7 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
                 >
                     {/* Kapak Fotoğrafı */}
                     <Image
+                        priority
                         width={900}
                         height={900}
                         src={thumbnailUrl}
@@ -68,10 +69,11 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
             ) : (
                 <video
                     ref={videoRef}
-                    className="w-full rounded-lg shadow-lg"
+                    width={900}
+                    height={900}
+                    className="w-full max-h-48 object-cover rounded-lg shadow-lg"
                     controls
                     controlsList="nofullscreen" // Tam ekran seçeneğini devre dışı bırakır
-                    autoPlay
                     aria-label={altText || 'Video Player'}
                 >
                     <source src={videoUrl} type="video/mp4" />

@@ -2,6 +2,7 @@
 import CategoriesSectionHeader from '@/components/Categories/Categories';
 import CategoriesText from '@/components/Categories/CtegoriesText';
 import Card from '@/components/Question/QuestionButton';
+import SinglePhoto from '@/components/SinglePhoto/SinglePhoto';
 import SingleVideo from '@/components/SingleVideo/SingleVideo';
 import React from 'react';
 
@@ -22,6 +23,7 @@ const Page = () => {
             <CategoriesSectionHeader />
             <CategoriesText />
             <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/teze.mp4' altText='text' />
+            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
 
 
         </div>

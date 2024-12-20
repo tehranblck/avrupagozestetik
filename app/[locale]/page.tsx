@@ -14,7 +14,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col items-center  min-h-screen pb-6  text-white px-4 bg-gray-900">
+    <div className="flex flex-col items-center  min-h-screen pb-6  text-white px-4 ">
       {/* Logo */}
       <div >
         <Image

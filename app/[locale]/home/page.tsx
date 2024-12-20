@@ -2,6 +2,7 @@
 import CategoriesSectionHeader from '@/components/Categories/Categories';
 import CategoriesText from '@/components/Categories/CtegoriesText';
 import Card from '@/components/Question/QuestionButton';
+import SingleVideo from '@/components/SingleVideo/SingleVideo';
 import React from 'react';
 
 const Page = () => {
@@ -16,10 +17,11 @@ const Page = () => {
 
 
     return (
-        <div>
+        <div className='h-[500vh]'>
             <Card />
             <CategoriesSectionHeader />
             <CategoriesText />
+            <SingleVideo videoUrl='/videos/single.mp4' altText='text' />
 
 
         </div>

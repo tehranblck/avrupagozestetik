@@ -23,7 +23,7 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
                     if (entry.isIntersecting) {
                         videoElement.play();
                     } else {
-                        videoElement.pause();
+                        videoElement.pause(); // Video görünür değilse durdur
                     }
                 });
             },

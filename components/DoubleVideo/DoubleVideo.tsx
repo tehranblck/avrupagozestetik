@@ -7,6 +7,7 @@ interface VideoProps {
     videoUrl: string;
     thumbnailUrl: string;
     altText?: string;
+    title?: string;
 }
 
 const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
@@ -21,7 +22,7 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
     };
 
     return (
-        <div className="w-[100%]  mt-8 px-2 mx-auto grid grid-cols-2  gap-2">
+        <div className="w-[100%] mt-2 px-2 mx-auto grid grid-cols-2 gap-2">
             {videos.map((video, index) => (
                 <div
                     key={index}
@@ -34,7 +35,7 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         width={900}
                         height={900}
                         src={video.thumbnailUrl}
-                        alt={'slt text'}
+                        alt={video.altText || `Video Thumbnail ${index + 1}`}
                         className="w-full rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
@@ -49,7 +50,11 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
             ))}
 
             {/* Popup */}
-            <Popup isOpen={currentVideoIndex !== null} onClose={handleClosePopup}>
+            <Popup
+                title={currentVideoIndex !== null ? videos[currentVideoIndex].title || 'Default Title' : ''}
+                isOpen={currentVideoIndex !== null}
+                onClose={handleClosePopup}
+            >
                 {currentVideoIndex !== null && (
                     <video
                         className="w-full rounded-lg shadow-lg"

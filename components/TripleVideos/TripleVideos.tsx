@@ -7,6 +7,7 @@ interface VideoProps {
     videoUrl: string;
     thumbnailUrl: string;
     altText?: string;
+    title: string; // Her video için başlık özelliği eklendi
 }
 
 const TripleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
@@ -21,7 +22,7 @@ const TripleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
     };
 
     return (
-        <div className="w-[100%] mt-8 mx-auto grid grid-cols-3 md:grid-cols-3 gap-1 px-2">
+        <div className="w-[100%] mt-2 mx-auto grid grid-cols-3 md:grid-cols-3 gap-1 px-2">
             {videos.map((video, index) => (
                 <div
                     key={index}
@@ -49,7 +50,11 @@ const TripleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
             ))}
 
             {/* Popup */}
-            <Popup isOpen={currentVideoIndex !== null} onClose={handleClosePopup}>
+            <Popup
+                title={currentVideoIndex !== null ? videos[currentVideoIndex].title : ''}
+                isOpen={currentVideoIndex !== null}
+                onClose={handleClosePopup}
+            >
                 {currentVideoIndex !== null && (
                     <video
                         className="w-full rounded-lg shadow-lg"

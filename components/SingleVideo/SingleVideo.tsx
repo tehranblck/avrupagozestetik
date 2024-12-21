@@ -42,7 +42,7 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
     };
 
     return (
-        <div className="w-[100%]  px-2 mt-8 mx-auto">
+        <div className="w-[100%]  px-2 mt-2 mx-auto">
             {!isVideoVisible ? (
                 <div
                     className="relative w-full cursor-pointer"

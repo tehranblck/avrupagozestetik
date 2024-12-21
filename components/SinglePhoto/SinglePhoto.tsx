@@ -10,7 +10,7 @@ interface ResponsiveImageProps {
 
 const SinglePhoto: React.FC<ResponsiveImageProps> = ({ imageUrl, altText, className }) => {
     return (
-        <div className={`w-full mt-12 px-2  overflow-hidden ${className || ''}`}>
+        <div className={`w-full mt-2 px-2  overflow-hidden ${className || ''}`}>
             <Image width={500} height={500}
                 src={imageUrl}
                 alt={altText || 'Image'}

@@ -6,6 +6,7 @@ import PopupPhoto from './PopupPhoto';
 interface PhotoProps {
     imageUrl: string;
     altText?: string;
+    title: string; // Her fotoğraf için başlık özelliği
 }
 
 const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
@@ -30,7 +31,7 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     };
 
     return (
-        <div className="w-[100%]  mt-8 mx-auto grid grid-cols-3 sm:grid-cols-3  lg:grid-cols-3 gap-1 px-2">
+        <div className="w-[100%] mt-2 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
             {photos.map((photo, index) => (
                 <div
                     key={index}
@@ -63,6 +64,7 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
                 onClose={handleClosePopup}
                 onNext={handleNextPhoto}
                 onPrev={handlePreviousPhoto}
+                title={currentPhotoIndex !== null ? photos[currentPhotoIndex].title : ''}
             >
                 {currentPhotoIndex !== null && (
                     <Image

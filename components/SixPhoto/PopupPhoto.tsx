@@ -8,9 +8,10 @@ interface PopupProps {
     children: React.ReactNode;
     onNext: () => void;
     onPrev: () => void;
+    title?: string;
 }
 
-const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, onPrev }) => {
+const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, onPrev, title }) => {
     const contentRef = useRef<HTMLDivElement | null>(null);
 
     const handleAnimation = (direction: 'next' | 'prev') => {
@@ -57,6 +58,9 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
 
                 {/* Popup içeriği */}
                 <div>{children}</div>
+                <div>
+                    <h3 className='text-center text-3xl'>{title}</h3>
+                </div>
 
                 {/* Next ve Previous Buttons */}
                 <div className="absolute top-1/2 left-4 transform -translate-y-1/2">

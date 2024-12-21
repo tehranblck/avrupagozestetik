@@ -5,9 +5,10 @@ interface PopupProps {
     isOpen: boolean;
     onClose: () => void;
     children: React.ReactNode;
+    title: string;
 }
 
-const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
+const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
     if (!isOpen) return null;
 
     return (
@@ -27,6 +28,9 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
                     ✖
                 </button>
                 {children}
+                <div>
+                    <h3 className='text-center text-2xl py-auto'>{title}</h3>
+                </div>
             </div>
         </div>
     );

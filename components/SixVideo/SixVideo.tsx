@@ -7,6 +7,7 @@ interface VideoProps {
     videoUrl: string;
     thumbnailUrl: string;
     altText?: string;
+    title: string; // Her video için başlık özelliği eklendi
 }
 
 const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
@@ -21,7 +22,7 @@ const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
     };
 
     return (
-        <div className="w-[100%] px-2 mt-8 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1">
+        <div className="w-[100%] px-2 mt-2 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1">
             {videos.map((video, index) => (
                 <div
                     key={index}
@@ -49,7 +50,11 @@ const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
             ))}
 
             {/* Popup */}
-            <Popup isOpen={currentVideoIndex !== null} onClose={handleClosePopup}>
+            <Popup
+                title={currentVideoIndex !== null ? videos[currentVideoIndex].title : ''}
+                isOpen={currentVideoIndex !== null}
+                onClose={handleClosePopup}
+            >
                 {currentVideoIndex !== null && (
                     <video
                         className="w-full rounded-lg shadow-lg"

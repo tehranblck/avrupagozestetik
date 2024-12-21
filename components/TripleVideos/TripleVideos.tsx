@@ -75,7 +75,6 @@ const TripleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         controlsList="nofullscreen"
                         autoPlay // Videonun otomatik oynatılmasını sağlar
                         playsInline
-                        muted
                     >
                         <source
                             src={videos[currentVideoIndex].videoUrl}

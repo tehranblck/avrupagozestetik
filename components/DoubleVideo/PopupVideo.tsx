@@ -1,5 +1,5 @@
-'use client'
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
 
 interface PopupProps {
     isOpen: boolean;
@@ -9,15 +9,29 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
+    // Scroll engelleme kontrolü
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden'; // Scroll'u devre dışı bırak
+        } else {
+            document.body.style.overflow = ''; // Varsayılan scroll davranışı
+        }
+
+        return () => {
+            document.body.style.overflow = ''; // Cleanup işlemi
+        };
+    }, [isOpen]);
+
     if (!isOpen) return null;
 
     return (
-        <div style={{ zIndex: '9999' }}
+        <div
+            style={{ zIndex: '9999' }}
             className="fixed top-0 w-full left-0 min-h-screen bg-black bg-opacity-75 flex items-center justify-center z-50"
             onClick={onClose} // Dış alana tıklanınca kapanır
         >
             <div
-                className="relative bg-white pt-8 mt-12 rounded-lg shadow-lg  w-full"
+                className="relative bg-white pt-8 mt-12 rounded-lg shadow-lg w-full max-w-lg mx-auto"
                 onClick={(e) => e.stopPropagation()} // İçeriğe tıklanınca kapanmayı engeller
             >
                 <button
@@ -29,7 +43,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
                 </button>
                 {children}
                 <div>
-                    <h3 className='text-center text-2xl '>{title}</h3>
+                    <h3 className="text-center text-2xl">{title}</h3>
                 </div>
             </div>
         </div>

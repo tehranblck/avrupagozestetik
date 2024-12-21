@@ -22,17 +22,7 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
     };
 
     // Scroll engelleme
-    useEffect(() => {
-        if (currentVideoIndex !== null) {
-            document.body.style.overflow = 'hidden'; // Scroll'u devre dışı bırak
-        } else {
-            document.body.style.overflow = ''; // Varsayılan scroll davranışı
-        }
 
-        return () => {
-            document.body.style.overflow = ''; // Cleanup işlemi
-        };
-    }, [currentVideoIndex]);
 
     return (
         <div className="w-[100%] mt-2 sm:px-32 px-2 mx-auto grid grid-cols-2 gap-2">
@@ -77,7 +67,6 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         className="w-full shadow-lg"
                         controls
                         controlsList="nofullscreen"
-                        autoPlay
                         playsInline
                         muted
                     >

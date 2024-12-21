@@ -76,12 +76,11 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
             ) : (
                 <video
                     ref={videoRef}
-                    className="mx-auto object-cover  shadow-lg w-full"
+                    className="mx-auto object-cover lg:h-[400px] sm:w-[80%]  shadow-lg w-full"
                     controls
                     controlsList="nofullscreen" // Tam ekran seçeneğini devre dışı bırakır
                     aria-label={altText || 'Video Player'}
                     playsInline // Tam ekran olmadan oynatma
-                    muted // Otomatik oynatma için gerekli
                 >
                     <source src={videoUrl} type="video/mp4" />
                     Tarayıcınız bu videoyu oynatmayı desteklemiyor.

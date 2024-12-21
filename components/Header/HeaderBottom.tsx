@@ -23,7 +23,7 @@ const HeaderBottom = () => {
                 borderBottomLeftRadius: '20px',
                 borderBottomRightRadius: '20px',
             }}
-            className="text-white pt-0 pb-3 sm:px-32 "
+            className="text-white pt-0 pb-3 sm:pb-2 sm:px-32 "
         >
             <div className="w-full flex justify-around items-center">
                 {categories.map((category) => (
@@ -33,11 +33,11 @@ const HeaderBottom = () => {
                         className="flex flex-col items-center text-center"
                     >
                         {/* Image */}
-                        <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center bg-gray-300 mb-2">
+                        <div className="w-12 h-12 sm:w-10 sm:h-10  rounded-full overflow-hidden flex items-center justify-center bg-gray-300 mb-2">
                             <MdCategory />
                         </div>
                         {/* Category Name */}
-                        <span className="text-sm text-white font-semibold">{category.title}</span>
+                        <span className="text-sm sm:text-xs text-white font-semibold">{category.title}</span>
                     </Link>
                 ))}
             </div>

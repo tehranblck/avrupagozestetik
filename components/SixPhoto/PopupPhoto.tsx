@@ -59,7 +59,7 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
         >
             <div
                 ref={contentRef}
-                className="relative bg-white mt-28 p-1 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%] max-w-7xl"
+                className="relative bg-white mt-20 p-1 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%] max-w-7xl"
                 onClick={(e) => e.stopPropagation()} // Pop-up içindeki tıklamayı engeller
             >
                 {/* Close Button */}
@@ -83,7 +83,7 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
                 <div className="absolute top-1/2 -left-4 border-2 border-white rounded-full transform -translate-y-1/2">
                     <button
                         onClick={() => handleAnimation('prev')}
-                        className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl focus:outline-none hover:bg-gray-600"
+                        className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl "
                     >
                         ‹
                     </button>
@@ -91,7 +91,7 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
                 <div className="absolute top-1/2 -right-4 border-2 border-white rounded-full transform -translate-y-1/2">
                     <button
                         onClick={() => handleAnimation('next')}
-                        className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl focus:outline-none hover:bg-gray-600"
+                        className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl "
                     >
                         ›
                     </button>

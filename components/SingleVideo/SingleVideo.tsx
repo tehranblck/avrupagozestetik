@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
@@ -9,7 +9,8 @@ interface VideoPlayerProps {
 }
 
 const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altText }) => {
-    const [isVideoVisible, setIsVideoVisible] = useState(false);
+    const [isVideoVisible, setIsVideoVisible] = useState(false); // Video görünüyor mu?
+    const [hasPlayed, setHasPlayed] = useState(false); // Video oynatıldı mı?
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     useEffect(() => {
@@ -20,9 +21,12 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        console.log('Video is visible, user can interact with it');
-                    } else {
+                    if (entry.isIntersecting && isVideoVisible && !hasPlayed) {
+                        // Video görünür ve hiç oynatılmamışsa başlat
+                        videoElement.play();
+                        setHasPlayed(true);
+                    } else if (!entry.isIntersecting) {
+                        // Video görünmez olduğunda durdur
                         videoElement.pause();
                     }
                 });
@@ -33,16 +37,20 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
         observer.observe(videoElement);
 
         return () => {
-            if (videoElement) observer.unobserve(videoElement);
+            observer.disconnect();
         };
-    });
+    }, [isVideoVisible, hasPlayed]); // Değişimlere bağlılık
 
     const handleThumbnailClick = () => {
-        setIsVideoVisible(true);
+        setIsVideoVisible(true); // Videoyu görünür yap
+        if (videoRef.current) {
+            videoRef.current.play(); // Videoyu başlat
+            setHasPlayed(true); // Videonun oynatıldığını işaretle
+        }
     };
 
     return (
-        <div className="w-[100%]  px-2 mt-2 mx-auto">
+        <div className="w-[100%] sm:px-32 px-2 mt-2 mx-auto">
             {!isVideoVisible ? (
                 <div
                     className="relative w-full cursor-pointer"
@@ -69,9 +77,7 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
             ) : (
                 <video
                     ref={videoRef}
-                    width={900}
-                    height={900}
-                    className=" mx-auto  object-cover rounded-lg shadow-lg"
+                    className="mx-auto object-cover rounded-lg shadow-lg w-full"
                     controls
                     controlsList="nofullscreen" // Tam ekran seçeneğini devre dışı bırakır
                     aria-label={altText || 'Video Player'}

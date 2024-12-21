@@ -31,7 +31,7 @@ const NinePhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     };
 
     return (
-        <div className="w-[100%] mt-2 mx-auto grid grid-cols-3 gap-1 px-2">
+        <div className="w-[100%] sm:px-32  mt-2 mx-auto grid grid-cols-3 gap-1 px-2">
             {photos.map((photo, index) => (
                 <div
                     key={index}

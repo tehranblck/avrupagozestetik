@@ -40,7 +40,7 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
 
     return (
         <div
-            className="fixed inset-0 mt-8 bg-black bg-opacity-75 flex items-center justify-center z-50"
+            className="fixed inset-0 mt-24 bg-black bg-opacity-75 flex items-center justify-center z-50"
             onClick={onClose} // Pop-up dışına tıklanırsa kapanır
         >
             <div

@@ -22,7 +22,7 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
     };
 
     return (
-        <div className="w-[100%] mt-2 px-2 mx-auto grid grid-cols-2 gap-2">
+        <div className="w-[100%] mt-2 sm:px-32 px-2 mx-auto grid grid-cols-2 gap-2">
             {videos.map((video, index) => (
                 <div
                     key={index}

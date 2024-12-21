@@ -22,7 +22,7 @@ const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
     };
 
     return (
-        <div className="w-[100%] px-2 mt-2 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1">
+        <div className="w-[100%] px-2 mt-2 sm:px-32 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1">
             {videos.map((video, index) => (
                 <div
                     key={index}

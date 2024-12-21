@@ -7,7 +7,7 @@ const HeaderBottom = () => {
     // 5 adet placeholder image ve yazı
     const categories = [
         { id: 1, image_icon: '/placeholder1.png', title: 'İşlemler', href: '#' },
-        { id: 2, image_icon: '/placeholder2.png', title: 'Yorumlar', href: '#' },
+        { id: 2, image_icon: '/placeholder2.png', title: 'Yorumlar', href: '/yorumlar' },
         { id: 3, image_icon: '/placeholder3.png', title: 'Hakkimizda', href: '#' },
         { id: 4, image_icon: '/placeholder4.png', title: 'İletişim', href: '#' },
         { id: 5, image_icon: '/placeholder5.png', title: 'Videolar', href: '#' },
@@ -23,7 +23,7 @@ const HeaderBottom = () => {
                 borderBottomLeftRadius: '20px',
                 borderBottomRightRadius: '20px',
             }}
-            className="text-white pt-0 pb-3 "
+            className="text-white pt-0 pb-3 sm:px-32 "
         >
             <div className="w-full flex justify-around items-center">
                 {categories.map((category) => (

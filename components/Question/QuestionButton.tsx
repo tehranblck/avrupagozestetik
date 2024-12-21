@@ -8,7 +8,7 @@ const AlertCard = () => {
   const isInView = useInView(cardRef, { once: true, margin: '-100px' });
 
   return (
-    <div className="px-1">
+    <div className="px-1 sm:px-32 ">
       <motion.div
         ref={cardRef}
         className="relative mt-2 w-full p-4 rounded-2xl overflow-hidden cursor-pointer transition-transform duration-200 hover:-translate-y-1"

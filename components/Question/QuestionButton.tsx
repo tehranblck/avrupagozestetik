@@ -1,9 +1,5 @@
-'use client'
+'use client';
 import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const AlertCard = () => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -12,27 +8,40 @@ const AlertCard = () => {
     const element = cardRef.current;
 
     if (element) {
-      gsap.fromTo(
-        element,
-        { x: '-100%', opacity: 0 },
+      // IntersectionObserver oluştur
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          console.log(entry.isIntersecting); // Hata ayıklama için görünürlük durumunu kontrol et
+          if (entry.isIntersecting) {
+            // Animasyon başlangıcı
+            element.style.transition = 'transform 0.7s ease-out, opacity 0.7s ease-out';
+            element.style.transform = 'translateX(0)';
+            element.style.opacity = '1';
+
+            // Observer'ı durdur
+            observer.unobserve(element);
+          }
+        },
         {
-          x: '0%',
-          opacity: 1,
-          duration: 0.7,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: element,
-            start: 'top 80%', // Başlama noktası
-            end: 'bottom 60%', // Bitiş noktası
-            toggleActions: 'play none none none', // Bir kez tetikler
-          },
+          threshold: 0, // Öğenin %10'u görünür olduğunda tetiklenir
         }
       );
+
+      // Başlangıç durumunu ayarla
+      element.style.transform = 'translateX(-100%)';
+      element.style.opacity = '0';
+
+      // Observer'ı başlat
+      observer.observe(element);
+
+      return () => {
+        observer.disconnect(); // Temizleme işlemi
+      };
     }
   }, []);
 
   return (
-    <div className="px-1 sm:px-32 ">
+    <div className="px-1 sm:px-32">
       <div
         ref={cardRef}
         className="relative mt-2 w-full p-4 rounded-2xl overflow-hidden cursor-pointer transition-transform duration-200 hover:-translate-y-1"

@@ -1,5 +1,5 @@
-'use client'
-import React, { useState } from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Popup from './PopupVideo';
 
@@ -20,6 +20,19 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
     const handleClosePopup = () => {
         setCurrentVideoIndex(null); // Pop-up'ı kapat
     };
+
+    // Scroll engelleme
+    useEffect(() => {
+        if (currentVideoIndex !== null) {
+            document.body.style.overflow = 'hidden'; // Scroll'u devre dışı bırak
+        } else {
+            document.body.style.overflow = ''; // Varsayılan scroll davranışı
+        }
+
+        return () => {
+            document.body.style.overflow = ''; // Cleanup işlemi
+        };
+    }, [currentVideoIndex]);
 
     return (
         <div className="w-[100%] mt-2 sm:px-32 px-2 mx-auto grid grid-cols-2 gap-2">
@@ -51,17 +64,22 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
 
             {/* Popup */}
             <Popup
-                title={currentVideoIndex !== null ? videos[currentVideoIndex].title || 'Default Title' : ''}
+                title={
+                    currentVideoIndex !== null
+                        ? videos[currentVideoIndex].title || 'Default Title'
+                        : ''
+                }
                 isOpen={currentVideoIndex !== null}
                 onClose={handleClosePopup}
             >
                 {currentVideoIndex !== null && (
                     <video
-                        className="w-full  shadow-lg"
+                        className="w-full shadow-lg"
                         controls
                         controlsList="nofullscreen"
                         autoPlay
                         playsInline
+                        muted
                     >
                         <source
                             src={videos[currentVideoIndex].videoUrl}

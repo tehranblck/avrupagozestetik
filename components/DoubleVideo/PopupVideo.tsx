@@ -13,11 +13,11 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
 
     return (
         <div
-            className="fixed top-44  bg-opacity-75 flex items-center justify-center z-50"
+            className="fixed top-44 left-0 w-full    flex items-center justify-center z-50"
             onClick={onClose} // Dış alana tıklanınca kapanır
         >
             <div
-                className="relative bg-white p-6 rounded-lg shadow-lg max-w-4xl w-full"
+                className="relative bg-white p-6 rounded-lg shadow-lg  w-full"
                 onClick={(e) => e.stopPropagation()} // İçeriğe tıklanınca kapanmayı engeller
             >
                 <button

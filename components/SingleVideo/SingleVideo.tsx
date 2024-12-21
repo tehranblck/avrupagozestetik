@@ -22,11 +22,9 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting && isVideoVisible && !hasPlayed) {
-                        // Video görünür ve hiç oynatılmamışsa başlat
                         videoElement.play();
                         setHasPlayed(true);
                     } else if (!entry.isIntersecting) {
-                        // Video görünmez olduğunda durdur
                         videoElement.pause();
                     }
                 });
@@ -39,11 +37,12 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
         return () => {
             observer.disconnect();
         };
-    }, [isVideoVisible, hasPlayed]); // Değişimlere bağlılık
+    }, [isVideoVisible, hasPlayed]);
 
     const handleThumbnailClick = () => {
         setIsVideoVisible(true); // Videoyu görünür yap
         if (videoRef.current) {
+            videoRef.current.muted = true; // Video sessiz olarak başlayacak
             videoRef.current.play(); // Videoyu başlat
             setHasPlayed(true); // Videonun oynatıldığını işaretle
         }
@@ -81,7 +80,8 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
                     controls
                     controlsList="nofullscreen" // Tam ekran seçeneğini devre dışı bırakır
                     aria-label={altText || 'Video Player'}
-                    playsInline // iOS cihazlar için tam ekran olmadan oynatma
+                    playsInline // Tam ekran olmadan oynatma
+                    muted // Otomatik oynatma için gerekli
                 >
                     <source src={videoUrl} type="video/mp4" />
                     Tarayıcınız bu videoyu oynatmayı desteklemiyor.

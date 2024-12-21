@@ -130,6 +130,8 @@ const Page = () => {
             <SixVideo videos={videos6} />
             <SixPhoto photos={images} />
             <SixPhoto photos={images} />
+            <SixVideo videos={videos6} />
+            <SixVideo videos={videos6} />
             <AlertCard />
             <TripleVideo videos={videos3} />
             <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />

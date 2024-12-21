@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Popup from './PopupVideo';
 
@@ -20,9 +20,6 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
     const handleClosePopup = () => {
         setCurrentVideoIndex(null); // Pop-up'ı kapat
     };
-
-    // Scroll engelleme
-
 
     return (
         <div className="w-[100%] mt-2 sm:px-32 px-2 mx-auto grid grid-cols-2 gap-2">
@@ -67,6 +64,7 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         className="w-full shadow-lg"
                         controls
                         controlsList="nofullscreen"
+                        autoPlay // Videonun otomatik oynatılmasını sağlar
                         playsInline
                         muted
                     >

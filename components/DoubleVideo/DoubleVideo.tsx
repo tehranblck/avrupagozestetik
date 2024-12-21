@@ -61,6 +61,7 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         controls
                         controlsList="nofullscreen"
                         autoPlay
+                        playsInline
                     >
                         <source
                             src={videos[currentVideoIndex].videoUrl}

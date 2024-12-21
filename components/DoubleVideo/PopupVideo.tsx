@@ -17,12 +17,12 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
             onClick={onClose} // Dış alana tıklanınca kapanır
         >
             <div
-                className="relative bg-white pt-8 mt-44 rounded-lg shadow-lg  w-full"
+                className="relative bg-white pt-8 mt-12 rounded-lg shadow-lg  w-full"
                 onClick={(e) => e.stopPropagation()} // İçeriğe tıklanınca kapanmayı engeller
             >
                 <button
                     onClick={onClose}
-                    className="absolute z-50 right-0 top-0 text-black text-2xl"
+                    className="absolute z-50 right-0 top-0 text-black text-4xl"
                     aria-label="Close Popup"
                 >
                     ✖

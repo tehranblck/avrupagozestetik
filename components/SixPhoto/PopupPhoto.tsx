@@ -34,7 +34,7 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
         tl.to(contentRef.current, {
             opacity: 0,
             x: direction === 'next' ? -100 : 100,
-            duration: 0.5,
+            duration: 0.3,
             onComplete: () => {
                 if (direction === 'next') {
                     onNext();
@@ -45,7 +45,7 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
         }).to(contentRef.current, {
             opacity: 1,
             x: 0,
-            duration: 0.5,
+            duration: 0.3,
         });
     };
 

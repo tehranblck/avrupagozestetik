@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = async ({ children }) => {
 
     return (
         <div >
-            <div style={{ borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px', zIndex: '999999999999999999' }} className=' w-full bg-[#3a7ca0] fixed top-0 right-0 '>
+            <div style={{ borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px', zIndex: '99' }} className=' w-full bg-[#3a7ca0] fixed top-0 right-0 '>
                 <Header />
                 <HeaderBottom />
             </div>

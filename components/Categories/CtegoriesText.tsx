@@ -27,7 +27,7 @@ const CategoriesText = () => {
                     letterSpacing: '2px',
                     fontWeight: 'normal',
                 }}
-                className="text-left sm:text-center sm:pt-12 text-blue-700 font-bold text-5xl pl-3 lg:pl-10 lg:text-6xl"
+                className="text-left sm:text-center sm:pt-12 text-blue-700 font-bold text-4xl pl-3 lg:pl-10 lg:text-6xl"
             >
                 AVRUPA {isMobile ? <br /> : null} GÖZ & ESTETİK
             </div>

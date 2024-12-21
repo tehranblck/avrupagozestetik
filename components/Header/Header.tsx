@@ -72,7 +72,7 @@ const Header: React.FC = () => {
             style={{
                 borderBottomLeftRadius: '10px',
                 borderBottomRightRadius: '10px',
-                zIndex: '99999',
+                zIndex: '99',
             }}
             className="w-full  text-white py-4 px-2 sm:px-32 "
         >

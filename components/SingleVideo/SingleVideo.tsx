@@ -71,7 +71,7 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
                     ref={videoRef}
                     width={900}
                     height={900}
-                    className="w-full max-h-48 object-cover rounded-lg shadow-lg"
+                    className=" mx-auto  object-cover rounded-lg shadow-lg"
                     controls
                     controlsList="nofullscreen" // Tam ekran seçeneğini devre dışı bırakır
                     aria-label={altText || 'Video Player'}

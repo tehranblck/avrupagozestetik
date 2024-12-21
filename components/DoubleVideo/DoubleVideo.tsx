@@ -34,7 +34,7 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         width={900}
                         height={900}
                         src={video.thumbnailUrl}
-                        alt={video.altText || `Video Thumbnail ${index + 1}`}
+                        alt={'slt text'}
                         className="w-full rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">

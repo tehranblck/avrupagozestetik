@@ -44,12 +44,12 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
         >
             <div
                 ref={contentRef}
-                className="relative bg-white p-4 rounded-lg shadow-lg max-w-4xl w-full"
+                className="relative bg-white p-6 rounded-lg shadow-lg max-w-4xl w-full"
                 onClick={(e) => e.stopPropagation()} // Pop-up içindeki tıklamayı engeller
             >
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 text-black text-xl"
+                    className="absolute top-0 right-0 text-black text-xl"
                     aria-label="Close Popup"
                 >
                     ✖

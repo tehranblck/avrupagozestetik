@@ -97,7 +97,7 @@ const Page = () => {
             {/* <Card /> */}
             <CategoriesSectionHeader />
             <CategoriesText />
-            <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/teze.mp4' altText='text' />
+            <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/hero.mp4' altText='text' />
             <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
             <DoubleVideo videos={videos} />
             <TripleVideo videos={videos3} />

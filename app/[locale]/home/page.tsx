@@ -118,6 +118,7 @@ const Page = () => {
             <SixPhoto photos={images} />
             <AlertCard />
             <SixVideo videos={videos6} />
+            <SixVideo videos={videos6} />
 
             <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
             <DoubleVideo videos={videos} />
@@ -136,6 +137,9 @@ const Page = () => {
             <TripleVideo videos={videos3} />
             <SixPhoto photos={images} />
             <SixPhoto photos={images} />
+            <TripleVideo videos={videos3} />
+            <SixPhoto photos={images} />
+            <TripleVideo videos={videos3} />
             <AlertCard />
 
 

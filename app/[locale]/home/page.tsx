@@ -110,7 +110,7 @@ const Page = () => {
         }
     ];
     return (
-        <div className='h-[500vh]'>
+        <div >
             {/* <Card /> */}
             <CategoriesSectionHeader />
             <CategoriesText />
@@ -143,6 +143,7 @@ const Page = () => {
             <SixPhoto photos={images} />
             <TripleVideo videos={videos3} />
             <AlertCard />
+            <SixPhoto photos={images} />
 
 
 

@@ -1,6 +1,7 @@
 import Header from '@/components/Header/Header';
 import React, { ReactNode } from 'react';
 import HeaderBottom from '@/components/Header/HeaderBottom';
+import Footer from '@/components/Footer/Footer';
 
 interface LayoutProps {
     children: ReactNode;
@@ -17,6 +18,8 @@ const Layout: React.FC<LayoutProps> = async ({ children }) => {
             </div>
 
             <main >{children}</main>
+            <Footer />
+
 
 
         </div>

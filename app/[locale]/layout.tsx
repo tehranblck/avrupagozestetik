@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "./globals.css";
 import 'intersection-observer';
+import Footer from "@/components/Footer/Footer";
 
 
 
@@ -36,6 +37,7 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
+
         </NextIntlClientProvider>
       </body>
     </html>

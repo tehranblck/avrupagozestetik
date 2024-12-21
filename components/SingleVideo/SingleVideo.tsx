@@ -81,6 +81,7 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
                     controls
                     controlsList="nofullscreen" // Tam ekran seçeneğini devre dışı bırakır
                     aria-label={altText || 'Video Player'}
+                    playsInline // iOS cihazlar için tam ekran olmadan oynatma
                 >
                     <source src={videoUrl} type="video/mp4" />
                     Tarayıcınız bu videoyu oynatmayı desteklemiyor.

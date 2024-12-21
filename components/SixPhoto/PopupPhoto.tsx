@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 
@@ -39,42 +39,46 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
     if (!isOpen) return null;
 
     return (
-        <div style={{ zIndex: '99999999' }}
-            className="fixed min-h-screen left-0 top-0  bg-black bg-opacity-75 flex items-center justify-center z-50"
+        <div
+            style={{ zIndex: 9999 }}
+            className="fixed top-0 w-full left-0 min-h-screen bg-black bg-opacity-75 flex items-center justify-center z-50"
             onClick={onClose} // Pop-up dışına tıklanırsa kapanır
         >
             <div
                 ref={contentRef}
-                className="relative bg-white mt-44 p-6 rounded-lg shadow-lg max-w-4xl w-full"
+                className="relative bg-white mt-44 p-1 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%] max-w-7xl"
                 onClick={(e) => e.stopPropagation()} // Pop-up içindeki tıklamayı engeller
             >
+                {/* Close Button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-0 right-0 text-black text-xl"
+                    className="absolute top-1 right-1 !text-white bg-gray-400 rounded-full  hover:text-black text-2xl md:text-3xl focus:outline-none"
                     aria-label="Close Popup"
                 >
                     ✖
                 </button>
 
-                {/* Popup içeriği */}
-                <div>{children}</div>
-                <div>
-                    <h3 className='text-center text-3xl'>{title}</h3>
+                {/* Popup Content */}
+                <div className="mx-auto w-full flex justify-center">{children}</div>
+                <div className="mt-4 text-center">
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-800">
+                        {title}
+                    </h3>
                 </div>
 
-                {/* Next ve Previous Buttons */}
-                <div className="absolute top-1/2 left-1 transform -translate-y-1/2">
+                {/* Next and Previous Buttons */}
+                <div className="absolute top-1/2 -left-4 border-2 border-white rounded-full transform -translate-y-1/2">
                     <button
                         onClick={() => handleAnimation('prev')}
-                        className="bg-gray-800 text-white p-4 text-2xl rounded-full"
+                        className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl focus:outline-none hover:bg-gray-600"
                     >
                         ‹
                     </button>
                 </div>
-                <div className="absolute top-1/2 right-1 transform -translate-y-1/2">
+                <div className="absolute top-1/2 -right-4 border-2 border-white rounded-full transform -translate-y-1/2">
                     <button
                         onClick={() => handleAnimation('next')}
-                        className="bg-gray-800 text-2xl text-white p-4 rounded-full"
+                        className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl focus:outline-none hover:bg-gray-600"
                     >
                         ›
                     </button>

@@ -57,7 +57,7 @@ const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
             >
                 {currentVideoIndex !== null && (
                     <video
-                        className="w-full rounded-lg shadow-lg"
+                        className="w-full  shadow-lg"
                         controls
                         controlsList="nofullscreen"
                         autoPlay

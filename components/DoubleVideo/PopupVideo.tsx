@@ -13,11 +13,11 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
 
     return (
         <div style={{ zIndex: '9999' }}
-            className="fixed top-0 left-0 w-full bg-black bg-opacity-75   min-h-screen flex items-center justify-center z-50"
+            className="fixed top-0 w-full left-0 min-h-screen bg-black bg-opacity-75 flex items-center justify-center z-50"
             onClick={onClose} // Dış alana tıklanınca kapanır
         >
             <div
-                className="relative bg-white p-6 mt-44 rounded-lg shadow-lg  w-full"
+                className="relative bg-white pt-8 mt-44 rounded-lg shadow-lg  w-full"
                 onClick={(e) => e.stopPropagation()} // İçeriğe tıklanınca kapanmayı engeller
             >
                 <button
@@ -29,7 +29,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
                 </button>
                 {children}
                 <div>
-                    <h3 className='text-center text-2xl py-auto'>{title}</h3>
+                    <h3 className='text-center text-2xl '>{title}</h3>
                 </div>
             </div>
         </div>

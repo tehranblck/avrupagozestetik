@@ -1,5 +1,5 @@
-'use client'
-import React, { useState } from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Popup from '../DoubleVideo/PopupVideo';
 
@@ -21,8 +21,21 @@ const TripleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
         setCurrentVideoIndex(null); // Pop-up'ı kapat
     };
 
+    // Scroll engelleme
+    useEffect(() => {
+        if (currentVideoIndex !== null) {
+            document.body.style.overflow = 'hidden'; // Scroll'u devre dışı bırak
+        } else {
+            document.body.style.overflow = ''; // Varsayılan scroll davranışı
+        }
+
+        return () => {
+            document.body.style.overflow = ''; // Cleanup işlemi
+        };
+    }, [currentVideoIndex]);
+
     return (
-        <div className="w-[100%] sm:px-32  mt-2 mx-auto grid grid-cols-3 md:grid-cols-3 gap-1 px-2">
+        <div className="w-[100%] sm:px-32 mt-2 mx-auto grid grid-cols-3 md:grid-cols-3 gap-1 px-2">
             {videos.map((video, index) => (
                 <div
                     key={index}
@@ -60,7 +73,9 @@ const TripleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         className="w-full shadow-lg"
                         controls
                         controlsList="nofullscreen"
-                        autoPlay
+                        autoPlay // Videonun otomatik oynatılmasını sağlar
+                        playsInline
+                        muted
                     >
                         <source
                             src={videos[currentVideoIndex].videoUrl}

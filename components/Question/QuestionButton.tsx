@@ -1,20 +1,41 @@
-'use client';
-import React from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+'use client'
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AlertCard = () => {
   const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, margin: '-100px' });
+
+  useEffect(() => {
+    const element = cardRef.current;
+
+    if (element) {
+      gsap.fromTo(
+        element,
+        { x: '-100%', opacity: 0 },
+        {
+          x: '0%',
+          opacity: 1,
+          duration: 0.7,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%', // Başlama noktası
+            end: 'bottom 60%', // Bitiş noktası
+            toggleActions: 'play none none none', // Bir kez tetikler
+          },
+        }
+      );
+    }
+  }, []);
 
   return (
     <div className="px-1 sm:px-32 ">
-      <motion.div
+      <div
         ref={cardRef}
         className="relative mt-2 w-full p-4 rounded-2xl overflow-hidden cursor-pointer transition-transform duration-200 hover:-translate-y-1"
-        initial={{ x: 0, opacity: 1 }} // Başlangıç durumu
-        animate={isInView ? { x: 0, opacity: 1 } : {}} // Görünür olduğunda animasyon
-        transition={{ duration: 0.5, ease: 'linear' }} // Doğrusal geçiş
       >
         <div className="absolute inset-0 -z-10 filter blur-lg">
           <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 z-50 w-full h-full"></div>
@@ -25,7 +46,7 @@ const AlertCard = () => {
             Göz kapağı estetiği sonrasında genç bir göz çevresine sahip olmak, tüm yüzün görünümünü olumlu yönde değiştirebilir.
           </p>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

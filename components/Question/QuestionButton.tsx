@@ -23,7 +23,7 @@ const AlertCard = () => {
           }
         },
         {
-          threshold: 0, // Öğenin %10'u görünür olduğunda tetiklenir
+          threshold: 0,
         }
       );
 

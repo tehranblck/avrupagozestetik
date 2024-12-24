@@ -60,7 +60,7 @@ const page = () => {
         <div>
             <Header />
             <Button />
-            <CategoriesText />
+            <CategoriesText text1='Mutlu Danışan' text2='tablomuz' paragraph='Mutluluğunuz sevincimizdir' />
             <InfinitySlider />
             <TripleVideo videos={videos3} />
             <CommentCard key={comments[0].comment} comment={comments[0]} />

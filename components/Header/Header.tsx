@@ -73,58 +73,60 @@ const Header: React.FC = () => {
                 borderBottomRightRadius: '10px',
                 zIndex: '99',
             }}
-            className="w-full header flex flex-wrap  items-center justify-between text-white py-4 px-4 sm:px-10"
+            className="w-full header "
         >
-            {/* Logo */}
-            <Link href={'/'} className="flex items-center">
-                <Image alt="Logo" src="/logo.svg" width={100} height={60} />
-            </Link>
+            <div className='max-w-7xl mx-auto  flex   items-center justify-between text-white py-4 px-4 '>
+                <Link href={'/'} className="flex items-center">
+                    <Image alt="Logo" src="/logo.svg" width={100} height={60} />
+                </Link>
 
-            {/* Button */}
-            <div className="relative flex-grow flex justify-end sm:justify-center mt-4 sm:mt-0">
-                <button
-                    ref={buttonRef}
-                    style={{ fontSize: '16px', }}
-                    className="flex items-center px-4 py-2 bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
-                    onClick={toggleDropdown}
-                >
-                    Randevu Al
-                    <MdKeyboardArrowDown
-                        className={`ml-2 text-2xl transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''
-                            }`}
-                    />
-                </button>
-
-                {/* Dropdown Menu */}
-                <div
-                    style={{ zIndex: 9999, width: '80vw', }}
-                    ref={dropdownRef}
-                    className={`absolute top-full right-0   mt-2 w-full  sm:w-full bg-white text-blue-600 rounded-lg shadow-lg py-2 ${isDropdownOpen ? 'block' : 'hidden'
-                        }`}
-                >
-                    {/* Close Button */}
+                {/* Button */}
+                <div className="relative flex-grow flex justify-end sm:justify-end mt-4 sm:mt-0">
                     <button
-                        className="absolute top-1 right-2 text-red-500 text-lg hover:text-red-700"
-                        onClick={closeDropdown}
+                        ref={buttonRef}
+                        style={{ fontSize: '16px', }}
+                        className="flex items-center px-4 py-2 bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
+                        onClick={toggleDropdown}
                     >
-                        <IoClose />
+                        Randevu Al
+                        <MdKeyboardArrowDown
+                            className={`ml-2 text-2xl transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''
+                                }`}
+                        />
                     </button>
 
-                    {/* Dropdown Links */}
-                    <Link
-                        href="#"
-                        className="block w-full px-4 py-2 hover:bg-gray-100"
+                    {/* Dropdown Menu */}
+                    <div
+                        style={{ zIndex: 9999, width: '80vw', }}
+                        ref={dropdownRef}
+                        className={`absolute top-full right-0   mt-2 w-full  sm:w-full bg-white text-blue-600 rounded-lg shadow-lg py-2 ${isDropdownOpen ? 'block' : 'hidden'
+                            }`}
                     >
-                        WhatsApp'tan Randevu Al
-                    </Link>
-                    <Link
-                        href="/contact"
-                        className="block w-full px-4 py-2 hover:bg-gray-100"
-                    >
-                        Form Doldur
-                    </Link>
+                        {/* Close Button */}
+                        <button
+                            className="absolute top-1 right-2 text-red-500 text-lg hover:text-red-700"
+                            onClick={closeDropdown}
+                        >
+                            <IoClose />
+                        </button>
+
+                        {/* Dropdown Links */}
+                        <Link
+                            href="#"
+                            className="block w-full px-4 py-2 hover:bg-gray-100"
+                        >
+                            WhatsApp'tan Randevu Al
+                        </Link>
+                        <Link
+                            href="/contact"
+                            className="block w-full px-4 py-2 hover:bg-gray-100"
+                        >
+                            Form Doldur
+                        </Link>
+                    </div>
                 </div>
             </div>
+
         </header>
     );
 };

@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from 'react';
 
 interface CategoriesTextProps {
-    text1: string;
-    text2: string;
+    text1?: string;
+    text2?: string;
     paragraph?: string;
     className?: string;
+    paragraphAlign?: string;
 }
 
-const CategoriesText: React.FC<CategoriesTextProps> = ({ text1, text2, paragraph, className }) => {
+const CategoriesText: React.FC<CategoriesTextProps> = ({ text1, text2, paragraph, className, paragraphAlign }) => {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -40,7 +41,7 @@ const CategoriesText: React.FC<CategoriesTextProps> = ({ text1, text2, paragraph
             </div>
             <div
                 style={{ fontFamily: 'Glacial Indifference Regular' }}
-                className={`text-right    sm:text-center px-5 text-gray-700 font-medium  lg:text-base lg:pr-10`}
+                className={`${paragraphAlign}   sm:text-center px-5 text-gray-700 font-medium  lg:text-base lg:pr-10`}
             >
                 {paragraph}
             </div>

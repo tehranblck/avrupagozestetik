@@ -112,7 +112,7 @@ const Page = () => {
         }
     ];
     return (
-        <div >
+        <div className='max-w-7xl mx-auto w-full'>
             {/* <Card /> */}
             {/* <CategoriesSectionHeader /> */}
             {/* <CategoriesText /> */}

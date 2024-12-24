@@ -8,7 +8,7 @@ const HeaderBottom = () => {
     const categories = [
         { id: 2, title: 'Yorumlar', href: '/yorumlar' },
         { id: 3, title: 'Hakkimizda', href: '/hakkimizda' },
-        { id: 4, title: 'İletişim', href: '#' },
+        { id: 4, title: 'İletişim', href: '/iletisim' },
     ];
 
     const specialButton = { id: 5, title: 'Diğer estetik uygulamalarımız', href: '#' }; // Özel buton
@@ -16,7 +16,7 @@ const HeaderBottom = () => {
     return (
         <div
             style={{
-                position: 'relative',
+                position: 'sticky',
                 top: '0',
                 width: '100%',
                 zIndex: 50,
@@ -26,7 +26,7 @@ const HeaderBottom = () => {
             className="text-white bg-white pt-0 pb-3 sm:pb-2 sm:px-32"
         >
             {/* Üstteki kategoriler */}
-            <div className="w-full flex justify-around items-center">
+            <div className="w-full flex justify-around sm:justify-end sm:gap-6 items-center">
                 {categories.map((category) => (
                     <Link
                         key={category.id}
@@ -42,7 +42,7 @@ const HeaderBottom = () => {
             </div>
 
             {/* Ayrı bir satırda "Diğer İşlemler" */}
-            <div className="mt-4 w-full flex  justify-center">
+            <div className="mt-4 w-full flex sticky top-0  justify-center">
                 <Link
                     href={specialButton.href}
                     className=" py-3 border-gray-300 bg-white text-black  px-10 flex items-center gap-3  font-normal rounded-lg shadow-lg border transition-all duration-300"

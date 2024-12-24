@@ -1,9 +1,12 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
-const HeaderBottom = () => {
+interface HeaderBottomProps {
+    isVisible: boolean;
+}
+
+const HeaderBottom = ({ isVisible }: HeaderBottomProps) => {
     // 5 adet placeholder image ve yazı
     const categories = [
         { id: 2, title: 'Yorumlar', href: '/yorumlar' },
@@ -11,19 +14,19 @@ const HeaderBottom = () => {
         { id: 4, title: 'İletişim', href: '/iletisim' },
     ];
 
-    const specialButton = { id: 5, title: 'Diğer estetik uygulamalarımız', href: '#' }; // Özel buton
+
 
     return (
         <div
             style={{
-                position: 'sticky',
+                position: 'relative',
                 top: '0',
                 width: '100%',
                 zIndex: 50,
                 borderBottomLeftRadius: '20px',
                 borderBottomRightRadius: '20px',
             }}
-            className="text-white bg-white pt-0 pb-3 sm:pb-2 sm:px-32"
+            className={`text-white bg-white pt-0 pb-3 sm:pb-2 sm:px-32  ${isVisible ? 'block' : 'hidden'} `}
         >
             {/* Üstteki kategoriler */}
             <div className="w-full flex justify-around sm:justify-end sm:gap-6 items-center">
@@ -41,15 +44,7 @@ const HeaderBottom = () => {
                 ))}
             </div>
 
-            {/* Ayrı bir satırda "Diğer İşlemler" */}
-            <div className="mt-4 w-full flex sticky top-0  justify-center">
-                <Link
-                    href={specialButton.href}
-                    className=" py-3 border-gray-300 bg-white text-black  px-10 flex items-center gap-3  font-normal rounded-lg shadow-lg border transition-all duration-300"
-                >
-                    {specialButton.title} <MdKeyboardDoubleArrowRight className='mt-1' />
-                </Link>
-            </div>
+
         </div>
     );
 };

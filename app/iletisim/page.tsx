@@ -8,12 +8,12 @@ import PhoneForm from '@/components/fform/Form'
 
 const page = () => {
     return (
-        <div>
+        <div >
 
-            <Header />
-            <div className='max-w-7xl mx-auto '>
+            <Header isHomePage={false} />
+            <div className='max-w-7xl mx-auto mt-32 '>
                 <Button />
-                <div className="div text-center">
+                <div className="div text-left sm:text-center">
                     <CategoriesText paragraphAlign='text-left' paragraph='Hızlıca bize ulaşmak için WhatsApp butonuna tıklayarak bize yazabilirsiniz.' />
                     <WhatsAppButton />
                 </div>

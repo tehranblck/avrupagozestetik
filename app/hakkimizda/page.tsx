@@ -7,8 +7,10 @@ import React from 'react'
 const page = () => {
     return (
         <div>
-            <Header />
-            <Button />
+            <Header isHomePage={false} />
+            <div className="mt-32">
+                <Button />
+            </div>
             <CategoriesText text1='Avrupa' className='text-5xl' text2='Göz & Estetik' />
             <div className="images relative flex gap-0 my-6 justify-center">
                 <Image className='clip relative -right-10' src={'/maint.jpg'} alt="maint" width={200} height={200} />

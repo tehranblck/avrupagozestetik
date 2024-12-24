@@ -6,7 +6,11 @@ import { IoClose } from 'react-icons/io5'; // Close icon (X)
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    isHomePage: boolean;
+}
+
+const Header = ({ isHomePage }: HeaderProps) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -73,7 +77,7 @@ const Header: React.FC = () => {
                 borderBottomRightRadius: '10px',
                 zIndex: '99',
             }}
-            className="w-full header "
+            className={`w-full ${isHomePage ? null : 'fixed top-0'} top-0 header `}
         >
             <div className='max-w-7xl mx-auto  flex   items-center justify-between text-white py-4 px-4 '>
                 <Link href={'/'} className="flex items-center">

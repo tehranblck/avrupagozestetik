@@ -1,6 +1,7 @@
 
 import CategoriesSectionHeader from '@/components/Categories/Categories';
 import CategoriesText from '@/components/Categories/CtegoriesText';
+import DigerIslemler from '@/components/DigerIslemler';
 import DoubleVideo from '@/components/DoubleVideo/DoubleVideo';
 import Header from '@/components/Header/Header';
 import HeaderBottom from '@/components/Header/HeaderBottom';
@@ -128,10 +129,10 @@ const Page = () => {
             >
                 <div id="upScroll"></div>
 
-                <Header />
-                <HeaderBottom />
+                <Header isHomePage={true} />
+                <HeaderBottom isVisible={true} />
             </div>
-
+            <DigerIslemler />
             <SixPhoto photos={images} />
             <AlertCard />
             <SixVideo videos={videos6} />

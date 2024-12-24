@@ -45,7 +45,7 @@ const PhoneForm: React.FC = () => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-lg space-y-4"
+            className="max-w-lg mx-auto p-4 bg-white my-12  rounded-lg space-y-4"
         >
             <h3 className="text-left text-2xl">Form bırakın biz sizi arayalım.</h3>
             <div>

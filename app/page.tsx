@@ -2,6 +2,8 @@
 import CategoriesSectionHeader from '@/components/Categories/Categories';
 import CategoriesText from '@/components/Categories/CtegoriesText';
 import DoubleVideo from '@/components/DoubleVideo/DoubleVideo';
+import Header from '@/components/Header/Header';
+import HeaderBottom from '@/components/Header/HeaderBottom';
 import NinePhoto from '@/components/NinePhoto/NinePhoto';
 import AlertCard from '@/components/Question/QuestionButton';
 import Card from '@/components/Question/QuestionButton';
@@ -115,6 +117,21 @@ const Page = () => {
             {/* <CategoriesSectionHeader /> */}
             {/* <CategoriesText /> */}
             {/* <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/hero.mp4' altText='text' /> */}
+            <div
+
+                style={{
+                    borderBottomLeftRadius: '20px',
+                    borderBottomRightRadius: '20px',
+                    zIndex: 99,
+                }}
+                className="w-full fixed top-0 right-0"
+            >
+                <div id="upScroll"></div>
+
+                <Header />
+                <HeaderBottom />
+            </div>
+
             <SixPhoto photos={images} />
             <AlertCard />
             <SixVideo videos={videos6} />

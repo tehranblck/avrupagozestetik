@@ -1,5 +1,12 @@
+import Button from '@/components/BackButton/BackButton'
+import CategoriesText from '@/components/Categories/CtegoriesText'
+import CommentSection from '@/components/Comment/CommentCard'
+import CommentCard from '@/components/Comment/CommentCard'
+import Header from '@/components/Header/Header'
 import AlertCard from '@/components/Question/QuestionButton'
 import SixPhoto from '@/components/SixPhoto/SixPhoto'
+import SixVideo from '@/components/SixVideo/SixVideo'
+import InfinitySlider from '@/components/slider/InfinitySlider'
 import TripleVideo from '@/components/TripleVideos/TripleVideos'
 import React from 'react'
 
@@ -32,15 +39,38 @@ const page = () => {
             title: 'goz cevresi estetigi'
         }
     ];
+    const comments = [
+        {
+            imageUrl: '/maint.jpg',
+            name: 'John Doe',
+            comment: 'Bu gerçekten harika bir ürün, çok memnun kaldım!',
+        },
+        {
+            imageUrl: '/maint.jpg',
+            name: 'Jane Smith',
+            comment: 'Mükemmel hizmet, tekrar sipariş vereceğim!',
+        },
+        {
+            imageUrl: '/maint.jpg',
+            name: 'Ali Veli',
+            comment: 'Hızlı teslimat ve mükemmel kalite.',
+        },
+    ];
     return (
         <div>
-            <h1 className='text-black text-3xl'>Mutlu danışan tablomuz</h1>
+            <Header />
+            <Button />
+            <CategoriesText />
+            <InfinitySlider />
             <TripleVideo videos={videos3} />
-            <AlertCard />
-            <SixPhoto photos={images} />
-            <SixPhoto photos={images} />
-            <AlertCard />
-            <SixPhoto photos={images} />
+            <CommentCard key={comments[0].comment} comment={comments[0]} />
+            <CommentCard key={comments[0].name} comment={comments[0]} />
+            <TripleVideo videos={videos3} />
+            <CommentCard key={comments[1].comment} comment={comments[1]} />
+            <CommentCard key={comments[1].name} comment={comments[1]} />
+            <TripleVideo videos={videos3} />
+            <CommentCard key={comments[2].comment} comment={comments[2]} />
+            <CommentCard key={comments[2].name} comment={comments[2]} />
 
 
 

@@ -73,7 +73,7 @@ const Header: React.FC = () => {
                 borderBottomRightRadius: '10px',
                 zIndex: '99',
             }}
-            className="w-full header flex flex-wrap items-center justify-between text-white py-4 px-4 sm:px-10"
+            className="w-full header flex flex-wrap  items-center justify-between text-white py-4 px-4 sm:px-10"
         >
             {/* Logo */}
             <Link href={'/'} className="flex items-center">

@@ -76,9 +76,9 @@ const Header: React.FC = () => {
             className="w-full header flex flex-wrap items-center justify-between text-white py-4 px-4 sm:px-10"
         >
             {/* Logo */}
-            <div className="flex items-center">
+            <Link href={'/'} className="flex items-center">
                 <Image alt="Logo" src="/logo.svg" width={100} height={60} />
-            </div>
+            </Link>
 
             {/* Button */}
             <div className="relative flex-grow flex justify-end sm:justify-center mt-4 sm:mt-0">

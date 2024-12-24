@@ -1,17 +1,17 @@
 'use client';
 import React from 'react';
-import { Link } from '@/i18n/routing';
-import { MdCategory } from "react-icons/md";
+import Link from 'next/link';
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const HeaderBottom = () => {
     // 5 adet placeholder image ve yazı
     const categories = [
-        { id: 1, image_icon: '/placeholder1.png', title: 'İşlemler', href: '#' },
-        { id: 2, image_icon: '/placeholder2.png', title: 'Yorumlar', href: '/yorumlar' },
-        { id: 3, image_icon: '/placeholder3.png', title: 'Hakkimizda', href: '#' },
-        { id: 4, image_icon: '/placeholder4.png', title: 'İletişim', href: '#' },
-        { id: 5, image_icon: '/placeholder5.png', title: 'Videolar', href: '#' },
+        { id: 2, title: 'Yorumlar', href: '/yorumlar' },
+        { id: 3, title: 'Hakkimizda', href: '#' },
+        { id: 4, title: 'İletişim', href: '#' },
     ];
+
+    const specialButton = { id: 5, title: 'Diğer estetik uygulamalarımız', href: '#' }; // Özel buton
 
     return (
         <div
@@ -23,23 +23,32 @@ const HeaderBottom = () => {
                 borderBottomLeftRadius: '20px',
                 borderBottomRightRadius: '20px',
             }}
-            className="text-white pt-0 pb-3 sm:pb-2 sm:px-32 "
+            className="text-white bg-white pt-0 pb-3 sm:pb-2 sm:px-32"
         >
+            {/* Üstteki kategoriler */}
             <div className="w-full flex justify-around items-center">
                 {categories.map((category) => (
                     <Link
                         key={category.id}
                         href={category.href}
-                        className="flex flex-col items-center text-center"
+                        className="flex flex-col items-center text-center px-4 py-2 rounded-lg border  bg-[#FF0000] border-red-600 hover:bg-red-600  transition-all duration-300"
                     >
-                        {/* Image */}
-                        <div className="w-12 h-12 sm:w-10 sm:h-10  rounded-full overflow-hidden flex items-center justify-center bg-gray-300 mb-2">
-                            <MdCategory />
-                        </div>
                         {/* Category Name */}
-                        <span className="text-sm sm:text-xs text-white font-semibold">{category.title}</span>
+                        <span className="text-sm sm:text-xs font-semibold">
+                            {category.title}
+                        </span>
                     </Link>
                 ))}
+            </div>
+
+            {/* Ayrı bir satırda "Diğer İşlemler" */}
+            <div className="mt-4 w-full flex  justify-center">
+                <Link
+                    href={specialButton.href}
+                    className=" py-3 border-gray-300 bg-white text-black  px-12 flex items-center gap-3  font-normal rounded-lg shadow-lg border transition-all duration-300"
+                >
+                    {specialButton.title} <MdKeyboardDoubleArrowRight className='mt-1' />
+                </Link>
             </div>
         </div>
     );

@@ -112,9 +112,9 @@ const Page = () => {
     return (
         <div >
             {/* <Card /> */}
-            <CategoriesSectionHeader />
-            <CategoriesText />
-            <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/hero.mp4' altText='text' />
+            {/* <CategoriesSectionHeader /> */}
+            {/* <CategoriesText /> */}
+            {/* <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/hero.mp4' altText='text' /> */}
             <SixPhoto photos={images} />
             <AlertCard />
             <SixVideo videos={videos6} />
@@ -122,7 +122,7 @@ const Page = () => {
 
             <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
             <DoubleVideo videos={videos} />
-            <AlertCard />
+            <AlertCard dest={'right'} />
             <TripleVideo videos={videos3} />
             <NinePhoto photos={images9} />
             <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />

@@ -1,5 +1,5 @@
 import SixPhoto from '@/components/SixPhoto/SixPhoto';
-import { Link } from '@/i18n/routing';
+import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 import { RiArrowGoBackFill } from 'react-icons/ri';

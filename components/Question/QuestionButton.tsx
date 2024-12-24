@@ -1,8 +1,9 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 
-const AlertCard = () => {
+const AlertCard = ({ dest }: any) => {
   const cardRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     const element = cardRef.current;
@@ -11,7 +12,7 @@ const AlertCard = () => {
       // IntersectionObserver oluştur
       const observer = new IntersectionObserver(
         ([entry]) => {
-          console.log(entry.isIntersecting); // Hata ayıklama için görünürlük durumunu kontrol et
+          console.log(entry.isIntersecting);
           if (entry.isIntersecting) {
             // Animasyon başlangıcı
             element.style.transition = 'transform 0.7s ease-out, opacity 0.7s ease-out';
@@ -28,7 +29,7 @@ const AlertCard = () => {
       );
 
       // Başlangıç durumunu ayarla
-      element.style.transform = 'translateX(-100%)';
+      element.style.transform = `translateX(${dest})`;
       element.style.opacity = '0';
 
       // Observer'ı başlat

@@ -73,3 +73,13 @@ background: radial-gradient(circle, rgba(0,98,251,1) 0%, rgba(255,0,0,1) 60%);
 .gradient-header{
    background-image: linear-gradient(to right top, #40c9ff, #00b9ff, #35a0ff, #9b78ff, #e81cff);
 }
+
+
+.header {
+  background: rgb(75, 187, 246); /* Yedek düz renk */
+  background: linear-gradient(
+    to bottom, /* Yukarıdan aşağıya doğru */
+    rgba(75, 187, 246, 1) 0%, /* Yukarıda tam opak mavi */
+    rgba(255, 255, 255, 1) 100% /* Aşağıda tamamen beyaz */
+  );
+}

@@ -31,7 +31,7 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     };
 
     return (
-        <div className="w-[100%] mt-2 sm:px-32 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
+        <div className="w-[100%]  sm:px-32 mt-60 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
             {photos.map((photo, index) => (
                 <div
                     key={index}

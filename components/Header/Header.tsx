@@ -73,8 +73,6 @@ const Header = ({ isHomePage }: HeaderProps) => {
     return (
         <header
             style={{
-                borderBottomLeftRadius: '10px',
-                borderBottomRightRadius: '10px',
                 zIndex: '99',
             }}
             className={`w-full ${isHomePage ? null : 'fixed top-0'} top-0 header `}

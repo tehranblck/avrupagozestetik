@@ -5,11 +5,11 @@ interface CategoriesTextProps {
     text1?: string;
     text2?: string;
     paragraph?: string;
-    className?: string;
+    text1Classes?: string;
     paragraphAlign?: string;
 }
 
-const CategoriesText: React.FC<CategoriesTextProps> = ({ text1, text2, paragraph, className, paragraphAlign }) => {
+const CategoriesText: React.FC<CategoriesTextProps> = ({ text1, text2, paragraph, text1Classes, paragraphAlign }) => {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const CategoriesText: React.FC<CategoriesTextProps> = ({ text1, text2, paragraph
                     letterSpacing: '2px',
                     fontWeight: 'normal',
                 }}
-                className={`text-left ${className} sm:text-center sm:pt-12 text-blue-700 font-bold  pl-5 lg:pl-10 lg:text-6xl`}
+                className={`text-left ${text1Classes} sm:text-center sm:pt-12 text-blue-700 font-bold  pl-5 lg:pl-10 lg:text-6xl`}
             >
                 {text1}{isMobile ? <br /> : ' '} {text2}
             </div>

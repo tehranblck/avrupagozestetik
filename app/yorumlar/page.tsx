@@ -58,11 +58,13 @@ const page = () => {
     ];
     return (
         <div>
-            <Header isHomePage={false} />
-            <div className='mt-32'>
-                <Button />
+            <div style={{ zIndex: '9999' }} className="bg-white rounded-lg min-h-fit  w-full">
+                <Header isHomePage={false} />
+                <div style={{ top: '6.4rem' }} className=' fixed top-28 rounded-lg bg-white z-50 w-full' >
+                    <Button />
+                </div>
             </div>
-            <CategoriesText text1='Mutlu Danışan' text2='tablomuz' paragraph='Mutluluğunuz sevincimizdir' />
+            <CategoriesText text1Classes='text-4xl mt-44' text1='Mutlu Danışan' text2='tablomuz' paragraph='Mutluluğunuz sevincimizdir' />
             <InfinitySlider />
             <TripleVideo videos={videos3} />
             <CommentCard key={comments[0].comment} comment={comments[0]} />

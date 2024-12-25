@@ -52,19 +52,19 @@ const Page = () => {
     ];
     const videos3 = [
         {
-            videoUrl: '/videos/teze.mp4',
+            videoUrl: '/videos/reels.mp4',
             thumbnailUrl: '/maint.jpg',
             altText: 'Video 1',
             title: 'goz estetigi'
         },
         {
-            videoUrl: '/videos/teze.mp4',
+            videoUrl: '/videos/reels.mp4',
             thumbnailUrl: '/maint.jpg',
             altText: 'Video 1',
             title: 'KAS estetigi'
         },
         {
-            videoUrl: '/videos/teze.mp4',
+            videoUrl: '/videos/reels.mp4',
             thumbnailUrl: '/maint.jpg',
             altText: 'Video 1',
             title: 'goz cevresi estetigi'

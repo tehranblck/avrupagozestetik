@@ -7,7 +7,7 @@ const specialButton = { id: 5, title: 'Diğer estetik uygulamalarımız', href: 
 
 const DigerIslemler = () => {
     return (
-        <div className="mt-4 w-full flex relative top-40  justify-center">
+        <div className="mt-4 w-full flex relative top-36  justify-center">
             <Link
                 href={specialButton.href}
                 className=" py-3 border-gray-300 bg-white text-black  px-10 flex items-center gap-3  font-normal rounded-lg shadow-lg border transition-all duration-300"

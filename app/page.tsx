@@ -2,6 +2,7 @@
 import CategoriesSectionHeader from '@/components/Categories/Categories';
 import CategoriesText from '@/components/Categories/CtegoriesText';
 import DigerIslemler from '@/components/DigerIslemler';
+import ThreePhoto from '@/components/DoublePhoto/DoublePhoto';
 import DoubleVideo from '@/components/DoubleVideo/DoubleVideo';
 import Header from '@/components/Header/Header';
 import HeaderBottom from '@/components/Header/HeaderBottom';
@@ -136,34 +137,31 @@ const Page = () => {
             <div className="mt-44">
                 <SixPhoto photos={images} />
             </div>
-            <AlertCard />
-            <SixVideo videos={videos6} />
-            <SixVideo videos={videos6} />
-
-            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
-            <DoubleVideo videos={videos} />
-            <AlertCard dest={'right'} />
             <TripleVideo videos={videos3} />
-            <NinePhoto photos={images9} />
-            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
             <AlertCard />
-            <SixVideo videos={videos6} />
             <SixPhoto photos={images} />
             <SixPhoto photos={images} />
-            <SixVideo videos={videos6} />
-            <SixVideo videos={videos6} />
-            <AlertCard />
-            <TripleVideo videos={videos3} />
-            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
             <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/hero.mp4' altText='text' />
             <TripleVideo videos={videos3} />
             <SixPhoto photos={images} />
-            <SixPhoto photos={images} />
-            <TripleVideo videos={videos3} />
-            <SixPhoto photos={images} />
             <TripleVideo videos={videos3} />
             <AlertCard />
-            <SixPhoto photos={images} />
+            <ThreePhoto photos={images} />
+            <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/hero.mp4' altText='text' />
+            <NinePhoto photos={images9} />
+            <TripleVideo videos={videos3} />
+            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
+            <AlertCard />
+            <SixVideo videos={videos6} />
+            <TripleVideo videos={videos3} />
+            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
+            <AlertCard />
+            <SixVideo videos={videos6} />
+            <TripleVideo videos={videos3} />
+            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
+            <AlertCard />
+            <SixVideo videos={videos6} />
+            <TripleVideo videos={videos3} />
 
 
 

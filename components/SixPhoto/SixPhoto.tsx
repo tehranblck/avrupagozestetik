@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import PopupPhoto from './PopupPhoto';
@@ -6,7 +6,7 @@ import PopupPhoto from './PopupPhoto';
 interface PhotoProps {
     imageUrl: string;
     altText?: string;
-    title: string; // Her fotoğraf için başlık özelliği
+    title: string;
 }
 
 const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
@@ -21,17 +21,17 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     };
 
     const handleNextPhoto = () => {
-        if (currentPhotoIndex === null) return;
-        setCurrentPhotoIndex((currentPhotoIndex + 1) % photos.length);
+        if (currentPhotoIndex === null || currentPhotoIndex >= photos.length - 1) return;
+        setCurrentPhotoIndex((prev) => (prev !== null ? prev + 1 : null));
     };
 
     const handlePreviousPhoto = () => {
-        if (currentPhotoIndex === null) return;
-        setCurrentPhotoIndex((currentPhotoIndex - 1 + photos.length) % photos.length);
+        if (currentPhotoIndex === null || currentPhotoIndex <= 0) return;
+        setCurrentPhotoIndex((prev) => (prev !== null ? prev - 1 : null));
     };
 
     return (
-        <div className="w-[100%]  sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
+        <div className="w-[100%] sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
             {photos.map((photo, index) => (
                 <div
                     key={index}
@@ -65,6 +65,8 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
                 onNext={handleNextPhoto}
                 onPrev={handlePreviousPhoto}
                 title={currentPhotoIndex !== null ? photos[currentPhotoIndex].title : ''}
+                currentPhotoIndex={currentPhotoIndex}
+                totalPhotos={photos.length}
             >
                 {currentPhotoIndex !== null && (
                     <Image

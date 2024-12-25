@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import PopupPhoto from '../SixPhoto/PopupPhoto';
@@ -21,17 +21,17 @@ const ThreePhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     };
 
     const handleNextPhoto = () => {
-        if (currentPhotoIndex === null) return;
-        setCurrentPhotoIndex((currentPhotoIndex + 1) % photos.length);
+        if (currentPhotoIndex === null || currentPhotoIndex >= photos.length - 1) return;
+        setCurrentPhotoIndex(currentPhotoIndex + 1);
     };
 
     const handlePreviousPhoto = () => {
-        if (currentPhotoIndex === null) return;
-        setCurrentPhotoIndex((currentPhotoIndex - 1 + photos.length) % photos.length);
+        if (currentPhotoIndex === null || currentPhotoIndex <= 0) return;
+        setCurrentPhotoIndex(currentPhotoIndex - 1);
     };
 
     return (
-        <div className="w-[100%] sm:px-32 mt-3  mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
+        <div className="w-[100%] sm:px-32 mt-3 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
             {photos.slice(0, 3).map((photo, index) => (
                 <div
                     key={index}
@@ -65,6 +65,8 @@ const ThreePhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
                 onNext={handleNextPhoto}
                 onPrev={handlePreviousPhoto}
                 title={currentPhotoIndex !== null ? photos[currentPhotoIndex].title : ''}
+                currentPhotoIndex={currentPhotoIndex}
+                totalPhotos={photos.slice(0, 3).length} // Sadece ilk 3 fotoğraf için sınırlandır
             >
                 {currentPhotoIndex !== null && (
                     <Image

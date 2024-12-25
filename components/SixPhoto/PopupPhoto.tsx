@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import AskPriceButton from '../AskPriceButton/AskPriceButton';
 
 interface PopupProps {
     isOpen: boolean;
@@ -10,9 +9,20 @@ interface PopupProps {
     onNext: () => void;
     onPrev: () => void;
     title?: string;
+    currentPhotoIndex: number | null;
+    totalPhotos: number;
 }
 
-const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, onPrev, title }) => {
+const PopupPhoto: React.FC<PopupProps> = ({
+    isOpen,
+    onClose,
+    children,
+    onNext,
+    onPrev,
+    title,
+    currentPhotoIndex,
+    totalPhotos,
+}) => {
     const contentRef = useRef<HTMLDivElement | null>(null);
 
     // Scroll engelleme kontrolü
@@ -55,7 +65,7 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
     return (
         <div
             style={{ zIndex: 9999 }}
-            className="fixed top-0 w-full left-0 min-h-screen bg-black bg-opacity-75 flex items-center justify-center z-50"
+            className="fixed top-0 w-full left-0 min-h-screen bg-black bg-opacity-75 flex items-center justify-center"
             onClick={onClose} // Pop-up dışına tıklanırsa kapanır
         >
             <div
@@ -65,8 +75,9 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
             >
                 {/* Close Button */}
                 <button
-                    onClick={onClose} style={{ color: 'black' }}
-                    className="absolute top-0 right-0 text-black  rounded-full hover:text-black text-4xl md:text-3xl focus:outline-none"
+                    onClick={onClose}
+                    style={{ color: 'black' }}
+                    className="absolute top-0 right-0 text-black rounded-full hover:text-black text-4xl md:text-3xl focus:outline-none"
                     aria-label="Close Popup"
                 >
                     ✖
@@ -75,26 +86,30 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
                 {/* Popup Content */}
                 <div className="mx-auto w-full flex justify-center">{children}</div>
                 <div className="mt-2 text-center">
-                    <AskPriceButton />
+                    <h3 className="text-2xl font-semibold">{title}</h3>
                 </div>
 
                 {/* Next and Previous Buttons */}
-                <div className="absolute top-1/2 -left-4 border-2 border-white rounded-full transform -translate-y-1/2">
-                    <button
-                        onClick={() => handleAnimation('prev')}
-                        className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl "
-                    >
-                        ‹
-                    </button>
-                </div>
-                <div className="absolute top-1/2 -right-4 border-2 border-white rounded-full transform -translate-y-1/2">
-                    <button
-                        onClick={() => handleAnimation('next')}
-                        className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl "
-                    >
-                        ›
-                    </button>
-                </div>
+                {currentPhotoIndex !== null && currentPhotoIndex > 0 && (
+                    <div className="absolute top-1/2 -left-4 border-2 border-white rounded-full transform -translate-y-1/2">
+                        <button
+                            onClick={() => handleAnimation('prev')}
+                            className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl"
+                        >
+                            ‹
+                        </button>
+                    </div>
+                )}
+                {currentPhotoIndex !== null && currentPhotoIndex < totalPhotos - 1 && (
+                    <div className="absolute top-1/2 -right-4 border-2 border-white rounded-full transform -translate-y-1/2">
+                        <button
+                            onClick={() => handleAnimation('next')}
+                            className="bg-gray-800 font-bold text-white p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8 rounded-full text-2xl sm:text-xl md:text-2xl lg:text-3xl"
+                        >
+                            ›
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -32,14 +32,14 @@ const ScrollUp = () => {
     return (
         <>
             <div
-                className={`fixed left-2 bottom-2 z-[99999] text-white bg-blue-500 px-4 py-3 rounded-full shadow-lg cursor-pointer text-5xl transition-all duration-500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+                className={`fixed flex items-center justify-center left-2 bottom-2 z-[99999] text-white bg-blue-500 p-4 rounded-full shadow-lg cursor-pointer text-xs transition-all duration-500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
                     }`}
                 onClick={handleScrollUp}
                 style={{
                     pointerEvents: isVisible ? 'auto' : 'none', // Gizli durumda tıklanamaz
                 }}
             >
-                <FaArrowUp />
+                Yukarı çık
             </div>
         </>
     );

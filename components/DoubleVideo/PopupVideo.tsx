@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
+import AskPriceButton from '../AskPriceButton/AskPriceButton';
 
 interface PopupProps {
     isOpen: boolean;
@@ -42,8 +43,8 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
                     ✖
                 </button>
                 {children}
-                <div>
-                    <h3 className="text-center text-2xl">{title}</h3>
+                <div className="my-2 text-center">
+                    <AskPriceButton />
                 </div>
             </div>
         </div>

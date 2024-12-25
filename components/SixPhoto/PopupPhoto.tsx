@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import AskPriceButton from '../AskPriceButton/AskPriceButton';
 
 interface PopupProps {
     isOpen: boolean;
@@ -73,10 +74,8 @@ const PopupPhoto: React.FC<PopupProps> = ({ isOpen, onClose, children, onNext, o
 
                 {/* Popup Content */}
                 <div className="mx-auto w-full flex justify-center">{children}</div>
-                <div className="mt-4 text-center">
-                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-800">
-                        {title}
-                    </h3>
+                <div className="mt-2 text-center">
+                    <AskPriceButton />
                 </div>
 
                 {/* Next and Previous Buttons */}

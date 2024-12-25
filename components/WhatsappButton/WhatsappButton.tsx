@@ -2,7 +2,7 @@
 import React from 'react';
 
 const WhatsAppButton = () => {
-    const phoneNumber = '+905327044102'; // Telefon numarası (ülke koduyla birlikte, +90 gibi)
+    const phoneNumber = '+905327044102';
 
     const handleWhatsAppRedirect = () => {
         const whatsappUrl = `https://wa.me/${phoneNumber}`;

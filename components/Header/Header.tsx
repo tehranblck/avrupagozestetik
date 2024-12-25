@@ -114,10 +114,12 @@ const Header = ({ isHomePage }: HeaderProps) => {
 
                         {/* Dropdown Links */}
                         <Link
-                            href="#"
-                            className="block w-full px-4 py-2 hover:bg-gray-100"
+                            href="https://wa.me/905327044102"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="py-2 block hover:bg-gray-100 rounded-md cursor-pointer"
                         >
-                            WhatsApp'tan Randevu Al
+                            Whatsapp`tan randevu al
                         </Link>
                         <Link
                             href="/contact"

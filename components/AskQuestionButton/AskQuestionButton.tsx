@@ -111,7 +111,12 @@ const AskQuestionButton: React.FC = () => {
 
                     {/* Dropdown Links */}
                     <div className="px-4">
-                        <Link href='#' className="py-2 block hover:bg-gray-100 rounded-md cursor-pointer">
+                        <Link
+                            href="https://wa.me/905327044102"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="py-2 block hover:bg-gray-100 rounded-md cursor-pointer"
+                        >
                             Whatsapp`tan randevu al
                         </Link>
                         <Link href={'#'} className="py-2 block hover:bg-gray-100 rounded-md cursor-pointer">

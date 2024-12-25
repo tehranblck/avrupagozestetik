@@ -1,15 +1,15 @@
 'use client'
 import React, { useState } from 'react';
 import Image from 'next/image';
-import PopupPhoto from './PopupPhoto';
+import PopupPhoto from '../SixPhoto/PopupPhoto';
 
 interface PhotoProps {
     imageUrl: string;
     altText?: string;
-    title: string; // Her fotoğraf için başlık özelliği
+    title: string;
 }
 
-const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
+const ThreePhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number | null>(null);
 
     const handleThumbnailClick = (index: number) => {
@@ -31,8 +31,8 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     };
 
     return (
-        <div className="w-[100%]  sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
-            {photos.map((photo, index) => (
+        <div className="w-[100%] sm:px-32 mt-3  mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
+            {photos.slice(0, 3).map((photo, index) => (
                 <div
                     key={index}
                     className="relative w-full cursor-pointer"
@@ -80,4 +80,4 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     );
 };
 
-export default SixPhoto;
+export default ThreePhoto;

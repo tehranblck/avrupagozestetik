@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react'
 import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 
-const specialButton = { id: 5, title: 'Diğer estetik uygulamalarımız', href: '#' };
+const specialButton = { id: 5, title: 'Diğer estetik uygulamalarımız', href: '/diger-islemler' };
 
 const DigerIslemler = () => {
     return (

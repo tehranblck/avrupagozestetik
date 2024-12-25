@@ -10,7 +10,7 @@ const HeaderBottom = ({ isVisible }: HeaderBottomProps) => {
     // 5 adet placeholder image ve yazı
     const categories = [
         { id: 2, title: 'Yorumlar', href: '/yorumlar' },
-        { id: 3, title: 'Hakkimizda', href: '/hakkimizda' },
+        { id: 3, title: 'Hakkımızda', href: '/hakkimizda' },
         { id: 4, title: 'İletişim', href: '/iletisim' },
     ];
 

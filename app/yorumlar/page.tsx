@@ -1,11 +1,7 @@
 import Button from '@/components/BackButton/BackButton'
 import CategoriesText from '@/components/Categories/CtegoriesText'
-import CommentSection from '@/components/Comment/CommentCard'
 import CommentCard from '@/components/Comment/CommentCard'
 import Header from '@/components/Header/Header'
-import AlertCard from '@/components/Question/QuestionButton'
-import SixPhoto from '@/components/SixPhoto/SixPhoto'
-import SixVideo from '@/components/SixVideo/SixVideo'
 import InfinitySlider from '@/components/slider/InfinitySlider'
 import TripleVideo from '@/components/TripleVideos/TripleVideos'
 import React from 'react'
@@ -58,24 +54,34 @@ const page = () => {
     ];
     return (
         <div>
-            <div style={{ zIndex: '9999' }} className="bg-white rounded-lg min-h-fit  w-full">
+            <div style={{ zIndex: '9999' }} className="bg-white rounded-lg pb-2 min-h-fit  w-full">
                 <Header isHomePage={false} />
-                <div style={{ top: '6.4rem' }} className=' fixed top-28 rounded-lg bg-white z-50 w-full' >
+                <div style={{ top: '6.4rem' }} className=' fixed top-28 rounded-lg  z-50 w-full' >
                     <Button />
                 </div>
             </div>
             <CategoriesText text1Classes='text-4xl mt-44' text1='Mutlu Danışan' text2='tablomuz' paragraph='Mutluluğunuz sevincimizdir' />
             <InfinitySlider />
             <TripleVideo videos={videos3} />
-            <CommentCard key={comments[0].comment} comment={comments[0]} />
-            <CommentCard key={comments[0].name} comment={comments[0]} />
-            <TripleVideo videos={videos3} />
-            <CommentCard key={comments[1].comment} comment={comments[1]} />
-            <CommentCard key={comments[1].name} comment={comments[1]} />
-            <TripleVideo videos={videos3} />
-            <CommentCard key={comments[2].comment} comment={comments[2]} />
-            <CommentCard key={comments[2].name} comment={comments[2]} />
+            <div className='flex flex-col gap-3'>
+                <CommentCard key={comments[0].comment} comment={comments[0]} />
+                <CommentCard key={comments[0].name} comment={comments[0]} />
+            </div>
 
+            <TripleVideo videos={videos3} />
+            <div className='flex flex-col gap-3'>
+
+                <CommentCard key={comments[1].comment} comment={comments[1]} />
+                <CommentCard key={comments[1].name} comment={comments[1]} />
+            </div>
+
+            <TripleVideo videos={videos3} />
+            <div className='flex flex-col gap-3'>
+
+                <CommentCard key={comments[2].comment} comment={comments[2]} />
+                <CommentCard key={comments[2].name} comment={comments[2]} />
+
+            </div>
 
 
         </div>

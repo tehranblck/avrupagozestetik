@@ -7,9 +7,11 @@ import React from 'react'
 const page = () => {
     return (
         <div>
-            <Header isHomePage={false} />
-            <div className="mt-32">
-                <Button />
+            <div style={{ zIndex: '9999' }} className="bg-white  min-h-fit  w-full">
+                <Header isHomePage={false} />
+                <div style={{ top: '6.4rem' }} className=' fixed top-28 rounded-lg  z-50  ' >
+                    <Button />
+                </div>
             </div>
             <CategoriesText text1='Avrupa' text1Classes='text-5xl' text2='Göz & Estetik' />
             <div className="images relative flex gap-0 my-6 justify-center">

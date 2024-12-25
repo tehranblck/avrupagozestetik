@@ -1,31 +1,30 @@
 'use client';
-import { FaArrowUp } from "react-icons/fa6";
 import React, { useState, useEffect } from 'react';
 
 const ScrollUp = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     const handleScroll = () => {
-        const showAfter = window.innerHeight;
-        if (window.scrollY > showAfter) {
-            setIsVisible(true);
+        const scrollThreshold = 1400; // 1400px olarak sabit eşik değeri
+        if (window.scrollY > scrollThreshold) {
+            setIsVisible(true); // Eğer scroll 1400px'i geçerse görünür yap
         } else {
-            setIsVisible(false);
+            setIsVisible(false); // 1400px altındaysa görünmez yap
         }
     };
 
     const handleScrollUp = (e: React.MouseEvent) => {
-        e.preventDefault(); // Link davranışını engelle
+        e.preventDefault();
         window.scrollTo({
-            top: 0, // En üst pozisyona kaydır
-            behavior: 'smooth', // Yumuşak kaydırma
+            top: 0,
+            behavior: 'smooth',
         });
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll); // Scroll olayını dinle
+        window.addEventListener('scroll', handleScroll);
         return () => {
-            window.removeEventListener('scroll', handleScroll); // Temizle
+            window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
@@ -36,7 +35,7 @@ const ScrollUp = () => {
                     }`}
                 onClick={handleScrollUp}
                 style={{
-                    pointerEvents: isVisible ? 'auto' : 'none', // Gizli durumda tıklanamaz
+                    pointerEvents: isVisible ? 'auto' : 'none',
                 }}
             >
                 Yukarı çık

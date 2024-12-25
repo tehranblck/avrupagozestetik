@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react';
 import Footer from '@/components/Footer/Footer';
 import ScrollUp from '@/components/ScrollUp/ScrollUp';
 import './globals.css'
+import AskQuestionButton from '@/components/AskQuestionButton/AskQuestionButton';
 
 interface LayoutProps {
   children: ReactNode;
@@ -38,6 +39,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <main>{children}</main>
           <Footer />
           <ScrollUp />
+          <AskQuestionButton />
         </div>
       </body>
     </html>

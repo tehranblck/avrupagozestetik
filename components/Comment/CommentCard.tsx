@@ -26,7 +26,7 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
                 />
             </div>
             {/* Content */}
-            <div className="ml-4">
+            <div className="ml-4 px-2">
                 <h4 className="text-lg font-bold text-gray-800">{comment.name}</h4>
                 <p className="mt-2 text-gray-600 italic">{`"${comment.comment}"`}</p>
             </div>

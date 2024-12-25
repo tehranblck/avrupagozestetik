@@ -1,4 +1,5 @@
 
+import AskQuestionButton from '@/components/AskQuestionButton/AskQuestionButton';
 import CategoriesSectionHeader from '@/components/Categories/Categories';
 import CategoriesText from '@/components/Categories/CtegoriesText';
 import DigerIslemler from '@/components/DigerIslemler';
@@ -165,6 +166,7 @@ const Page = () => {
 
 
 
+            <AskQuestionButton />
 
 
         </div>

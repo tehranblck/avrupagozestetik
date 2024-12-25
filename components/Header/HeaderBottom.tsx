@@ -29,7 +29,7 @@ const HeaderBottom = ({ isVisible }: HeaderBottomProps) => {
             className={`text-white bg-white pt-0 pb-3 sm:pb-2 sm:px-32  ${isVisible ? 'block' : 'hidden'} `}
         >
             {/* Üstteki kategoriler */}
-            <div className="w-full flex justify-around sm:justify-end sm:gap-6 items-center">
+            <div className="w-full flex justify-around sm:justify-center sm:gap-6 items-center">
                 {categories.map((category) => (
                     <Link
                         key={category.id}

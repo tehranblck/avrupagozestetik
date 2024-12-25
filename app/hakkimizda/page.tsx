@@ -13,7 +13,7 @@ const page = () => {
                     <Button />
                 </div>
             </div>
-            <CategoriesText text1='Avrupa' text1Classes='text-5xl' text2='Göz & Estetik' />
+            <CategoriesText text1='Avrupa' text1Classes='text-5xl mt-44' text2='Göz & Estetik' />
             <div className="images relative flex gap-0 my-6 justify-center">
                 <Image className='clip relative -right-10' src={'/maint.jpg'} alt="maint" width={200} height={200} />
                 <Image className='clip relative -left-10 rotate-[180deg]' src={'/maint.jpg'} alt="maint" width={200} height={200} />

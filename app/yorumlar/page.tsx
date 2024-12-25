@@ -1,3 +1,4 @@
+import AskQuestionButton from '@/components/AskQuestionButton/AskQuestionButton'
 import Button from '@/components/BackButton/BackButton'
 import CategoriesText from '@/components/Categories/CtegoriesText'
 import CommentCard from '@/components/Comment/CommentCard'
@@ -83,6 +84,7 @@ const page = () => {
 
             </div>
 
+            <AskQuestionButton />
 
         </div>
     )

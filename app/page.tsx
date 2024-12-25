@@ -133,7 +133,9 @@ const Page = () => {
                 <HeaderBottom isVisible={true} />
             </div>
             <DigerIslemler />
-            <SixPhoto photos={images} />
+            <div className="mt-44">
+                <SixPhoto photos={images} />
+            </div>
             <AlertCard />
             <SixVideo videos={videos6} />
             <SixVideo videos={videos6} />

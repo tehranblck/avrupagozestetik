@@ -1,17 +1,8 @@
-import type { NextConfig } from "next";
-
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     images: {
-        remotePatterns: [
-            {
-                protocol: "http",
-                hostname: "localhost",
-                port: "1337", // Backend'in çalıştığı port
-                pathname: "/uploads/**", // İzin verilen dosya yolu
-            },
-        ],
+        domains: ["api.avrupagozestetikinfo.com"], // Harici domain
     },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

@@ -7,7 +7,7 @@ interface VideoProps {
     videoUrl: string;
     thumbnailUrl: string;
     altText?: string;
-    title: string; // Her video için başlık özelliği eklendi
+    title: string;
 }
 
 const TripleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {

@@ -3,13 +3,23 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import PopupPhoto from './PopupPhoto';
 
-interface PhotoProps {
-    imageUrl: string;
-    altText?: string;
-    title: string;
+interface Photo {
+    formats?: {
+        large?: {
+            url: string;
+        };
+    };
+    url?: string;
+    documentId?: string;
+    createdAt?: string;
 }
 
-const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
+interface SixPhotoProps {
+    photos: Photo[];
+}
+
+const SixPhoto: React.FC<SixPhotoProps> = ({ photos }) => {
+    const base = 'https://api.avrupagozestetikinfo.com';
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number | null>(null);
 
     const handleThumbnailClick = (index: number) => {
@@ -21,20 +31,25 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     };
 
     const handleNextPhoto = () => {
-        if (currentPhotoIndex === null || currentPhotoIndex >= photos.length - 1) return;
-        setCurrentPhotoIndex((prev) => (prev !== null ? prev + 1 : null));
+        if (currentPhotoIndex !== null && currentPhotoIndex < photos.length - 1) {
+            setCurrentPhotoIndex((prev) => (prev !== null ? prev + 1 : null));
+        }
     };
 
     const handlePreviousPhoto = () => {
-        if (currentPhotoIndex === null || currentPhotoIndex <= 0) return;
-        setCurrentPhotoIndex((prev) => (prev !== null ? prev - 1 : null));
+        if (currentPhotoIndex !== null && currentPhotoIndex > 0) {
+            setCurrentPhotoIndex((prev) => (prev !== null ? prev - 1 : null));
+        }
     };
 
     return (
-        <div className="w-[100%] sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
+        <div
+            key={photos[0]?.createdAt || 'default-key'}
+            className="w-[100%] sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2"
+        >
             {photos.map((photo, index) => (
                 <div
-                    key={index}
+                    key={photo?.documentId || `photo-${index}`}
                     className="relative w-full cursor-pointer"
                     onClick={() => handleThumbnailClick(index)}
                 >
@@ -43,9 +58,9 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
                         priority
                         width={900}
                         height={900}
-                        src={photo.imageUrl}
-                        alt={photo.altText || `Photo ${index + 1}`}
-                        className="w-full rounded-lg shadow-lg"
+                        src={base + (photo?.formats?.large?.url || photo?.url || '')}
+                        alt={photo?.documentId || `Photo ${index + 1}`}
+                        className="w-full rounded-lg object-cover h-full shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
                         <button
@@ -62,19 +77,30 @@ const SixPhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
             <PopupPhoto
                 isOpen={currentPhotoIndex !== null}
                 onClose={handleClosePopup}
-                onNext={handleNextPhoto}
-                onPrev={handlePreviousPhoto}
-                title={currentPhotoIndex !== null ? photos[currentPhotoIndex].title : ''}
+                onNext={
+                    photos.length > 1 && currentPhotoIndex !== null && currentPhotoIndex < photos.length - 1
+                        ? handleNextPhoto
+                        : undefined
+                }
+                onPrev={
+                    photos.length > 1 && currentPhotoIndex !== null && currentPhotoIndex > 0
+                        ? handlePreviousPhoto
+                        : undefined
+                }
                 currentPhotoIndex={currentPhotoIndex}
                 totalPhotos={photos.length}
             >
                 {currentPhotoIndex !== null && (
                     <Image
-                        src={photos[currentPhotoIndex].imageUrl}
-                        alt={photos[currentPhotoIndex].altText || 'Current Photo'}
+                        src={
+                            photos[currentPhotoIndex]?.formats?.large?.url
+                                ? base + photos[currentPhotoIndex]?.formats.large.url
+                                : base + (photos[currentPhotoIndex]?.url || '')
+                        }
+                        alt={photos[currentPhotoIndex]?.documentId || 'Current Photo'}
                         width={900}
                         height={900}
-                        className="rounded-lg shadow-lg"
+                        className="rounded-lg object-cover shadow-lg"
                     />
                 )}
             </PopupPhoto>

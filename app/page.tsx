@@ -1,15 +1,10 @@
-
 import AskQuestionButton from '@/components/AskQuestionButton/AskQuestionButton';
-import CategoriesSectionHeader from '@/components/Categories/Categories';
-import CategoriesText from '@/components/Categories/CtegoriesText';
 import DigerIslemler from '@/components/DigerIslemler';
 import ThreePhoto from '@/components/DoublePhoto/DoublePhoto';
-import DoubleVideo from '@/components/DoubleVideo/DoubleVideo';
 import Header from '@/components/Header/Header';
 import HeaderBottom from '@/components/Header/HeaderBottom';
 import NinePhoto from '@/components/NinePhoto/NinePhoto';
 import AlertCard from '@/components/Question/QuestionButton';
-import Card from '@/components/Question/QuestionButton';
 import SinglePhoto from '@/components/SinglePhoto/SinglePhoto';
 import SingleVideo from '@/components/SingleVideo/SingleVideo';
 import SixPhoto from '@/components/SixPhoto/SixPhoto';
@@ -17,111 +12,94 @@ import SixVideo from '@/components/SixVideo/SixVideo';
 import TripleVideo from '@/components/TripleVideos/TripleVideos';
 import React from 'react';
 
-const Page = () => {
-    const images = [
-        { imageUrl: '/slider/slider1.png', altText: 'Slider 1', title: 'goz kapagi estetigi 1' },
-        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
-        { imageUrl: '/slider/slider3.png', altText: 'Slider 3', title: 'goz kapagi estetigi 3' },
-        { imageUrl: '/slider/slider4.png', altText: 'Slider 4', title: 'goz kapagi estetigi 4' },
-        { imageUrl: '/slider/slider5.png', altText: 'Slider 4', title: 'goz kapagi estetigi 5' },
-        { imageUrl: '/slider/slider6.png', altText: 'Slider 4', title: 'goz kapagi estetigi 6 ' },
-    ]
-    const images9 = [
-        { imageUrl: '/slider/slider1.png', altText: 'Slider 1', title: 'goz kapagi estetigi 1' },
-        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
-        { imageUrl: '/slider/slider3.png', altText: 'Slider 3', title: 'goz kapagi estetigi 3' },
-        { imageUrl: '/slider/slider4.png', altText: 'Slider 4', title: 'goz kapagi estetigi 4' },
-        { imageUrl: '/slider/slider5.png', altText: 'Slider 4', title: 'goz kapagi estetigi 5' },
-        { imageUrl: '/slider/slider6.png', altText: 'Slider 4', title: 'goz kapagi estetigi 6 ' },
-        { imageUrl: '/slider/slider4.png', altText: 'Slider 4', title: 'goz kapagi estetigi 7' },
-        { imageUrl: '/slider/slider5.png', altText: 'Slider 4', title: 'goz kapagi estetigi 8' },
-        { imageUrl: '/slider/slider6.png', altText: 'Slider 4', title: 'goz kapagi estetigi 9' },
-    ];
-    const videos = [
-        {
-            videoUrl: '/videos/teze.mp4',
-            thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz cervresi 1'
-        },
-        {
-            videoUrl: '/videos/teze.mp4',
-            thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz cervresi 2'
-        },
-    ];
+const Page = async () => {
+    const base = 'https://api.avrupagozestetikinfo.com';
+
+    // API'den verileri çekmek için fonksiyon
+    const fetchComponents = async () => {
+        const res = await fetch('https://api.avrupagozestetikinfo.com/api/home-page-fotos?populate=*');
+        const data = await res.json();
+        return data.data;
+    };
+
+    const data = await fetchComponents();
+
+    // Fotoğraf verilerini sırayla ayırma
+    const Ilk6li = data[0]?.ilk6_i_foto || [];
+    const Ilk3lu = data[0]?.ilk_3_lu || [];
+    const ilkTekli = data[0]?.ilkTekli || null;
+    const ikinciTekli = data[0]?.ikinciTekli || null;
+    const ucuncuTekli = data[0]?.ucuncuTekli || null;
+    const ikinciAltili = data[0]?.ikinciAltili || [];
+    const ucuncuAltili = data[0]?.ucuncuAltili || [];
+    const dorduncuAltili = data[0]?.dorduncuAltili || [];
+    const dokuzlu = data[0]?.dokuzlu || [];
+
+    // Video verileri (örnek sabit veri)
     const videos3 = [
         {
             videoUrl: '/videos/teze.mp4',
             thumbnailUrl: '/maint.jpg',
             altText: 'Video 1',
-            title: 'goz estetigi'
+            title: 'Göz Estetiği 1',
         },
         {
             videoUrl: '/videos/teze.mp4',
             thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'KAS estetigi'
+            altText: 'Video 2',
+            title: 'Kaş Estetiği 1',
         },
         {
             videoUrl: '/videos/teze.mp4',
             thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz cevresi estetigi'
-        }
+            altText: 'Video 3',
+            title: 'Göz Çevresi Estetiği 1',
+        },
     ];
+
     const videos6 = [
         {
             videoUrl: '/videos/teze.mp4',
             thumbnailUrl: '/maint.jpg',
             altText: 'Video 1',
-            title: 'goz cevresi 1'
+            title: 'Göz Çevresi 1',
         },
         {
             videoUrl: '/videos/teze.mp4',
             thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz cevresi 2'
-
+            altText: 'Video 2',
+            title: 'Göz Çevresi 2',
         },
         {
             videoUrl: '/videos/teze.mp4',
             thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz cevresi 3'
-
+            altText: 'Video 3',
+            title: 'Göz Çevresi 3',
         },
         {
             videoUrl: '/videos/teze.mp4',
             thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz cevresi 4'
-
+            altText: 'Video 4',
+            title: 'Göz Çevresi 4',
         },
         {
             videoUrl: '/videos/teze.mp4',
             thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz cevresi 5'
-
+            altText: 'Video 5',
+            title: 'Göz Çevresi 5',
         },
         {
             videoUrl: '/videos/teze.mp4',
             thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz cevresi 6'
-
-        }
+            altText: 'Video 6',
+            title: 'Göz Çevresi 6',
+        },
     ];
-    return (
-        <div className='max-w-7xl mx-auto w-full'>
-            {/* <Card /> */}
-            {/* <CategoriesSectionHeader /> */}
-            {/* <CategoriesText /> */}
-            {/* <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/hero.mp4' altText='text' /> */}
-            <div
 
+    return (
+        <div className="max-w-7xl mx-auto w-full">
+            {/* Sabit Header */}
+            <div
                 style={{
                     borderBottomLeftRadius: '20px',
                     borderBottomRightRadius: '20px',
@@ -130,45 +108,64 @@ const Page = () => {
                 className="w-full fixed top-0 right-0"
             >
                 <div id="upScroll"></div>
-
                 <Header isHomePage={true} />
                 <HeaderBottom isVisible={true} />
             </div>
+
+            {/* Sabit İşlemler */}
             <DigerIslemler />
+
+            {/* Fotoğraflar ve Videolar */}
             <div className="mt-44">
-                <SixPhoto photos={images} />
+                <SixPhoto photos={Ilk6li} /> {/* İlk Altılı Fotoğraf */}
             </div>
-            <TripleVideo videos={videos3} />
+            <TripleVideo videos={videos3} /> {/* İlk Üçlü Video */}
+            <SixPhoto photos={ikinciAltili} /> {/* İkinci Altılı Fotoğraf */}
+            <TripleVideo videos={videos3} /> {/* İkinci Üçlü Video */}
             <AlertCard />
-            <SixPhoto photos={images} />
-            <SixPhoto photos={images} />
-            <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/hero.mp4' altText='text' />
-            <TripleVideo videos={videos3} />
-            <SixPhoto photos={images} />
-            <TripleVideo videos={videos3} />
+            <SixPhoto photos={ucuncuAltili} /> {/* Üçüncü Altılı Fotoğraf */}
+            <SingleVideo thumbnailUrl="/maint.jpg" videoUrl="/videos/hero.mp4" altText="Hero Video" /> {/* Tekli Video */}
+            <TripleVideo videos={videos3} /> {/* Üçüncü Üçlü Video */}
+            <SixPhoto photos={dorduncuAltili} /> {/* Dördüncü Altılı Fotoğraf */}
+            <TripleVideo videos={videos3} /> {/* Dördüncü Üçlü Video */}
             <AlertCard />
-            <ThreePhoto photos={images} />
-            <SingleVideo thumbnailUrl='/maint.jpg' videoUrl='/videos/hero.mp4' altText='text' />
-            <NinePhoto photos={images9} />
-            <TripleVideo videos={videos3} />
-            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
+            <ThreePhoto photos={Ilk3lu} /> {/* İlk Üçlü Fotoğraf */}
+            <SingleVideo thumbnailUrl="/maint.jpg" videoUrl="/videos/hero.mp4" altText="Tekli Video" /> {/* Tekli Video */}
+            <NinePhoto photos={dokuzlu} /> {/* Dokuzlu Fotoğraf */}
+            <TripleVideo videos={videos3} /> {/* Beşinci Üçlü Video */}
+            {ilkTekli && (
+                <SinglePhoto
+                    imageUrl={base + ilkTekli?.formats?.medium?.url}
+                    altText="İlk Tekli Fotoğraf"
+                    className=""
+                />
+            )}
             <AlertCard />
-            <SixVideo videos={videos6} />
-            <TripleVideo videos={videos3} />
-            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
+            <SixVideo videos={videos6} /> {/* Altılı Video */}
+            <TripleVideo videos={videos3} /> {/* Altıncı Üçlü Video */}
+            {ikinciTekli && (
+                <SinglePhoto
+                    imageUrl={base + ikinciTekli?.formats?.medium?.url}
+                    altText="İkinci Tekli Fotoğraf"
+                    className=""
+                />
+            )}
             <AlertCard />
-            <SixVideo videos={videos6} />
-            <TripleVideo videos={videos3} />
-            <SinglePhoto imageUrl='/maint.jpg' altText='re' className='' />
+            <SixVideo videos={videos6} /> {/* Altılı Video */}
+            <TripleVideo videos={videos3} /> {/* Yedinci Üçlü Video */}
+            {ucuncuTekli && (
+                <SinglePhoto
+                    imageUrl={base + ucuncuTekli?.formats?.medium?.url}
+                    altText="Üçüncü Tekli Fotoğraf"
+                    className=""
+                />
+            )}
             <AlertCard />
-            <SixVideo videos={videos6} />
-            <TripleVideo videos={videos3} />
+            <SixVideo videos={videos6} /> {/* Altılı Video */}
+            <TripleVideo videos={videos3} /> {/* Sonuncu Üçlü Video */}
 
-
-
+            {/* Sabit Buton */}
             <AskQuestionButton />
-
-
         </div>
     );
 };

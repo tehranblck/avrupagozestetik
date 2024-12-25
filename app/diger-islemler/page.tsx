@@ -15,14 +15,7 @@ const Page = () => {
         { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
         { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
     ]
-    const images6 = [
-        { imageUrl: '/slider/slider1.png', altText: 'Slider 1', title: 'goz kapagi estetigi 1' },
-        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
-        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
-        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
-        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
-        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
-    ]
+
     const videos3 = [
         {
             videoUrl: '/videos/teze.mp4',
@@ -55,8 +48,8 @@ const Page = () => {
             <DoubleVideo videos={videos3} />
             <ThreePhoto photos={images} />
             <SingleVideo videoUrl={videos3[0].videoUrl} thumbnailUrl={videos3[0].thumbnailUrl} altText={videos3[0].altText} />
-            <SixPhoto photos={images6} />
-            <SixPhoto photos={images6} />
+            <SixPhoto photos={Ilk6li} />
+            <SixPhoto photos={Ilk6li} />
         </div>
     )
 }

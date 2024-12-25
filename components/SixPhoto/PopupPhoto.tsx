@@ -7,8 +7,8 @@ interface PopupProps {
     isOpen: boolean;
     onClose: () => void;
     children: React.ReactNode;
-    onNext: () => void;
-    onPrev: () => void;
+    onNext?: () => void;
+    onPrev?: () => void;
     title?: string;
     currentPhotoIndex: number | null;
     totalPhotos: number;
@@ -48,9 +48,9 @@ const PopupPhoto: React.FC<PopupProps> = ({
             x: direction === 'next' ? -100 : 100,
             duration: 0.3,
             onComplete: () => {
-                if (direction === 'next') {
+                if (direction === 'next' && onNext) {
                     onNext();
-                } else {
+                } else if (direction === 'prev' && onPrev) {
                     onPrev();
                 }
             },
@@ -91,7 +91,7 @@ const PopupPhoto: React.FC<PopupProps> = ({
                 </div>
 
                 {/* Next and Previous Buttons */}
-                {currentPhotoIndex !== null && currentPhotoIndex > 0 && (
+                {onPrev && currentPhotoIndex !== null && currentPhotoIndex > 0 && (
                     <div className="absolute top-1/2 -left-4 border-2 border-white rounded-full transform -translate-y-1/2">
                         <button
                             onClick={() => handleAnimation('prev')}
@@ -101,7 +101,7 @@ const PopupPhoto: React.FC<PopupProps> = ({
                         </button>
                     </div>
                 )}
-                {currentPhotoIndex !== null && currentPhotoIndex < totalPhotos - 1 && (
+                {onNext && currentPhotoIndex !== null && currentPhotoIndex < totalPhotos - 1 && (
                     <div className="absolute top-1/2 -right-4 border-2 border-white rounded-full transform -translate-y-1/2">
                         <button
                             onClick={() => handleAnimation('next')}

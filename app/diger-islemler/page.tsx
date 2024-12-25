@@ -8,9 +8,28 @@ import SixPhoto from '@/components/SixPhoto/SixPhoto'
 import TripleVideo from '@/components/TripleVideos/TripleVideos'
 import React from 'react'
 
-const Page = () => {
+const Page = async () => {
+
+    const fetchComponents = async () => {
+        const res = await fetch('https://api.avrupagozestetikinfo.com/api/home-page-fotos?populate=*');
+        const data = await res.json();
+        return data.data;
+    };
+
+    const data = await fetchComponents();
+    const Ilk6li = data[0]?.ilk6_i_foto || [];
+    const Ilk3lu = data[0]?.ilk_3_lu || [];
+
 
     const images = [
+        { imageUrl: '/slider/slider1.png', altText: 'Slider 1', title: 'goz kapagi estetigi 1' },
+        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
+        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
+    ]
+    const images6 = [
+        { imageUrl: '/slider/slider1.png', altText: 'Slider 1', title: 'goz kapagi estetigi 1' },
+        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
+        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
         { imageUrl: '/slider/slider1.png', altText: 'Slider 1', title: 'goz kapagi estetigi 1' },
         { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
         { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
@@ -49,7 +68,7 @@ const Page = () => {
             <ThreePhoto photos={images} />
             <SingleVideo videoUrl={videos3[0].videoUrl} thumbnailUrl={videos3[0].thumbnailUrl} altText={videos3[0].altText} />
             <SixPhoto photos={Ilk6li} />
-            <SixPhoto photos={Ilk6li} />
+            {/* <SixPhoto photos={Ilk6li} /> */}
         </div>
     )
 }

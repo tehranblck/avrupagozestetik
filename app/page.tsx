@@ -15,7 +15,7 @@ import React from 'react';
 const Page = async () => {
     const base = 'https://api.avrupagozestetikinfo.com';
 
-    // API'den verileri çekmek için fonksiyon
+    //Fotolari cekme fonksiyonu
     const fetchComponents = async () => {
         const res = await fetch('https://api.avrupagozestetikinfo.com/api/home-page-fotos?populate=*');
         const data = await res.json();
@@ -24,7 +24,6 @@ const Page = async () => {
 
     const data = await fetchComponents();
 
-    // Fotoğraf verilerini sırayla ayırma
     const Ilk6li = data[0]?.ilk6_i_foto || [];
     const Ilk3lu = data[0]?.ilk_3_lu || [];
     const ilkTekli = data[0]?.ilkTekli || null;
@@ -35,7 +34,18 @@ const Page = async () => {
     const dorduncuAltili = data[0]?.dorduncuAltili || [];
     const dokuzlu = data[0]?.dokuzlu || [];
 
-    // Video verileri (örnek sabit veri)
+    // Videolari cekme fonskiyonu
+    const fetchVideoDatas = async () => {
+        const res = await fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=*')
+        const data = res.json()
+        return data
+
+    }
+    const VideoData = (await fetchVideoDatas()).data
+
+    console.log(VideoData)
+
+
     const videos3 = [
         {
             videoUrl: '/videos/teze.mp4',

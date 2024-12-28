@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { FaWhatsapp } from "react-icons/fa";
 
 const AskQuestionButton: React.FC = () => {
     const buttonRef = useRef<HTMLDivElement>(null);
@@ -30,7 +31,7 @@ const AskQuestionButton: React.FC = () => {
                 rel="noopener noreferrer"
                 className="bg-green-500 text-white px-5 py-3 flex items-center gap-3 font-medium rounded-lg shadow-lg border border-green-600 hover:bg-green-600 transition-all duration-300"
             >
-                WhatsApp'tan Soru Sor
+                WhatsApp <FaWhatsapp className='text-2xl' />
             </Link>
         </div>
     );

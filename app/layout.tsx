@@ -21,12 +21,7 @@ export const metadata = {
   icons: {
     icon: '/logo.svg',
   },
-  openGraph: {
-    title: 'Avrupa Göz Estetik',
-    description: 'Avrupa göz estetik hakkında bilgi alın',
-    url: 'https://www.avrupagozestetikinfo.com',
-    images: '/logo.svg',
-  },
+
 };
 
 

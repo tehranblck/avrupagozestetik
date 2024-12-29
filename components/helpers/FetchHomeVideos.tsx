@@ -1,0 +1,37 @@
+export const fetchVideoDatas = async () => {
+    const [videoRes, thumbnailRes] = await Promise.all([
+        fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.video', {
+            next: { revalidate: 60 },
+        }),
+        fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.thumbnail', {
+            next: { revalidate: 60 },
+        })
+    ]);
+
+    if (!videoRes.ok || !thumbnailRes.ok) {
+        throw new Error('Failed to fetch video or thumbnail data');
+    }
+
+    const videoData = await videoRes.json();
+    const thumbnailData = await thumbnailRes.json();
+
+    const videoDetails = videoData.data.map((videoItem: any, index: any) => {
+        const videoWithThumbnail = videoItem.videos.map((video: any, videoIndex: any) => {
+            const thumbnail = thumbnailData.data[index]?.videos[videoIndex]?.thumbnail || {};
+
+            return {
+                ...video,
+                thumbnail,
+            };
+        });
+
+        return {
+            ...videoItem,
+            videos: videoWithThumbnail,
+        };
+    });
+
+    return videoDetails;
+};
+
+

@@ -1,6 +1,8 @@
 import AskQuestionButton from '@/components/AskQuestionButton/AskQuestionButton';
 import DigerIslemler from '@/components/DigerIslemler';
 import ThreePhoto from '@/components/DoublePhoto/DoublePhoto';
+import { fetchFotosHomepage } from '@/components/Fetches/FetchHomeFotos';
+import { fetchVideoDatas } from '@/components/Fetches/FetchHomeVideos';
 import Header from '@/components/Header/Header';
 import HeaderBottom from '@/components/Header/HeaderBottom';
 import NinePhoto from '@/components/NinePhoto/NinePhoto';
@@ -15,43 +17,24 @@ import React from 'react';
 const Page = async () => {
     const base = 'https://api.avrupagozestetikinfo.com';
 
-    // Fetch photo data
-    const fetchComponents = async () => {
-        const res = await fetch('https://api.avrupagozestetikinfo.com/api/home-page-fotos?populate=*', {
-            next: { revalidate: 60 },
-        });
-        if (!res.ok) {
-            throw new Error('Failed to fetch components');
-        }
-        const data = await res.json();
-        return data.data;
-    };
 
-    // Fetch video data
-    const fetchVideoDatas = async () => {
-        const res = await fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=*', {
-            next: { revalidate: 60 },
-        });
-        if (!res.ok) {
-            throw new Error('Failed to fetch video data');
-        }
-        const data = await res.json();
-        return data.data;
-    };
 
-    const data = await fetchComponents();
 
-    const Ilk6li = data[0]?.ilk6_i_foto || [];
-    const Ilk3lu = data[0]?.ilk_3_lu || [];
-    const ilkTekli = data[0]?.ilkTekli || null;
-    const ikinciTekli = data[0]?.ikinciTekli || null;
-    const ucuncuTekli = data[0]?.ucuncuTekli || null;
-    const ikinciAltili = data[0]?.ikinciAltili || [];
-    const ucuncuAltili = data[0]?.ucuncuAltili || [];
-    const dorduncuAltili = data[0]?.dorduncuAltili || [];
-    const dokuzlu = data[0]?.dokuzlu || [];
+    const dataFotos = await fetchFotosHomepage();
+
+    const Ilk6li = dataFotos[0]?.ilk6_i_foto || [];
+    const Ilk3lu = dataFotos[0]?.ilk_3_lu || [];
+    const ilkTekli = dataFotos[0]?.ilkTekli || null;
+    const ikinciTekli = dataFotos[0]?.ikinciTekli || null;
+    const ucuncuTekli = dataFotos[0]?.ucuncuTekli || null;
+    const ikinciAltili = dataFotos[0]?.ikinciAltili || [];
+    const ucuncuAltili = dataFotos[0]?.ucuncuAltili || [];
+    const dorduncuAltili = dataFotos[0]?.dorduncuAltili || [];
+    const dokuzlu = dataFotos[0]?.dokuzlu || [];
 
     const VideoData = await fetchVideoDatas();
+    const VideoSingle1 = VideoData[0]?.name || [];
+    console.log(VideoSingle1)
 
     const videos3 = [
         {
@@ -63,15 +46,7 @@ const Page = async () => {
         // Add more static videos as needed
     ];
 
-    const videos6 = [
-        {
-            videoUrl: '/videos/teze.mp4',
-            thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'Göz Çevresi 1',
-        },
-        // Add more static videos as needed
-    ];
+
 
     return (
         <div className="max-w-7xl mx-auto w-full">
@@ -118,7 +93,7 @@ const Page = async () => {
                 />
             )}
             <AlertCard />
-            <SixVideo videos={videos6} />
+            <SixVideo videos={videos3} />
             {ikinciTekli && (
                 <SinglePhoto
                     imageUrl={base + ikinciTekli?.formats?.medium?.url}

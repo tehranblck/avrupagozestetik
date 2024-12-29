@@ -3,14 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Popup from '../DoubleVideo/PopupVideo';
 
-interface VideoProps {
-    videoUrl: string;
-    thumbnailUrl: string;
-    altText?: string;
-    title: string; // Her video için başlık özelliği eklendi
-}
+const SixVideo = ({ videos }: any) => {
+    const videoData = videos?.videos || [];
+    const base = 'https://api.avrupagozestetikinfo.com';
 
-const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
     const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(null);
 
     const handleThumbnailClick = (index: number) => {
@@ -36,9 +32,9 @@ const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
 
     return (
         <div className="w-[100%] px-2 mt-2 sm:px-32 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1">
-            {videos.map((video, index) => (
+            {videoData.map((video: any, index: number) => (
                 <div
-                    key={index}
+                    key={video.createdAt || index}
                     className="relative w-full cursor-pointer"
                     onClick={() => handleThumbnailClick(index)}
                 >
@@ -47,9 +43,9 @@ const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         priority
                         width={900}
                         height={900}
-                        src={video.thumbnailUrl}
-                        alt={video.altText || `Video Thumbnail ${index + 1}`}
-                        className="w-full rounded-lg shadow-lg"
+                        src={base + (video?.thumbnail?.[0]?.formats?.large?.url || '')}
+                        alt={video.createdAt || `Video Thumbnail ${index + 1}`}
+                        className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
                         <button
@@ -64,7 +60,7 @@ const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
 
             {/* Popup */}
             <Popup
-                title={currentVideoIndex !== null ? videos[currentVideoIndex].title : ''}
+                title={currentVideoIndex !== null ? videoData[currentVideoIndex]?.title || '' : ''}
                 isOpen={currentVideoIndex !== null}
                 onClose={handleClosePopup}
             >
@@ -73,11 +69,11 @@ const SixVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         className="w-full shadow-lg"
                         controls
                         controlsList="nofullscreen"
-                        autoPlay // Videonun otomatik oynatılmasını sağlar
+                        autoPlay
                         playsInline
                     >
                         <source
-                            src={videos[currentVideoIndex].videoUrl}
+                            src={base + (videoData[currentVideoIndex]?.video?.[0]?.url || '')}
                             type="video/mp4"
                         />
                         Tarayıcınız bu videoyu oynatmayı desteklemiyor.

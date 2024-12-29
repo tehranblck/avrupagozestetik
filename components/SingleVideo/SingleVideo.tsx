@@ -6,7 +6,6 @@ import Image from 'next/image';
 
 const SingleVideo = ({ videos }: any) => {
     const videoData = videos?.videos[0];
-    console.log(videoData)
     const base = 'https://api.avrupagozestetikinfo.com'
     const [isVideoVisible, setIsVideoVisible] = useState(false); // Video görünüyor mu?
     const [hasPlayed, setHasPlayed] = useState(false); // Video oynatıldı mı?
@@ -61,7 +60,7 @@ const SingleVideo = ({ videos }: any) => {
                         height={900}
                         src={base + (videoData?.thumbnail[0]?.formats.large.url || '')}
                         alt={videoData?.documentId || `Video Thumbnail ${+ 1}`}
-                        className="w-full rounded-lg shadow-lg"
+                        className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
                         <button

@@ -75,7 +75,7 @@ const Page = async () => {
             </div>
             <TripleVideo videos={VideoData[0]} />
             <SixPhoto photos={ikinciAltili} />
-            <TripleVideo videos={videos3} />
+            <TripleVideo videos={VideoData[2]} />
             <AlertCard />
             <SixPhoto photos={ucuncuAltili} />
             <SingleVideo videos={VideoData[1]} />
@@ -84,9 +84,9 @@ const Page = async () => {
             <TripleVideo videos={videos3} />
             <AlertCard />
             <ThreePhoto photos={Ilk3lu} />
-            <SingleVideo thumbnailUrl="/maint.jpg" videoUrl="/videos/hero.mp4" altText="Tekli Video" />
+            <SingleVideo videos={VideoData[3]} />
             <NinePhoto photos={dokuzlu} />
-            <TripleVideo videos={videos3} />
+            <TripleVideo videos={VideoData[4]} />
             {ilkTekli && (
                 <SinglePhoto
                     imageUrl={base + ilkTekli?.formats?.medium?.url}
@@ -95,7 +95,7 @@ const Page = async () => {
                 />
             )}
             <AlertCard />
-            <SixVideo videos={videos3} />
+            <SixVideo videos={VideoData[5]} />
             {ikinciTekli && (
                 <SinglePhoto
                     imageUrl={base + ikinciTekli?.formats?.medium?.url}

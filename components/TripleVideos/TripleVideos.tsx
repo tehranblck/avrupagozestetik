@@ -42,7 +42,7 @@ const TripleVideo = ({ videos }: any) => {
                         height={900}
                         src={base + (video?.thumbnail?.[0]?.formats?.large?.url || '')}
                         alt={video.createdAt || `Video Thumbnail ${index + 1}`}
-                        className="w-full rounded-lg shadow-lg"
+                        className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
                         <button

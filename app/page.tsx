@@ -29,15 +29,41 @@ const Page = async () => {
 
     // Fetch video data
     const fetchVideoDatas = async () => {
-        const res = await fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=*', {
-            next: { revalidate: 60 },
-        });
-        if (!res.ok) {
-            throw new Error('Failed to fetch video data');
+        const [videoRes, thumbnailRes] = await Promise.all([
+            fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.video', {
+                next: { revalidate: 60 },
+            }),
+            fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.thumbnail', {
+                next: { revalidate: 60 },
+            })
+        ]);
+    
+        if (!videoRes.ok || !thumbnailRes.ok) {
+            throw new Error('Failed to fetch video or thumbnail data');
         }
-        const data = await res.json();
-        return data.data;
+    
+        const videoData = await videoRes.json();
+        const thumbnailData = await thumbnailRes.json();
+    
+        const videoDetails = videoData.data.map((videoItem: any, index: any) => {
+            const videoWithThumbnail = videoItem.videos.map((video: any, videoIndex: any) => {
+                const thumbnail = thumbnailData.data[index]?.videos[videoIndex]?.thumbnail || {};
+                
+                return {
+                    ...video,
+                    thumbnail,
+                };
+            });
+    
+            return {
+                ...videoItem,
+                videos: videoWithThumbnail,
+            };
+        });
+    
+        return videoDetails;
     };
+    
 
     const data = await fetchComponents();
 
@@ -52,6 +78,11 @@ const Page = async () => {
     const dokuzlu = data[0]?.dokuzlu || [];
 
     const VideoData = await fetchVideoDatas();
+    console.log("VideoData", VideoData);
+    console.log("Single VideoData", VideoData[0]);
+    console.log("VideoData with videos", VideoData[0].videos);
+    console.log("VideoData with video media", VideoData[0].videos[0].video);
+    console.log("VideoData with thumbnail media", VideoData[0].videos[0].thumbnail);
 
     const videos3 = [
         {

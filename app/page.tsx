@@ -33,6 +33,7 @@ const Page = async () => {
 
     // Video verileri
     const VideoData = await fetchVideoDatas();
+    console.log(VideoData)
 
     return (
         <div className="max-w-7xl mx-auto w-full">
@@ -59,13 +60,13 @@ const Page = async () => {
             </div>
 
             {/* Birinci Üçlü Video */}
-            <TripleVideo videos={VideoData[0]} />
+            <TripleVideo videos={VideoData[2]} />
 
             {/* İkinci Altılı Fotoğraflar */}
             <SixPhoto photos={ikinciAltili} />
 
             {/* İkinci Üçlü Video */}
-            <TripleVideo videos={VideoData[2]} />
+            <TripleVideo videos={VideoData[4]} />
 
             {/* İlk Uyarı Kartı */}
             <AlertCard />
@@ -77,13 +78,13 @@ const Page = async () => {
             <SingleVideo videos={VideoData[1]} />
 
             {/* Üçüncü Üçlü Video */}
-            <TripleVideo videos={VideoData[4]} />
+            <TripleVideo videos={VideoData[6]} />
 
             {/* Dördüncü Altılı Fotoğraflar */}
             <SixPhoto photos={dorduncuAltili} />
 
             {/* Dördüncü Üçlü Video */}
-            <TripleVideo videos={VideoData[6]} />
+            <TripleVideo videos={VideoData[0]} />
 
             {/* İkinci Uyarı Kartı */}
             <AlertCard />
@@ -92,13 +93,13 @@ const Page = async () => {
             <ThreePhoto photos={Ilk3lu} />
 
             {/* İkinci Tekli Video */}
-            <SingleVideo videos={VideoData[3]} />
+            <SingleVideo videos={VideoData[5]} />
 
             {/* Dokuzlu Fotoğraflar */}
             <NinePhoto photos={dokuzlu} />
 
             {/* Beşinci Üçlü Video */}
-            <TripleVideo videos={VideoData[7]} />
+            <TripleVideo videos={VideoData[1]} />
 
             {/* İlk Tekli Fotoğraf */}
             {ilkTekli && (
@@ -113,7 +114,7 @@ const Page = async () => {
             <AlertCard />
 
             {/* Altılı Video */}
-            <SixVideo videos={VideoData[5]} />
+            <SixVideo videos={VideoData[7]} />
 
             {/* İkinci Tekli Fotoğraf */}
             {ikinciTekli && (

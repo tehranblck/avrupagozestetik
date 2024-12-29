@@ -43,8 +43,6 @@ const Page = async () => {
     }
     const VideoData = (await fetchVideoDatas()).data
 
-    console.log(VideoData)
-
 
     const videos3 = [
         {

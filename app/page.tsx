@@ -75,7 +75,7 @@ const Page = async () => {
             <SixPhoto photos={ucuncuAltili} />
 
             {/* Birinci Tekli Video */}
-            <SingleVideo videos={VideoData[1]} />
+            <SingleVideo videos={VideoData[3]} />
 
             {/* Üçüncü Üçlü Video */}
             <TripleVideo videos={VideoData[6]} />

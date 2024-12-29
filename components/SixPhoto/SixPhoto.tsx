@@ -43,17 +43,13 @@ const SixPhoto: React.FC<SixPhotoProps> = ({ photos }) => {
     };
 
     return (
-        <div
-            key={photos[0]?.createdAt || 'default-key'}
-            className="w-[100%] sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2"
-        >
+        <div className="w-[100%] sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
             {photos.map((photo, index) => (
                 <div
-                    key={photo?.documentId || `photo-${index}`}
+                    key={photo?.createdAt || `${photo?.url || ''}-${index}`}
                     className="relative w-full cursor-pointer"
                     onClick={() => handleThumbnailClick(index)}
                 >
-                    {/* Fotoğraf Thumbnail */}
                     <Image
                         priority
                         width={900}
@@ -73,7 +69,6 @@ const SixPhoto: React.FC<SixPhotoProps> = ({ photos }) => {
                 </div>
             ))}
 
-            {/* Popup */}
             <PopupPhoto
                 isOpen={currentPhotoIndex !== null}
                 onClose={handleClosePopup}

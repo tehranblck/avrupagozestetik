@@ -1,7 +1,7 @@
 import AskQuestionButton from '@/components/AskQuestionButton/AskQuestionButton';
 import DigerIslemler from '@/components/DigerIslemler';
 import ThreePhoto from '@/components/DoublePhoto/DoublePhoto';
-import { fetchFotosHomepage } from '@/components/Fetches/FetchHomeFotos';
+import { fetchFotosHomepage } from '@/components/helpers/FetchHomeFotos';
 import Header from '@/components/Header/Header';
 import HeaderBottom from '@/components/Header/HeaderBottom';
 import NinePhoto from '@/components/NinePhoto/NinePhoto';
@@ -12,46 +12,12 @@ import SixPhoto from '@/components/SixPhoto/SixPhoto';
 import SixVideo from '@/components/SixVideo/SixVideo';
 import TripleVideo from '@/components/TripleVideos/TripleVideos';
 import React from 'react';
+import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos';
 
 const Page = async () => {
     const base = 'https://api.avrupagozestetikinfo.com';
 
     // Fetch video data
-    const fetchVideoDatas = async () => {
-        const [videoRes, thumbnailRes] = await Promise.all([
-            fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.video', {
-                next: { revalidate: 60 },
-            }),
-            fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.thumbnail', {
-                next: { revalidate: 60 },
-            })
-        ]);
-    
-        if (!videoRes.ok || !thumbnailRes.ok) {
-            throw new Error('Failed to fetch video or thumbnail data');
-        }
-    
-        const videoData = await videoRes.json();
-        const thumbnailData = await thumbnailRes.json();
-    
-        const videoDetails = videoData.data.map((videoItem: any, index: any) => {
-            const videoWithThumbnail = videoItem.videos.map((video: any, videoIndex: any) => {
-                const thumbnail = thumbnailData.data[index]?.videos[videoIndex]?.thumbnail || {};
-                
-                return {
-                    ...video,
-                    thumbnail,
-                };
-            });
-    
-            return {
-                ...videoItem,
-                videos: videoWithThumbnail,
-            };
-        });
-    
-        return videoDetails;
-    };
 
     const dataFotos = await fetchFotosHomepage();
 
@@ -66,12 +32,14 @@ const Page = async () => {
     const dokuzlu = dataFotos[0]?.dokuzlu || [];
 
     const VideoData = await fetchVideoDatas();
-    console.log("VideoData", VideoData);
-    console.log("Single VideoData", VideoData[0]);
-    console.log("VideoData with videos", VideoData[0].videos);
-    console.log("VideoData with video media", VideoData[0].videos[0].video);
-    console.log("VideoData with thumbnail media", VideoData[0].videos[0].thumbnail);
-    
+    console.log(VideoData)
+    console.log(VideoData[1])
+    // console.log("VideoData", VideoData);
+    // console.log("Single VideoData", VideoData[0]);
+    // console.log("VideoData with videos", VideoData[0].videos);
+    // console.log("VideoData with video media", VideoData[0].videos[0].video);
+    // console.log("VideoData with thumbnail media", VideoData[0].videos[0].thumbnail);
+
     const videos3 = [
         {
             videoUrl: '/videos/teze.mp4',
@@ -105,12 +73,12 @@ const Page = async () => {
             <div className="mt-44">
                 <SixPhoto photos={Ilk6li} />
             </div>
-            <TripleVideo videos={videos3} />
+            <TripleVideo videos={VideoData[0]} />
             <SixPhoto photos={ikinciAltili} />
             <TripleVideo videos={videos3} />
             <AlertCard />
             <SixPhoto photos={ucuncuAltili} />
-            <SingleVideo thumbnailUrl="/maint.jpg" videoUrl="/videos/hero.mp4" altText="Hero Video" />
+            <SingleVideo videos={VideoData[1]} />
             <TripleVideo videos={videos3} />
             <SixPhoto photos={dorduncuAltili} />
             <TripleVideo videos={videos3} />

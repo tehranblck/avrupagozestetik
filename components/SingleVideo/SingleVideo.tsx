@@ -2,13 +2,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
-interface VideoPlayerProps {
-    videoUrl: string;
-    thumbnailUrl: string;
-    altText?: string;
-}
 
-const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altText }) => {
+
+const SingleVideo = ({ videos }: any) => {
+    const videoData = videos?.videos[0];
+    console.log(videoData)
+    const base = 'https://api.avrupagozestetikinfo.com'
     const [isVideoVisible, setIsVideoVisible] = useState(false); // Video görünüyor mu?
     const [hasPlayed, setHasPlayed] = useState(false); // Video oynatıldı mı?
     const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -60,8 +59,8 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
                         priority
                         width={900}
                         height={900}
-                        src={thumbnailUrl}
-                        alt={altText || 'Video Thumbnail'}
+                        src={base + (videoData?.thumbnail[0]?.formats.large.url || '')}
+                        alt={videoData?.documentId || `Video Thumbnail ${+ 1}`}
                         className="w-full rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
@@ -79,10 +78,10 @@ const SingleVideo: React.FC<VideoPlayerProps> = ({ videoUrl, thumbnailUrl, altTe
                     className="mx-auto object-cover lg:h-[400px] sm:w-[80%]  shadow-lg w-full"
                     controls
                     controlsList="nofullscreen" // Tam ekran seçeneğini devre dışı bırakır
-                    aria-label={altText || 'Video Player'}
+                    aria-label={'Video Player'}
                     playsInline // Tam ekran olmadan oynatma
                 >
-                    <source src={videoUrl} type="video/mp4" />
+                    <source src={base + videoData.video[0].url} type="video/mp4" />
                     Tarayıcınız bu videoyu oynatmayı desteklemiyor.
                 </video>
             )}

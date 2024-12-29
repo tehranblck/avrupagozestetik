@@ -3,17 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import PopupPhoto from '../SixPhoto/PopupPhoto';
 
-interface PhotoProps {
-    formats?: {
-        large?: {
-            url: string;
-        };
-    };
-    imageUrl?: string;
-    altText?: string;
-}
-
-const ThreePhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
+const ThreePhoto = ({ photos }: any) => {
     const base = 'https://api.avrupagozestetikinfo.com';
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number | null>(null);
 
@@ -38,10 +28,13 @@ const ThreePhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
     };
 
     return (
-        <div className="w-full sm:px-32 mt-3 mx-auto grid grid-cols-3 gap-1 px-2">
-            {photos.slice(0, 3).map((photo, index) => (
+        <div
+            key={currentPhotoIndex || `photo-${currentPhotoIndex}`}
+            className="w-full sm:px-32 mt-3 mx-auto grid grid-cols-3 gap-1 px-2"
+        >
+            {photos.slice(0, 3).map((photo: any, index: number) => (
                 <div
-                    key={index}
+                    key={photo.id || photo.createdAt || index} // Benzersiz bir alan kullanılıyor
                     className="relative w-full cursor-pointer"
                     onClick={() => handleThumbnailClick(index)}
                 >
@@ -51,7 +44,7 @@ const ThreePhoto: React.FC<{ photos: PhotoProps[] }> = ({ photos }) => {
                         width={900}
                         height={900}
                         src={photo?.formats?.large?.url ? `${base}${photo.formats.large.url}` : '/maint.jpg'}
-                        alt={photo.altText || `Photo ${index + 1}`}
+                        alt={photo?.createdAt || `Photo ${index + 1}`}
                         className="w-full rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">

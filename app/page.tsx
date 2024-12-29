@@ -17,10 +17,10 @@ import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos';
 const Page = async () => {
     const base = 'https://api.avrupagozestetikinfo.com';
 
-    // Fetch video data
-
+    // Fotoğraf ve video verilerini çek
     const dataFotos = await fetchFotosHomepage();
 
+    // Fotoğraf verileri
     const Ilk6li = dataFotos[0]?.ilk6_i_foto || [];
     const Ilk3lu = dataFotos[0]?.ilk_3_lu || [];
     const ilkTekli = dataFotos[0]?.ilkTekli || null;
@@ -31,28 +31,12 @@ const Page = async () => {
     const dorduncuAltili = dataFotos[0]?.dorduncuAltili || [];
     const dokuzlu = dataFotos[0]?.dokuzlu || [];
 
+    // Video verileri
     const VideoData = await fetchVideoDatas();
-    console.log(VideoData)
-    console.log(VideoData[1])
-    // console.log("VideoData", VideoData);
-    // console.log("Single VideoData", VideoData[0]);
-    // console.log("VideoData with videos", VideoData[0].videos);
-    // console.log("VideoData with video media", VideoData[0].videos[0].video);
-    // console.log("VideoData with thumbnail media", VideoData[0].videos[0].thumbnail);
-
-    const videos3 = [
-        {
-            videoUrl: '/videos/teze.mp4',
-            thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'Göz Estetiği 1',
-        },
-        // Add more static videos as needed
-    ];
 
     return (
         <div className="max-w-7xl mx-auto w-full">
-            {/* Fixed Header */}
+            {/* Sabit Üst Menü */}
             <div
                 style={{
                     borderBottomLeftRadius: '20px',
@@ -66,27 +50,57 @@ const Page = async () => {
                 <HeaderBottom isVisible={true} />
             </div>
 
-            {/* Fixed Operations */}
+            {/* Sabit İşlemler */}
             <DigerIslemler />
 
-            {/* Photos and Videos */}
+            {/* İlk Altılı Fotoğraflar */}
             <div className="mt-44">
                 <SixPhoto photos={Ilk6li} />
             </div>
+
+            {/* Birinci Üçlü Video */}
             <TripleVideo videos={VideoData[0]} />
+
+            {/* İkinci Altılı Fotoğraflar */}
             <SixPhoto photos={ikinciAltili} />
+
+            {/* İkinci Üçlü Video */}
             <TripleVideo videos={VideoData[2]} />
+
+            {/* İlk Uyarı Kartı */}
             <AlertCard />
+
+            {/* Üçüncü Altılı Fotoğraflar */}
             <SixPhoto photos={ucuncuAltili} />
+
+            {/* Birinci Tekli Video */}
             <SingleVideo videos={VideoData[1]} />
-            <TripleVideo videos={videos3} />
-            <SixPhoto photos={dorduncuAltili} />
-            <TripleVideo videos={videos3} />
-            <AlertCard />
-            <ThreePhoto photos={Ilk3lu} />
-            <SingleVideo videos={VideoData[3]} />
-            <NinePhoto photos={dokuzlu} />
+
+            {/* Üçüncü Üçlü Video */}
             <TripleVideo videos={VideoData[4]} />
+
+            {/* Dördüncü Altılı Fotoğraflar */}
+            <SixPhoto photos={dorduncuAltili} />
+
+            {/* Dördüncü Üçlü Video */}
+            <TripleVideo videos={VideoData[6]} />
+
+            {/* İkinci Uyarı Kartı */}
+            <AlertCard />
+
+            {/* İlk Üçlü Fotoğraflar */}
+            <ThreePhoto photos={Ilk3lu} />
+
+            {/* İkinci Tekli Video */}
+            <SingleVideo videos={VideoData[3]} />
+
+            {/* Dokuzlu Fotoğraflar */}
+            <NinePhoto photos={dokuzlu} />
+
+            {/* Beşinci Üçlü Video */}
+            <TripleVideo videos={VideoData[7]} />
+
+            {/* İlk Tekli Fotoğraf */}
             {ilkTekli && (
                 <SinglePhoto
                     imageUrl={base + ilkTekli?.formats?.medium?.url}
@@ -94,8 +108,14 @@ const Page = async () => {
                     className=""
                 />
             )}
+
+            {/* Üçüncü Uyarı Kartı */}
             <AlertCard />
+
+            {/* Altılı Video */}
             <SixVideo videos={VideoData[5]} />
+
+            {/* İkinci Tekli Fotoğraf */}
             {ikinciTekli && (
                 <SinglePhoto
                     imageUrl={base + ikinciTekli?.formats?.medium?.url}
@@ -103,7 +123,11 @@ const Page = async () => {
                     className=""
                 />
             )}
+
+            {/* Dördüncü Uyarı Kartı */}
             <AlertCard />
+
+            {/* Üçüncü Tekli Fotoğraf */}
             {ucuncuTekli && (
                 <SinglePhoto
                     imageUrl={base + ucuncuTekli?.formats?.medium?.url}
@@ -111,6 +135,8 @@ const Page = async () => {
                     className=""
                 />
             )}
+
+            {/* Soru Sorma Butonu */}
             <AskQuestionButton />
         </div>
     );

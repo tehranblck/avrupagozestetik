@@ -3,11 +3,20 @@ import Button from '@/components/BackButton/BackButton'
 import CategoriesText from '@/components/Categories/CtegoriesText'
 import CommentCard from '@/components/Comment/CommentCard'
 import Header from '@/components/Header/Header'
+import { fetchComments } from '@/components/helpers/FetchComments'
 import InfinitySlider from '@/components/slider/InfinitySlider'
 import TripleVideo from '@/components/TripleVideos/TripleVideos'
 import React from 'react'
 
-const page = () => {
+const page = async () => {
+
+    const base = 'https://api.saytyarat.com'
+    const yorumlar = await fetchComments()
+    const yorums = yorumlar.data
+
+
+
+
     const images = [
         { imageUrl: '/slider/slider1.png', altText: 'Slider 1', title: 'goz kapagi estetigi 1' },
         { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
@@ -54,7 +63,7 @@ const page = () => {
         },
     ];
     return (
-        <div>
+        <div className='flex flex-col items-center'>
             <div style={{ zIndex: '9999' }} className="bg-white rounded-lg pb-2 min-h-fit  w-full">
                 <Header isHomePage={false} />
                 <div style={{ top: '6.4rem' }} className=' fixed top-28 rounded-lg  z-50 w-full' >
@@ -65,22 +74,22 @@ const page = () => {
             <InfinitySlider />
             <TripleVideo videos={videos3} />
             <div className='flex flex-col gap-3'>
-                <CommentCard key={comments[0].comment} comment={comments[0]} />
-                <CommentCard key={comments[0].name} comment={comments[0]} />
+                <CommentCard comment={yorums[0]} />
+                <CommentCard comment={yorums[1]} />
             </div>
 
             <TripleVideo videos={videos3} />
             <div className='flex flex-col gap-3'>
 
-                <CommentCard key={comments[1].comment} comment={comments[1]} />
-                <CommentCard key={comments[1].name} comment={comments[1]} />
+                <CommentCard comment={yorums[2]} />
+                <CommentCard comment={yorums[3]} />
             </div>
 
             <TripleVideo videos={videos3} />
             <div className='flex flex-col gap-3'>
 
-                <CommentCard key={comments[2].comment} comment={comments[2]} />
-                <CommentCard key={comments[2].name} comment={comments[2]} />
+                <CommentCard comment={yorums[4]} />
+                <CommentCard comment={yorums[5]} />
 
             </div>
 

@@ -19,6 +19,7 @@ const Page = async () => {
 
     // Fotoğraf ve video verilerini çek
     const dataFotos = await fetchFotosHomepage();
+    const VideoData = await fetchVideoDatas();
 
     // Fotoğraf verileri
     const Ilk6li = dataFotos[0]?.ilk6_i_foto || [];
@@ -31,9 +32,17 @@ const Page = async () => {
     const dorduncuAltili = dataFotos[0]?.dorduncuAltili || [];
     const dokuzlu = dataFotos[0]?.dokuzlu || [];
 
-    // Video verileri
-    const VideoData = await fetchVideoDatas();
-    console.log(VideoData)
+    // Video verilerini id'ye göre filtrele
+    const sortedVideos = VideoData.sort((a: any, b: any) => a.id - b.id);
+    console.log(sortedVideos)
+    const firstTripleVideo = sortedVideos.find((video: any) => video.id === 76);
+    const firstSingleVideo = sortedVideos.find((video: any) => video.id === 66);
+    const secondTripleVideo = sortedVideos.find((video: any) => video.id === 67);
+    const secondSingleVideo = sortedVideos.find((video: any) => video.id === 68);
+    const thirdTripleVideo = sortedVideos.find((video: any) => video.id === 71);
+    const firstSixVideo = sortedVideos.find((video: any) => video.id === 72);
+    const fourthTripleVideo = sortedVideos.find((video: any) => video.id === 62);
+    const fifthTripleVideo = sortedVideos.find((video: any) => video.id === 74);
 
     return (
         <div className="max-w-7xl mx-auto w-full">
@@ -60,13 +69,13 @@ const Page = async () => {
             </div>
 
             {/* Birinci Üçlü Video */}
-            <TripleVideo videos={VideoData[1]} />
+            {firstTripleVideo && <TripleVideo videos={firstTripleVideo} />}
 
             {/* İkinci Altılı Fotoğraflar */}
             <SixPhoto photos={ikinciAltili} />
 
             {/* İkinci Üçlü Video */}
-            <TripleVideo videos={VideoData[3]} />
+            {secondTripleVideo && <TripleVideo videos={secondTripleVideo} />}
 
             {/* İlk Uyarı Kartı */}
             <AlertCard />
@@ -75,33 +84,34 @@ const Page = async () => {
             <SixPhoto photos={ucuncuAltili} />
 
             {/* Birinci Tekli Video */}
-            <SingleVideo videos={VideoData[3]} />
+            {firstSingleVideo && <SingleVideo videos={firstSingleVideo} />}
 
             {/* Üçüncü Üçlü Video */}
-            <TripleVideo videos={VideoData[5]} />
+            {thirdTripleVideo && <TripleVideo videos={thirdTripleVideo} />}
 
             {/* Dördüncü Altılı Fotoğraflar */}
             <SixPhoto photos={dorduncuAltili} />
 
             {/* Dördüncü Üçlü Video */}
-            <TripleVideo videos={VideoData[0]} />
+            {fourthTripleVideo && <TripleVideo videos={fourthTripleVideo} />}
 
             {/* İkinci Uyarı Kartı */}
             <AlertCard />
 
-            <SixVideo videos={VideoData[6]} />
+            {/* İlk Altılı Video */}
+            {firstSixVideo && <SixVideo videos={firstSixVideo} />}
 
             {/* İlk Üçlü Fotoğraflar */}
             <ThreePhoto photos={Ilk3lu} />
 
             {/* İkinci Tekli Video */}
-            <SingleVideo videos={VideoData[4]} />
+            {secondSingleVideo && <SingleVideo videos={secondSingleVideo} />}
 
             {/* Dokuzlu Fotoğraflar */}
             <NinePhoto photos={dokuzlu} />
 
             {/* Beşinci Üçlü Video */}
-            <TripleVideo videos={VideoData[7]} />
+            {fifthTripleVideo && <TripleVideo videos={fifthTripleVideo} />}
 
             {/* İlk Tekli Fotoğraf */}
             {ilkTekli && (
@@ -114,9 +124,6 @@ const Page = async () => {
 
             {/* Üçüncü Uyarı Kartı */}
             <AlertCard />
-
-            {/* Altılı Video */}
-            <SixVideo videos={VideoData[7]} />
 
             {/* İkinci Tekli Fotoğraf */}
             {ikinciTekli && (

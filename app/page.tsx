@@ -60,13 +60,13 @@ const Page = async () => {
             </div>
 
             {/* Birinci Üçlü Video */}
-            <TripleVideo videos={VideoData[2]} />
+            <TripleVideo videos={VideoData[1]} />
 
             {/* İkinci Altılı Fotoğraflar */}
             <SixPhoto photos={ikinciAltili} />
 
             {/* İkinci Üçlü Video */}
-            <TripleVideo videos={VideoData[4]} />
+            <TripleVideo videos={VideoData[3]} />
 
             {/* İlk Uyarı Kartı */}
             <AlertCard />
@@ -78,7 +78,7 @@ const Page = async () => {
             <SingleVideo videos={VideoData[3]} />
 
             {/* Üçüncü Üçlü Video */}
-            <TripleVideo videos={VideoData[6]} />
+            <TripleVideo videos={VideoData[5]} />
 
             {/* Dördüncü Altılı Fotoğraflar */}
             <SixPhoto photos={dorduncuAltili} />
@@ -89,17 +89,19 @@ const Page = async () => {
             {/* İkinci Uyarı Kartı */}
             <AlertCard />
 
+            <SixVideo videos={VideoData[6]} />
+
             {/* İlk Üçlü Fotoğraflar */}
             <ThreePhoto photos={Ilk3lu} />
 
             {/* İkinci Tekli Video */}
-            <SingleVideo videos={VideoData[5]} />
+            <SingleVideo videos={VideoData[4]} />
 
             {/* Dokuzlu Fotoğraflar */}
             <NinePhoto photos={dokuzlu} />
 
             {/* Beşinci Üçlü Video */}
-            <TripleVideo videos={VideoData[1]} />
+            <TripleVideo videos={VideoData[7]} />
 
             {/* İlk Tekli Fotoğraf */}
             {ilkTekli && (

@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect } from 'react';
 import AskPriceButton from '../AskPriceButton/AskPriceButton';
+import { MdOutlineClose } from "react-icons/md";
 
 interface PopupProps {
     isOpen: boolean;
@@ -32,15 +33,15 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
             onClick={onClose} // Dış alana tıklanınca kapanır
         >
             <div
-                className="relative bg-white pt-8 mt-12 rounded-lg shadow-lg w-full max-w-lg mx-auto"
+                className="relative bg-red-800 pt-8 rounded-lg shadow-lg w-full max-w-lg mx-auto"
                 onClick={(e) => e.stopPropagation()} // İçeriğe tıklanınca kapanmayı engeller
             >
                 <button
                     onClick={onClose}
-                    className="absolute z-50 right-0 top-0 text-black text-4xl"
+                    className="absolute z-50 right-0 top-0 text-white text-4xl"
                     aria-label="Close Popup"
                 >
-                    ✖
+                    <MdOutlineClose />
                 </button>
                 {children}
                 <div className="my-2 text-center">

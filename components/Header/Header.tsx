@@ -149,9 +149,9 @@ const Header = ({ isHomePage }: HeaderProps) => {
                             <Link
                                 href={'/diger-islemler'}
                                 style={{ fontSize: '16px' }}
-                                className="flex items-center px-4 py-2 bg-[#2b80f6] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
+                                className="flex items-center  px-4 py-2 bg-[#2b80f6] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
                             >
-                                Diğer işlemler <FaAngleRight />
+                                Diğer işlemler <FaAngleRight className=' text-xl' />
                             </Link>
                         </div>
                     ) : null

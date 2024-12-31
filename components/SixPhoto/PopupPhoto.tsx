@@ -72,7 +72,7 @@ const PopupPhoto: React.FC<PopupProps> = ({
         >
             <div
                 ref={contentRef}
-                className="relative bg-red-800  p-1 pt-10 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%] max-w-7xl"
+                className="relative bg-red-800 top-0 p-1 pt-10 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-lg shadow-lg w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%] max-w-7xl"
                 onClick={(e) => e.stopPropagation()} // Pop-up içindeki tıklamayı engeller
             >
                 {/* Close Button */}

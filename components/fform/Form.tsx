@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import 'react-phone-input-2/lib/style.css'; // react-phone-input-2 CSS dosyası
+import { useForm, ValidationError } from '@formspree/react';
+import 'react-phone-input-2/lib/style.css';
 import PhoneInput from 'react-phone-input-2';
 
 const PhoneForm: React.FC = () => {
@@ -13,6 +14,11 @@ const PhoneForm: React.FC = () => {
     });
 
     const [error, setError] = useState('');
+    const [state, handleSubmit] = useForm("mjkkezeg"); // Formspree React SDK kullanımı
+
+    if (state.succeeded) {
+        return <p>Form başarıyla gönderildi!</p>;
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -29,35 +35,8 @@ const PhoneForm: React.FC = () => {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (!formData.phoneNumber || !formData.email || error) {
-            alert('Lütfen formu göndermeden önce hataları düzeltin.');
-            return;
-        }
-
-        // Form gönderildiğinde inputları sıfırlama
-        setFormData({
-            firstName: '',
-            lastName: '',
-            email: '',
-            phoneNumber: '',
-            message: '',
-        });
-
-        alert('Form başarıyla gönderildi!');
-        console.log(formData);
-        // Backend entegrasyonu burada yapılabilir
-    };
-
     return (
-        <form
-            onSubmit={handleSubmit}
-            action="https://formspree.io/f/mjkkezeg" // Formspree action URL
-            method="POST" // POST metodu
-            className="max-w-lg mx-auto p-4 bg-white my-2 rounded-lg space-y-4"
-        >
+        <form onSubmit={handleSubmit}>
             <h3 className="text-left text-2xl">Form bırakın biz sizi arayalım.</h3>
 
             <div>
@@ -103,6 +82,7 @@ const PhoneForm: React.FC = () => {
                     className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
+                <ValidationError prefix="Email" field="email" errors={state.errors} />
             </div>
 
             <div>
@@ -123,9 +103,8 @@ const PhoneForm: React.FC = () => {
                     buttonClass="phone-input-button"
                     dropdownClass="phone-input-dropdown"
                 />
+                {error && <p className="text-red-500 text-sm">{error}</p>}
             </div>
-
-            {error && <p className="text-red-500 text-sm">{error}</p>}
 
             <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700">
@@ -141,11 +120,13 @@ const PhoneForm: React.FC = () => {
                     className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
             </div>
 
             <button
                 type="submit"
                 className="w-full bg-blue-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                disabled={state.submitting}
             >
                 Gönder
             </button>

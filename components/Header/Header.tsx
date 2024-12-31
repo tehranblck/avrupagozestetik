@@ -78,7 +78,7 @@ const Header = ({ isHomePage }: HeaderProps) => {
             }}
             className={`w-full  ${isHomePage ? null : 'fixed header top-0'} top-0 p-5  `}
         >
-            <div className='max-w-7xl mx-auto flex items-center justify-center gap-4 text-white py-0 px-0'>
+            <div className='max-w-7xl mx-auto flex items-center justify-between gap-4 text-white py-0 px-0'>
                 {/* <Link href={'/'} className="flex items-center">
                     <Image alt="Logo" src="/logo.svg" width={100} height={60} />
                 </Link> */}
@@ -131,7 +131,7 @@ const Header = ({ isHomePage }: HeaderProps) => {
 
                 {/* Diğer işlemler butonu */}
                 {isHomePage && (
-                    <div className="relative flex-grow flex justify-end sm:justify-end sm:mt-0">
+                    <div className="relative flex-grow flex   justify-end sm:justify-end sm:mt-0">
                         <button
                             ref={buttonRef}
                             style={{ fontSize: '16px' }}

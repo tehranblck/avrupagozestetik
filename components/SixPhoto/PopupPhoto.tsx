@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import AskPriceButton from '../AskPriceButton/AskPriceButton';
+import { MdOutlineClose } from "react-icons/md";
 
 interface PopupProps {
     isOpen: boolean;
@@ -78,10 +79,10 @@ const PopupPhoto: React.FC<PopupProps> = ({
                 <button
                     onClick={onClose}
                     style={{ color: 'white' }}
-                    className="absolute top-0 right-0 text-white   rounded-full  text-3xl md:text-3xl focus:outline-none"
+                    className="absolute top-0 right-0 text-white   rounded-full  text-4xl md:text-3xl focus:outline-none"
                     aria-label="Close Popup"
                 >
-                    ✖
+                    <MdOutlineClose />
                 </button>
 
                 {/* Popup Content */}

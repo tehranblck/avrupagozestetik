@@ -62,7 +62,7 @@ const Page = async () => {
                 <Header isHomePage={true} />
 
             </div>
-            <div className="bg">
+            <div id='blurbg ' className="bg">
                 <div className="flex items-center  mt-36 justify-center w-full">
                     <Link href={'/'} className="flex items-center justify-center">
                         <Image alt="Logo" src="/logo.svg" width={150} height={120} />

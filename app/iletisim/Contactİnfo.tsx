@@ -5,17 +5,17 @@ import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const ContactInfo = () => {
     return (
-        <div className=" p-4 rounded-lg shadow-lg max-w-4xl mx-auto">
+        <div className=" p-2 px-2 rounded-lg shadow-lg max-w-4xl mx-auto">
             {/* Adres ve İletişim Bilgileri */}
             <div className="mb-6">
                 <h2 className="text-2xl font-bold text-blue-800 mb-4">İletişim Bilgileri</h2>
                 <p className="text-gray-700">
-                    <strong>Adres:</strong> Örnek Mahallesi, Örnek Cadde No:123, İstanbul, Türkiye
+                    <strong>Adres:</strong> Muradiye Mahallesi Nüzhetiye Cad, Deryadil Sokağı No:1, 34357 Beşiktaş
                 </p>
                 <p className="text-gray-700 mt-2">
                     <strong>Telefon:</strong>{' '}
-                    <Link href="tel:+905555555555" className="text-blue-500 hover:underline">
-                        +90 555 555 55 55
+                    <Link href="tel:+905327044102" className="text-blue-500 hover:underline">
+                        +905327044102
                     </Link>
                 </p>
                 <p className="text-gray-700 mt-2">
@@ -28,7 +28,7 @@ const ContactInfo = () => {
 
             {/* Sosyal Medya */}
             <div className="mt-6">
-                <h3 className="text-xl font-semibold text-blue-800 mb-4">Bizi Sosyal Medyada Takip Edin</h3>
+                <h3 className="text-xl font-semibold text-blue-800 mb-0">Bizi Sosyal Medyada Takip Edin</h3>
                 <div className="flex space-x-4 text-blue-600 text-2xl">
                     <Link
                         href="https://www.instagram.com/avrupagozestetik?igsh=dGx4MHFxNnNnNG53"

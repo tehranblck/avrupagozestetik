@@ -31,11 +31,11 @@ const CategoriesText: React.FC<CategoriesTextProps> = ({ text1, text2, paragraph
         <div className="w-full">
             <div
                 style={{
-                    fontFamily: '"Forum", serif',
+                    fontFamily: '"Open Sans", serif',
                     letterSpacing: '2px',
                     fontWeight: 'normal',
                 }}
-                className={`text-left ${text1Classes} sm:text-center sm:pt-12 text-blue-700 font-bold  pl-5 lg:pl-10 lg:text-6xl`}
+                className={`text-center ${text1Classes} sm:text-center px-4 sm:pt-12 text-blue-700 font-bold  `}
             >
                 {text1}{isMobile ? <br /> : ' '} {text2}
             </div>

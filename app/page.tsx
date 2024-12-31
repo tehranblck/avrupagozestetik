@@ -13,6 +13,8 @@ import SixVideo from '@/components/SixVideo/SixVideo';
 import TripleVideo from '@/components/TripleVideos/TripleVideos';
 import React from 'react';
 import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Page = async () => {
     const base = 'https://api.avrupagozestetikinfo.com';
@@ -53,18 +55,24 @@ const Page = async () => {
                     borderBottomRightRadius: '20px',
                     zIndex: 99,
                 }}
-                className="w-full fixed top-0 right-0"
+                className="w-full fixed header top-0 right-0"
             >
                 <div id="upScroll"></div>
-                <Header isHomePage={true} />
                 <HeaderBottom isVisible={true} />
+                <Header isHomePage={true} />
+
+            </div>
+            <div className="flex items-center  mt-32 justify-center w-full">
+                <Link href={'/'} className="flex items-center justify-center">
+                    <Image alt="Logo" src="/logo.svg" width={150} height={120} />
+                </Link>
             </div>
 
             {/* Sabit İşlemler */}
-            <DigerIslemler />
+            {/* <DigerIslemler /> */}
 
             {/* İlk Altılı Fotoğraflar */}
-            <div className="mt-44">
+            <div className="">
                 <SixPhoto photos={Ilk6li} />
             </div>
 

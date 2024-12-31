@@ -26,7 +26,7 @@ const HeaderBottom = ({ isVisible }: HeaderBottomProps) => {
                 borderBottomLeftRadius: '20px',
                 borderBottomRightRadius: '20px',
             }}
-            className={`text-white bg-white pt-0 pb-3 sm:pb-2 sm:px-32  ${isVisible ? 'block' : 'hidden'} `}
+            className={`text-white bg-[#397ca1] p-2 pt-6 sm:pb-2 sm:px-32  ${isVisible ? 'block' : 'hidden'} `}
         >
             {/* Üstteki kategoriler */}
             <div className="w-full flex justify-around sm:justify-center sm:gap-6 items-center">
@@ -34,7 +34,7 @@ const HeaderBottom = ({ isVisible }: HeaderBottomProps) => {
                     <Link
                         key={category.id}
                         href={category.href}
-                        className="flex flex-col items-center text-center px-4 py-2 rounded-lg border  bg-[#FF0000] border-red-600 hover:bg-red-600  transition-all duration-300"
+                        className="flex flex-col items-center text-center px-4 py-2 rounded-lg border  bg-[#2b80f6]   transition-all duration-300"
                     >
                         {/* Category Name */}
                         <span className="text-sm sm:text-xs font-semibold">

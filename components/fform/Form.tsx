@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import 'react-phone-input-2/lib/style.css'; // react-phone-input-2 CSS dosyası
 import PhoneInput from 'react-phone-input-2';
 
-
 const PhoneForm: React.FC = () => {
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
+        email: '',
         phoneNumber: '',
         message: '',
     });
@@ -32,10 +32,19 @@ const PhoneForm: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!formData.phoneNumber || error) {
+        if (!formData.phoneNumber || !formData.email || error) {
             alert('Lütfen formu göndermeden önce hataları düzeltin.');
             return;
         }
+
+        // Form gönderildiğinde inputları sıfırlama
+        setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            phoneNumber: '',
+            message: '',
+        });
 
         alert('Form başarıyla gönderildi!');
         console.log(formData);
@@ -45,9 +54,12 @@ const PhoneForm: React.FC = () => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="max-w-lg mx-auto p-4 bg-white my-12  rounded-lg space-y-4"
+            action="https://formspree.io/f/mjkkezeg" // Formspree action URL
+            method="POST" // POST metodu
+            className="max-w-lg mx-auto p-4 bg-white my-2 rounded-lg space-y-4"
         >
             <h3 className="text-left text-2xl">Form bırakın biz sizi arayalım.</h3>
+
             <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                     Ad
@@ -72,6 +84,21 @@ const PhoneForm: React.FC = () => {
                     name="lastName"
                     id="lastName"
                     value={formData.lastName}
+                    onChange={handleChange}
+                    className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    required
+                />
+            </div>
+
+            <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    E-posta
+                </label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={formData.email}
                     onChange={handleChange}
                     className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required

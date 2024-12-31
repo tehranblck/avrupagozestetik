@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { IoClose } from 'react-icons/io5'; // Close icon (X)
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaAngleRight } from "react-icons/fa";
 
 interface HeaderProps {
     isHomePage: boolean;
@@ -75,38 +76,36 @@ const Header = ({ isHomePage }: HeaderProps) => {
             style={{
                 zIndex: '99',
             }}
-            className={`w-full ${isHomePage ? null : 'fixed top-0'} top-0 header `}
+            className={`w-full  ${isHomePage ? null : 'fixed header top-0'} top-0 p-5  `}
         >
-            <div className='max-w-7xl mx-auto  flex   items-center justify-between text-white py-4 px-4 '>
-                <Link href={'/'} className="flex items-center">
+            <div className='max-w-7xl mx-auto flex items-center justify-center gap-4 text-white py-0 px-0'>
+                {/* <Link href={'/'} className="flex items-center">
                     <Image alt="Logo" src="/logo.svg" width={100} height={60} />
-                </Link>
+                </Link> */}
 
                 {/* Button */}
-                <div className="relative flex-grow flex justify-end sm:justify-end mt-4 sm:mt-0">
+                <div className={`flex-grow flex justify-center ${isHomePage ? null : 'w-full'} sm:justify-end sm:mt-0`}>
                     <button
                         ref={buttonRef}
-                        style={{ fontSize: '16px', }}
-                        className="flex items-center px-4 py-2 bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
+                        style={{ fontSize: '16px' }}
+                        className={`flex items-center  justify-center bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300 px-4 py-2 ${isHomePage ? null : 'w-full'}`}
                         onClick={toggleDropdown}
                     >
                         Randevu Al
                         <MdKeyboardArrowDown
-                            className={`ml-2 text-2xl transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''
-                                }`}
+                            className={`ml-2 text-2xl transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
                         />
                     </button>
 
                     {/* Dropdown Menu */}
                     <div
-                        style={{ zIndex: 9999, width: '80vw', }}
+                        style={{ zIndex: 9999, width: '100%' }}
                         ref={dropdownRef}
-                        className={`absolute top-full right-0   mt-2 w-full  sm:w-full bg-white text-blue-600 rounded-lg shadow-lg py-2 ${isDropdownOpen ? 'block' : 'hidden'
-                            }`}
+                        className={`absolute top-full right-0 w-full sm:w-full bg-white text-blue-600 rounded-lg shadow-lg py-2 ${isDropdownOpen ? 'block' : 'hidden'}`}
                     >
                         {/* Close Button */}
                         <button
-                            className="absolute top-1 right-2 text-red-500 text-lg hover:text-red-700"
+                            className="absolute top-4 right-4 text-red-500 text-3xl hover:text-red-700"
                             onClick={closeDropdown}
                         >
                             <IoClose />
@@ -117,21 +116,36 @@ const Header = ({ isHomePage }: HeaderProps) => {
                             href="https://wa.me/905327044102"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="py-2 block hover:bg-gray-100 rounded-md cursor-pointer"
+                            className="py-2 px-4 inline-block hover:bg-gray-100 rounded-md cursor-pointer"
                         >
-                            Whatsapp`tan randevu al
+                            Whatsapp'tan randevu al
                         </Link>
                         <Link
-                            href="/contact"
+                            href="/iletisim"
                             className="block w-full px-4 py-2 hover:bg-gray-100"
                         >
                             Form Doldur
                         </Link>
                     </div>
                 </div>
-            </div>
 
-        </header>
+                {/* Diğer işlemler butonu */}
+                {isHomePage && (
+                    <div className="relative flex-grow flex justify-end sm:justify-end sm:mt-0">
+                        <button
+                            ref={buttonRef}
+                            style={{ fontSize: '16px' }}
+                            className="flex items-center px-4 py-2 bg-[#2b80f6] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
+                            onClick={toggleDropdown}
+                        >
+                            Diğer işlemler <FaAngleRight />
+                        </button>
+
+                        {/* Dropdown Menu */}
+                    </div>
+                )}
+            </div>
+        </header >
     );
 };
 

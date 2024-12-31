@@ -52,15 +52,15 @@ const Page = async () => {
     ];
     return (
         <div>
-            <div style={{ zIndex: '9999' }} className="bg-white rounded-lg min-h-fit  w-full">
+            <div style={{ zIndex: '9999999' }} className="bg-white rounded-lg min-h-fit  w-full">
                 <Header isHomePage={false} />
-                <div style={{ top: '6.4rem' }} className=' fixed top-28 rounded-lg bg-white z-50 w-full' >
+                <div style={{ top: '5.5rem' }} className=' fixed top-28 rounded-lg  z-50 w-full' >
                     <Button />
                 </div>
 
 
             </div>
-            <CategoriesText text1Classes='text-lg mt-40' text1='Bu sayfamızda burun estetiği, yüz germe ve medikal estetik gibi çeşitli uygulamalarımızın öncesi ve sonrası değişimlerinden bazılarını inceleyebilirsiniz.' />
+            <CategoriesText text1Classes='text-sm mt-40' text1='Bu sayfamızda burun estetiği, yüz germe ve medikal estetik gibi çeşitli uygulamalarımızın öncesi ve sonrası değişimlerinden bazılarını inceleyebilirsiniz.' />
             <div className="mt-5">
                 <ThreePhoto photos={images} />
             </div>

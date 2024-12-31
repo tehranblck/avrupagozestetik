@@ -14,7 +14,7 @@ const WhatsAppButton = () => {
             onClick={handleWhatsAppRedirect}
             className="bg-green-500 text-white text-center ml-3 mt-4 font-semibold rounded-full px-3 py-2 shadow-lg hover:bg-green-600 transition duration-300"
         >
-            WhatsApp ile  İletişime Geç
+            WhatsApp üzerinden randevu al
         </button>
     );
 };

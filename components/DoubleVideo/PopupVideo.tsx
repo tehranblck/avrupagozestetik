@@ -28,7 +28,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
     return (
         <div
             style={{ zIndex: '9999' }}
-            className="fixed top-0 w-full left-0 min-h-screen bg-black backdrop-blur-sm bg-opacity-75 flex items-center justify-center z-50"
+            className="fixed top-0 w-full left-0 min-h-screen  backdrop-blur-sm  flex items-center justify-center z-50"
             onClick={onClose} // Dış alana tıklanınca kapanır
         >
             <div

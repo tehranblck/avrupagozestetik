@@ -66,7 +66,7 @@ const PopupPhoto: React.FC<PopupProps> = ({
     return (
         <div
             style={{ zIndex: 9999 }}
-            className="fixed top-0 w-full left-0 min-h-screen bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center"
+            className="fixed top-0 w-full left-0 min-h-screen  backdrop-blur-sm flex items-center justify-center"
             onClick={onClose} // Pop-up dışına tıklanırsa kapanır
         >
             <div

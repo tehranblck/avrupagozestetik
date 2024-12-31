@@ -40,19 +40,19 @@ const page = async () => {
             <InfinitySlider items={items} />
 
             {FirstTripleVideo && <TripleVideo videos={FirstTripleVideo} />}
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col w-full items-center gap-3  px-2'>
                 {yorums[0] && <CommentCard comment={yorums[0]} />}
                 {yorums[1] && <CommentCard comment={yorums[1]} />}
             </div>
 
             {SecondTripleVideo && <TripleVideo videos={SecondTripleVideo} />}
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-3 px-2'>
                 {yorums[2] && <CommentCard comment={yorums[2]} />}
                 {yorums[3] && <CommentCard comment={yorums[3]} />}
             </div>
 
             {ThirdTripleVideo && <TripleVideo videos={ThirdTripleVideo} />}
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-3 px-2'>
                 {yorums[4] && <CommentCard comment={yorums[4]} />}
                 {yorums[5] && <CommentCard comment={yorums[5]} />}
             </div>

@@ -7,11 +7,11 @@ const CommentCard = ({ comment }: any) => {
     const base = 'https://api.avrupagozestetikinfo.com';
 
     return (
-        <div className="flex flex-row items-start p-6 bg-white shadow-xl rounded-2xl max-w-sm hover:shadow-2xl transition-shadow duration-300">
+        <div className="flex flex-row w-full items-center justify-center  p-6 bg-white shadow-xl rounded-2xl hover:shadow-2xl transition-shadow duration-300">
             {/* User Image */}
-            <div className="w-16  relative rounded-full  flex-shrink-0">
+            <div className="  relative rounded-full  ">
                 <Image
-                    src={imagePath ? base + imagePath : '/default-avatar.jpg'} // Varsayılan resim
+                    src={imagePath ? base + imagePath : '/default-avatar.jpg'}
                     alt={comment?.name || 'User Avatar'}
                     width={100}  // Sabit genişlik
                     height={100} // Sabit yükseklik

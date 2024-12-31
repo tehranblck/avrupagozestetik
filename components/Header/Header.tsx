@@ -132,14 +132,13 @@ const Header = ({ isHomePage }: HeaderProps) => {
                 {/* Diğer işlemler butonu */}
                 {isHomePage && (
                     <div className="relative flex-grow flex   justify-end sm:justify-end sm:mt-0">
-                        <button
-                            ref={buttonRef}
+                        <Link href={'/diger-islemler'}
                             style={{ fontSize: '16px' }}
                             className="flex items-center px-4 py-2 bg-[#2b80f6] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
                             onClick={toggleDropdown}
                         >
                             Diğer işlemler <FaAngleRight />
-                        </button>
+                        </Link>
 
                         {/* Dropdown Menu */}
                     </div>

@@ -1,11 +1,22 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const AskQuestionButton: React.FC = () => {
     const phoneNumber = '+905327044102'; // WhatsApp numarası
     const [isModalOpen, setIsModalOpen] = useState(false); // Modal açılma durumu
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden'; // Popup açıkken scroll engellenir
+        } else {
+            document.body.style.overflow = ''; // Popup kapandığında scroll açılır
+        }
 
+        // Cleanup fonksiyonu
+        return () => {
+            document.body.style.overflow = ''; // Component unmount olduğunda scroll açılır
+        };
+    }, [isModalOpen]);
     // Kategoriler
     const categories = [
         'Üst göz kapağı estetiği',
@@ -45,10 +56,10 @@ const AskQuestionButton: React.FC = () => {
 
             {/* Modal Popup - Kategori Seçimi */}
             {isModalOpen && (
-                <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div className="fixed top-42 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-80">
                         <h2 className="text-lg font-semibold text-center mb-4">Kategori Seçin</h2>
-                        <div className="space-y-3">
+                        <div className="space-y-1">
                             {categories.map((category) => (
                                 <button
                                     key={category}

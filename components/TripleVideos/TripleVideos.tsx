@@ -40,7 +40,7 @@ const TripleVideo = ({ videos }: any) => {
                         priority
                         width={900}
                         height={900}
-                        src={base + (video?.thumbnail?.[0]?.formats?.large?.url || '')}
+                        src={base + (video?.thumbnail?.[0]?.formats?.large?.url || video?.thumbnail?.[0]?.formats?.small?.url)}
                         alt={video.createdAt || `Video Thumbnail ${index + 1}`}
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />

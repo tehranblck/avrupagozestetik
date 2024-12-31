@@ -4,97 +4,53 @@ import CategoriesText from '@/components/Categories/CtegoriesText'
 import CommentCard from '@/components/Comment/CommentCard'
 import Header from '@/components/Header/Header'
 import { fetchComments } from '@/components/helpers/FetchComments'
+import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos'
 import InfinitySlider from '@/components/slider/InfinitySlider'
 import TripleVideo from '@/components/TripleVideos/TripleVideos'
 import React from 'react'
 
 const page = async () => {
-
-    const base = 'https://api.saytyarat.com'
     const yorumlar = await fetchComments()
-    const yorums = yorumlar.data
+    const yorums = yorumlar.data || []
 
+    const Videos = await fetchVideoDatas()
+    const sortedVideos = Videos.sort((a: any, b: any) => a.id - b.id);
+    console.log(sortedVideos)
 
-
-
-    const images = [
-        { imageUrl: '/slider/slider1.png', altText: 'Slider 1', title: 'goz kapagi estetigi 1' },
-        { imageUrl: '/slider/slider2.png', altText: 'Slider 2', title: 'goz kapagi estetigi 2' },
-        { imageUrl: '/slider/slider3.png', altText: 'Slider 3', title: 'goz kapagi estetigi 3' },
-        { imageUrl: '/slider/slider4.png', altText: 'Slider 4', title: 'goz kapagi estetigi 4' },
-        { imageUrl: '/slider/slider5.png', altText: 'Slider 4', title: 'goz kapagi estetigi 5' },
-        { imageUrl: '/slider/slider6.png', altText: 'Slider 4', title: 'goz kapagi estetigi 6 ' },
-    ]
-    const videos3 = [
-        {
-            videoUrl: '/videos/teze.mp4',
-            thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz estetigi'
-        },
-        {
-            videoUrl: '/videos/teze.mp4',
-            thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'KAS estetigi'
-        },
-        {
-            videoUrl: '/videos/teze.mp4',
-            thumbnailUrl: '/maint.jpg',
-            altText: 'Video 1',
-            title: 'goz cevresi estetigi'
-        }
-    ];
-    const comments = [
-        {
-            imageUrl: '/maint.jpg',
-            name: 'John Doe',
-            comment: 'Bu gerçekten harika bir ürün, çok memnun kaldım!',
-        },
-        {
-            imageUrl: '/maint.jpg',
-            name: 'Jane Smith',
-            comment: 'Mükemmel hizmet, tekrar sipariş vereceğim!',
-        },
-        {
-            imageUrl: '/maint.jpg',
-            name: 'Ali Veli',
-            comment: 'Hızlı teslimat ve mükemmel kalite.',
-        },
-    ];
+    const FirstTripleVideo = sortedVideos.find((video: any) => video.id === 78);
+    const SecondTripleVideo = sortedVideos.find((video: any) => video.id === 80);
+    const ThirdTripleVideo = sortedVideos.find((video: any) => video.id === 82);
+    console.log(FirstTripleVideo)
     return (
         <div className='flex flex-col items-center'>
-            <div style={{ zIndex: '9999' }} className="bg-white rounded-lg pb-2 min-h-fit  w-full">
+            <div className="bg-white rounded-lg pb-2 min-h-fit w-full">
                 <Header isHomePage={false} />
-                <div style={{ top: '6.4rem' }} className=' fixed top-28 rounded-lg  z-50 w-full' >
+                <div className='fixed top-28 rounded-lg z-50 w-full'>
                     <Button />
                 </div>
             </div>
             <CategoriesText text1Classes='text-4xl mt-44' text1='Mutlu Danışan' text2='tablomuz' paragraph='Mutluluğunuz sevincimizdir' />
             <InfinitySlider />
-            <TripleVideo videos={videos3} />
+
+            {FirstTripleVideo && <TripleVideo videos={FirstTripleVideo} />}
             <div className='flex flex-col gap-3'>
-                <CommentCard comment={yorums[0]} />
-                <CommentCard comment={yorums[1]} />
+                {yorums[0] && <CommentCard comment={yorums[0]} />}
+                {yorums[1] && <CommentCard comment={yorums[1]} />}
             </div>
 
-            <TripleVideo videos={videos3} />
+            {SecondTripleVideo && <TripleVideo videos={SecondTripleVideo} />}
             <div className='flex flex-col gap-3'>
-
-                <CommentCard comment={yorums[2]} />
-                <CommentCard comment={yorums[3]} />
+                {yorums[2] && <CommentCard comment={yorums[2]} />}
+                {yorums[3] && <CommentCard comment={yorums[3]} />}
             </div>
 
-            <TripleVideo videos={videos3} />
+            {ThirdTripleVideo && <TripleVideo videos={ThirdTripleVideo} />}
             <div className='flex flex-col gap-3'>
-
-                <CommentCard comment={yorums[4]} />
-                <CommentCard comment={yorums[5]} />
-
+                {yorums[4] && <CommentCard comment={yorums[4]} />}
+                {yorums[5] && <CommentCard comment={yorums[5]} />}
             </div>
 
             <AskQuestionButton />
-
         </div>
     )
 }

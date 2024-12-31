@@ -4,7 +4,7 @@ import { IoMdArrowBack } from "react-icons/io";
 
 const Button = () => {
     return (
-        <div className="relative max-w-7xl mx-auto mb-0 ml-2">
+        <div className="relative z-20 max-w-7xl mx-auto mb-0 ml-2">
             <Link href={'/'} className="text-white inline-flex items-center gap-2 bg-gradient-to-r from-blue-800 to-cyan-400 rounded-full px-2 py-1 text-lg font-semibold transition-all duration-300 bg-[length:100%_auto] hover:bg-[length:200%_auto]">
                 <IoMdArrowBack /> Geri dön
             </Link>

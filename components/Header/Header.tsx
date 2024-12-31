@@ -1,9 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import { gsap } from 'gsap';
 import { IoClose } from 'react-icons/io5'; // Close icon (X)
-import Image from 'next/image';
 import Link from 'next/link';
 import { FaAngleRight } from "react-icons/fa";
 
@@ -13,39 +11,16 @@ interface HeaderProps {
 
 const Header = ({ isHomePage }: HeaderProps) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false); // Kategori popup durumu
     const dropdownRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     const toggleDropdown = () => {
-        if (!isDropdownOpen) {
-            // Dropdown açılışı
-            setIsDropdownOpen(true);
-            gsap.fromTo(
-                dropdownRef.current,
-                { opacity: 0, y: -10 },
-                { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
-            );
-        } else {
-            // Dropdown kapanışı
-            gsap.to(dropdownRef.current, {
-                opacity: 0,
-                y: -10,
-                duration: 0.3,
-                ease: 'power2.in',
-                onComplete: () => setIsDropdownOpen(false),
-            });
-        }
+        setIsDropdownOpen((prev) => !prev); // Dropdown durumunu değiştir
     };
 
     const closeDropdown = () => {
-        // Kapanış animasyonu
-        gsap.to(dropdownRef.current, {
-            opacity: 0,
-            y: -10,
-            duration: 0.3,
-            ease: 'power2.in',
-            onComplete: () => setIsDropdownOpen(false),
-        });
+        setIsDropdownOpen(false); // Dropdown menüsünü kapat
     };
 
     useEffect(() => {
@@ -61,35 +36,74 @@ const Header = ({ isHomePage }: HeaderProps) => {
         };
 
         if (isDropdownOpen) {
+            // Dropdown açıkken 'bg' sınıfına sahip tüm öğeleri blur yapıyoruz
+            const elements = document.getElementsByClassName('bg');
+            Array.from(elements).forEach((el) => {
+                (el as HTMLElement).style.filter = 'blur(5px)';
+            });
             document.addEventListener('mousedown', handleOutsideClick);
         } else {
+            // Dropdown kapandığında blur'ı kaldırıyoruz
+            const elements = document.getElementsByClassName('bg');
+            Array.from(elements).forEach((el) => {
+                (el as HTMLElement).style.filter = '';
+            });
             document.removeEventListener('mousedown', handleOutsideClick);
         }
 
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
+            // Cleanup işlemi
+            const elements = document.getElementsByClassName('bg');
+            Array.from(elements).forEach((el) => {
+                (el as HTMLElement).style.filter = '';
+            });
         };
     }, [isDropdownOpen]);
 
+    // Kategoriler
+    const categories = [
+        'Üst göz kapağı estetiği',
+        'Göz altı estetiği',
+        'Kaş kaldırma',
+        'Şakak germe',
+        'Badem göz estetiği',
+        'Burun estetiği',
+        'Yüz germe',
+        'Medikal estetik',
+    ];
+
+    // Kategori popup'ını açma
+    const openCategoryModal = () => {
+        setIsCategoryModalOpen(true); // Kategori popup'ını aç
+        setIsDropdownOpen(false); // "Randevu Al" dropdown'ını kapat
+    };
+
+    // Kategoriye tıklanınca WhatsApp'a dinamik mesaj göndermek
+    const handleCategorySelect = (category: string) => {
+        const whatsappMessage = `Merhaba, ${category} hakkında bilgi almak istiyorum.`;
+        const whatsappUrl = `https://wa.me/905327044102?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank'); // Yeni sekmede WhatsApp'a yönlendirme
+        setIsCategoryModalOpen(false); // Kategori popup'ını kapat
+    };
+
     return (
         <header
-            style={{
-                zIndex: '99',
-            }}
-            className={`w-full  ${isHomePage ? null : 'fixed header top-0'} top-0 p-5  `}
+            className={`w-full ${isHomePage ? null : 'fixed top-0  header'} p-5 z-30`} // fixed position ve z-index ayarlandı
         >
-            <div className='max-w-7xl mx-auto flex items-center justify-between gap-4 text-white py-0 px-0'>
+            <div className="container mx-auto flex items-center justify-between gap-2 text-white">
+                {/* Logo ve diğer menüler (isteğe bağlı) */}
                 {/* <Link href={'/'} className="flex items-center">
                     <Image alt="Logo" src="/logo.svg" width={100} height={60} />
                 </Link> */}
 
-                {/* Button */}
+                {/* Randevu Al Butonu */}
                 <div className={`flex-grow flex justify-center ${isHomePage ? null : 'w-full'} sm:justify-end sm:mt-0`}>
                     <button
                         ref={buttonRef}
                         style={{ fontSize: '16px' }}
-                        className={`flex items-center  justify-center bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300 px-4 py-2 ${isHomePage ? null : 'w-full'}`}
-                        onClick={toggleDropdown}
+                        className={`flex items-center justify-center bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300 px-4 py-2 ${isHomePage ? null : 'w-full'}`}
+                        onClick={toggleDropdown} // "Randevu Al" butonuna tıklayınca popup açılacak
                     >
                         Randevu Al
                         <MdKeyboardArrowDown
@@ -98,52 +112,78 @@ const Header = ({ isHomePage }: HeaderProps) => {
                     </button>
 
                     {/* Dropdown Menu */}
-                    <div
-                        style={{ zIndex: 9999, width: '100%' }}
-                        ref={dropdownRef}
-                        className={`absolute top-full right-0 w-full sm:w-full bg-white text-blue-600 rounded-lg shadow-lg py-2 ${isDropdownOpen ? 'block' : 'hidden'}`}
-                    >
-                        {/* Close Button */}
-                        <button
-                            className="absolute top-4 right-4 text-red-500 text-3xl hover:text-red-700"
-                            onClick={closeDropdown}
+                    {isDropdownOpen && (
+                        <div
+                            ref={dropdownRef}
+                            className="absolute top-[calc(100%)] right-0 w-full sm:w-auto bg-white text-blue-600 rounded-lg shadow-lg py-2 z-[9999999999999]"
                         >
-                            <IoClose />
-                        </button>
+                            {/* Close Button */}
+                            <button
+                                className="absolute top-4 right-4 text-red-500 text-3xl hover:text-red-700"
+                                onClick={closeDropdown}
+                            >
+                                <IoClose />
+                            </button>
 
-                        {/* Dropdown Links */}
-                        <Link
-                            href="https://wa.me/905327044102"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="py-2 px-4 inline-block hover:bg-gray-100 rounded-md cursor-pointer"
-                        >
-                            Whatsapp'tan randevu al
-                        </Link>
-                        <Link
-                            href="/iletisim"
-                            className="block w-full px-4 py-2 hover:bg-gray-100"
-                        >
-                            Form Doldur
-                        </Link>
-                    </div>
+                            {/* Dropdown Links */}
+                            <Link
+                                href="#"
+                                onClick={openCategoryModal} // WhatsApp'tan randevu almak için kategori popup'ını açacak
+                                className="py-2 px-4 inline-block hover:bg-gray-100 rounded-md cursor-pointer"
+                            >
+                                WhatsApp'tan randevu al
+                            </Link>
+                            <Link
+                                href="/iletisim"
+                                className="block w-full px-4 py-2 hover:bg-gray-100"
+                            >
+                                Form Doldur
+                            </Link>
+                        </div>
+                    )}
                 </div>
 
-                {/* Diğer işlemler butonu */}
-                {isHomePage && (
-                    <div className="relative flex-grow flex   justify-end sm:justify-end sm:mt-0">
-                        <Link href={'/diger-islemler'}
-                            style={{ fontSize: '16px' }}
-                            className="flex items-center px-4 py-2 bg-[#2b80f6] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
-                        >
-                            Diğer işlemler <FaAngleRight />
-                        </Link>
-
-                        {/* Dropdown Menu */}
-                    </div>
-                )}
+                {
+                    isHomePage ? (
+                        <div className="relative flex-grow flex justify-end sm:justify-end sm:mt-0">
+                            <Link
+                                href={'/diger-islemler'}
+                                style={{ fontSize: '16px' }}
+                                className="flex items-center px-4 py-2 bg-[#2b80f6] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
+                            >
+                                Diğer işlemler <FaAngleRight />
+                            </Link>
+                        </div>
+                    ) : null
+                }
             </div>
-        </header >
+
+            {/* Kategori Seçimi Popup */}
+            {isCategoryModalOpen && (
+                <div className="fixed z-[999999999999] top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center backdrop-blur-sm">
+                    <div className="bg-white border-2 border-red-500 p-6 rounded-lg shadow-lg w-80">
+                        <h2 className="text-lg font-semibold text-center mb-4">Kategori Seçin</h2>
+                        <div className="space-y-1">
+                            {categories.map((category) => (
+                                <button
+                                    key={category}
+                                    onClick={() => handleCategorySelect(category)} // Kategoriye tıklayınca WhatsApp yönlendirmesi yapılır
+                                    className="w-full text-left px-4 py-2 border rounded-md hover:bg-gray-100"
+                                >
+                                    {category}
+                                </button>
+                            ))}
+                        </div>
+                        <button
+                            onClick={() => setIsCategoryModalOpen(false)} // Modalı kapatır
+                            className="mt-4 w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600"
+                        >
+                            Kapat
+                        </button>
+                    </div>
+                </div>
+            )}
+        </header>
     );
 };
 

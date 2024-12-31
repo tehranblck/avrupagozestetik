@@ -62,99 +62,101 @@ const Page = async () => {
                 <Header isHomePage={true} />
 
             </div>
-            <div className="flex items-center  mt-36 justify-center w-full">
-                <Link href={'/'} className="flex items-center justify-center">
-                    <Image alt="Logo" src="/logo.svg" width={150} height={120} />
-                </Link>
+            <div className="bg">
+                <div className="flex items-center  mt-36 justify-center w-full">
+                    <Link href={'/'} className="flex items-center justify-center">
+                        <Image alt="Logo" src="/logo.svg" width={150} height={120} />
+                    </Link>
+                </div>
+
+                {/* Sabit İşlemler */}
+                {/* <DigerIslemler /> */}
+
+                {/* İlk Altılı Fotoğraflar */}
+                <div className="">
+                    <SixPhoto photos={Ilk6li} />
+                </div>
+
+                {/* Birinci Üçlü Video */}
+                {firstTripleVideo && <TripleVideo videos={firstTripleVideo} />}
+
+                {/* İkinci Altılı Fotoğraflar */}
+                <SixPhoto photos={ikinciAltili} />
+
+                {/* İkinci Üçlü Video */}
+                {secondTripleVideo && <TripleVideo videos={secondTripleVideo} />}
+
+                {/* İlk Uyarı Kartı */}
+                <AlertCard />
+
+                {/* Üçüncü Altılı Fotoğraflar */}
+                <SixPhoto photos={ucuncuAltili} />
+
+                {/* Birinci Tekli Video */}
+                {firstSingleVideo && <SingleVideo videos={firstSingleVideo} />}
+
+                {/* Üçüncü Üçlü Video */}
+                {thirdTripleVideo && <TripleVideo videos={thirdTripleVideo} />}
+
+                {/* Dördüncü Altılı Fotoğraflar */}
+                <SixPhoto photos={dorduncuAltili} />
+
+                {/* Dördüncü Üçlü Video */}
+                {fourthTripleVideo && <TripleVideo videos={fourthTripleVideo} />}
+
+                {/* İkinci Uyarı Kartı */}
+                <AlertCard />
+
+                {/* İlk Altılı Video */}
+                {firstSixVideo && <SixVideo videos={firstSixVideo} />}
+
+                {/* İlk Üçlü Fotoğraflar */}
+                <ThreePhoto photos={Ilk3lu} />
+
+                {/* İkinci Tekli Video */}
+                {secondSingleVideo && <SingleVideo videos={secondSingleVideo} />}
+
+                {/* Dokuzlu Fotoğraflar */}
+                <NinePhoto photos={dokuzlu} />
+
+                {/* Beşinci Üçlü Video */}
+                {fifthTripleVideo && <TripleVideo videos={fifthTripleVideo} />}
+
+                {/* İlk Tekli Fotoğraf */}
+                {ilkTekli && (
+                    <SinglePhoto
+                        imageUrl={base + ilkTekli?.formats?.medium?.url}
+                        altText="İlk Tekli Fotoğraf"
+                        className=""
+                    />
+                )}
+
+                {/* Üçüncü Uyarı Kartı */}
+                <AlertCard />
+
+                {/* İkinci Tekli Fotoğraf */}
+                {ikinciTekli && (
+                    <SinglePhoto
+                        imageUrl={base + ikinciTekli?.formats?.medium?.url}
+                        altText="İkinci Tekli Fotoğraf"
+                        className=""
+                    />
+                )}
+
+                {/* Dördüncü Uyarı Kartı */}
+                <AlertCard />
+
+                {/* Üçüncü Tekli Fotoğraf */}
+                {ucuncuTekli && (
+                    <SinglePhoto
+                        imageUrl={base + ucuncuTekli?.formats?.medium?.url}
+                        altText="Üçüncü Tekli Fotoğraf"
+                        className=""
+                    />
+                )}
+
+                {/* Soru Sorma Butonu */}
             </div>
-
-            {/* Sabit İşlemler */}
-            {/* <DigerIslemler /> */}
-
-            {/* İlk Altılı Fotoğraflar */}
-            <div className="">
-                <SixPhoto photos={Ilk6li} />
-            </div>
-
-            {/* Birinci Üçlü Video */}
-            {firstTripleVideo && <TripleVideo videos={firstTripleVideo} />}
-
-            {/* İkinci Altılı Fotoğraflar */}
-            <SixPhoto photos={ikinciAltili} />
-
-            {/* İkinci Üçlü Video */}
-            {secondTripleVideo && <TripleVideo videos={secondTripleVideo} />}
-
-            {/* İlk Uyarı Kartı */}
-            <AlertCard />
-
-            {/* Üçüncü Altılı Fotoğraflar */}
-            <SixPhoto photos={ucuncuAltili} />
-
-            {/* Birinci Tekli Video */}
-            {firstSingleVideo && <SingleVideo videos={firstSingleVideo} />}
-
-            {/* Üçüncü Üçlü Video */}
-            {thirdTripleVideo && <TripleVideo videos={thirdTripleVideo} />}
-
-            {/* Dördüncü Altılı Fotoğraflar */}
-            <SixPhoto photos={dorduncuAltili} />
-
-            {/* Dördüncü Üçlü Video */}
-            {fourthTripleVideo && <TripleVideo videos={fourthTripleVideo} />}
-
-            {/* İkinci Uyarı Kartı */}
-            <AlertCard />
-
-            {/* İlk Altılı Video */}
-            {firstSixVideo && <SixVideo videos={firstSixVideo} />}
-
-            {/* İlk Üçlü Fotoğraflar */}
-            <ThreePhoto photos={Ilk3lu} />
-
-            {/* İkinci Tekli Video */}
-            {secondSingleVideo && <SingleVideo videos={secondSingleVideo} />}
-
-            {/* Dokuzlu Fotoğraflar */}
-            <NinePhoto photos={dokuzlu} />
-
-            {/* Beşinci Üçlü Video */}
-            {fifthTripleVideo && <TripleVideo videos={fifthTripleVideo} />}
-
-            {/* İlk Tekli Fotoğraf */}
-            {ilkTekli && (
-                <SinglePhoto
-                    imageUrl={base + ilkTekli?.formats?.medium?.url}
-                    altText="İlk Tekli Fotoğraf"
-                    className=""
-                />
-            )}
-
-            {/* Üçüncü Uyarı Kartı */}
-            <AlertCard />
-
-            {/* İkinci Tekli Fotoğraf */}
-            {ikinciTekli && (
-                <SinglePhoto
-                    imageUrl={base + ikinciTekli?.formats?.medium?.url}
-                    altText="İkinci Tekli Fotoğraf"
-                    className=""
-                />
-            )}
-
-            {/* Dördüncü Uyarı Kartı */}
-            <AlertCard />
-
-            {/* Üçüncü Tekli Fotoğraf */}
-            {ucuncuTekli && (
-                <SinglePhoto
-                    imageUrl={base + ucuncuTekli?.formats?.medium?.url}
-                    altText="Üçüncü Tekli Fotoğraf"
-                    className=""
-                />
-            )}
-
-            {/* Soru Sorma Butonu */}
             <AskQuestionButton />
         </div>
     );

@@ -54,20 +54,22 @@ const Page = async () => {
         <div>
             <div style={{ zIndex: '9999999' }} className="bg-white rounded-lg min-h-fit  w-full">
                 <Header isHomePage={false} />
-                <div style={{ top: '5.5rem' }} className=' fixed top-28 rounded-lg  z-50 w-full' >
+                <div style={{ top: '5.5rem' }} className=' fixed  top-28 rounded-lg  z-20 w-full' >
                     <Button />
                 </div>
 
 
             </div>
-            <CategoriesText text1Classes='text-sm mt-40' text1='Bu sayfamızda burun estetiği, yüz germe ve medikal estetik gibi çeşitli uygulamalarımızın öncesi ve sonrası değişimlerinden bazılarını inceleyebilirsiniz.' />
-            <div className="mt-5">
+            <div className="bg">
+                <CategoriesText text1Classes='text-sm mt-40' text1='Bu sayfamızda burun estetiği, yüz germe ve medikal estetik gibi çeşitli uygulamalarımızın öncesi ve sonrası değişimlerinden bazılarını inceleyebilirsiniz.' />
+                <div className="mt-5">
+                    <ThreePhoto photos={images} />
+                </div>
+                <DoubleVideo videos={videos3} />
                 <ThreePhoto photos={images} />
+                <SingleVideo videoUrl={videos3[0].videoUrl} thumbnailUrl={videos3[0].thumbnailUrl} altText={videos3[0].altText} />
+                <SixPhoto photos={Ilk6li} />
             </div>
-            <DoubleVideo videos={videos3} />
-            <ThreePhoto photos={images} />
-            <SingleVideo videoUrl={videos3[0].videoUrl} thumbnailUrl={videos3[0].thumbnailUrl} altText={videos3[0].altText} />
-            <SixPhoto photos={Ilk6li} />
             {/* <SixPhoto photos={Ilk6li} /> */}
         </div>
     )

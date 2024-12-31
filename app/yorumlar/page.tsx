@@ -5,6 +5,7 @@ import CommentCard from '@/components/Comment/CommentCard'
 import Header from '@/components/Header/Header'
 import { fetchComments } from '@/components/helpers/FetchComments'
 import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos'
+import { FetchSlider } from '@/components/helpers/FetchSlider'
 import InfinitySlider from '@/components/slider/InfinitySlider'
 import TripleVideo from '@/components/TripleVideos/TripleVideos'
 import React from 'react'
@@ -15,12 +16,18 @@ const page = async () => {
 
     const Videos = await fetchVideoDatas()
     const sortedVideos = Videos.sort((a: any, b: any) => a.id - b.id);
-    console.log(sortedVideos)
 
     const FirstTripleVideo = sortedVideos.find((video: any) => video.id === 78);
     const SecondTripleVideo = sortedVideos.find((video: any) => video.id === 80);
     const ThirdTripleVideo = sortedVideos.find((video: any) => video.id === 82);
-    console.log(FirstTripleVideo)
+
+    const SliderItemReq = await FetchSlider()
+    const items = SliderItemReq[0]?.sliderItem
+
+
+
+
+
     return (
         <div className='flex flex-col items-center'>
             <div className="bg-white rounded-lg pb-2 min-h-fit w-full">
@@ -30,7 +37,7 @@ const page = async () => {
                 </div>
             </div>
             <CategoriesText text1Classes='text-4xl mt-44' text1='Mutlu Danışan' text2='tablomuz' paragraph='Mutluluğunuz sevincimizdir' />
-            <InfinitySlider />
+            <InfinitySlider items={items} />
 
             {FirstTripleVideo && <TripleVideo videos={FirstTripleVideo} />}
             <div className='flex flex-col gap-3'>

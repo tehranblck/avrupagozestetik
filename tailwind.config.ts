@@ -9,12 +9,12 @@ export default {
   theme: {
     extend: {
       animation: {
-        slideRight: "slideRight 40s linear infinite",
+        slideRight: "slideRight 10s linear infinite",
         slideLeft: "slideLeft 40s linear infinite",
       },
       keyframes: {
         slideRight: {
-          "0%": { transform: "translateX(-100%)" },
+          "0%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(0)" },
         },
         slideLeft: {

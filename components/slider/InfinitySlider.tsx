@@ -1,29 +1,9 @@
 import Image from "next/image";
 import React from "react";
 
-const InfinitySlider = () => {
-    const items = [
-        "/slider/slider1.png",
-        "/slider/slider2.png",
-        "/slider/slider3.png",
-        "/slider/slider4.png",
-        "/slider/slider5.png",
-        "/slider/slider6.png",
-        "/slider/slider7.png",
-        "/slider/slider8.png",
-        "/slider/slider9.png",
-        "/slider/slider10.png",
-        "/slider/slider1.png",
-        "/slider/slider2.png",
-        "/slider/slider3.png",
-        "/slider/slider4.png",
-        "/slider/slider5.png",
-        "/slider/slider6.png",
-        "/slider/slider7.png",
-        "/slider/slider8.png",
-        "/slider/slider9.png",
-        "/slider/slider10.png",
-    ];
+const InfinitySlider = ({ items }: { items: any[] }) => {
+    const base = 'https://api.avrupagozestetikinfo.com';  // URL'yi doğru yaptım
+    console.log(items);
 
     return (
         <div className="overflow-hidden w-full my-3 pt-4 pb-1">
@@ -31,26 +11,12 @@ const InfinitySlider = () => {
             <div className="flex space-x-4 animate-slideRight">
                 {items.map((item, index) => (
                     <div
-                        key={`row1-${index}`}
-                        className="flex-none w-20 h-20  text-white flex items-center justify-center rounded-md shadow"
+                        key={item?.documentId || index} // Eğer documentId yoksa, index'i fallback olarak kullanıyoruz
+                        className="flex-none w-20 h-20 text-white flex items-center justify-center rounded-md shadow"
                     >
                         <Image
                             alt={`slider-${index}`}
-                            src={item}
-                            width={100}
-                            height={100}
-                            className="w-full h-full object-cover rounded-md"
-                        />
-                    </div>
-                ))}
-                {items.map((item, index) => (
-                    <div
-                        key={`row1-dup-${index}`}
-                        className="flex-none w-12 h-12  text-white flex items-center justify-center rounded-md shadow"
-                    >
-                        <Image
-                            alt={`slider-dup-${index}`}
-                            src={item}
+                            src={item?.formats?.medium?.url ? base + item.formats.medium.url : ''}  // Eğer URL varsa, yoksa boş string dönecek
                             width={100}
                             height={100}
                             className="w-full h-full object-cover rounded-md"
@@ -59,30 +25,16 @@ const InfinitySlider = () => {
                 ))}
             </div>
 
-            {/* Row 2 - Slides Left */}
+            {/* Row 2 - Slides Left (Bu satır şu anda yorumlandı, ancak açılabilir) */}
             {/* <div className="flex space-x-4 animate-slideLeft mt-3">
                 {items.map((item, index) => (
                     <div
                         key={`row2-${index}`}
-                        className="flex-none w-12 h-12  text-white flex items-center justify-center rounded-md shadow"
+                        className="flex-none w-12 h-12 text-white flex items-center justify-center rounded-md shadow"
                     >
                         <Image
                             alt={`slider-${index}`}
-                            src={item}
-                            width={100}
-                            height={100}
-                            className="w-full h-full object-cover rounded-md"
-                        />
-                    </div>
-                ))}
-                {items.map((item, index) => (
-                    <div
-                        key={`row2-dup-${index}`}
-                        className="flex-none w-12 h-12  text-white flex items-center justify-center rounded-md shadow"
-                    >
-                        <Image
-                            alt={`slider-dup-${index}`}
-                            src={item}
+                            src={item?.url ? base + item.url : ''}  // item içinde url varsa kullanıyoruz
                             width={100}
                             height={100}
                             className="w-full h-full object-cover rounded-md"

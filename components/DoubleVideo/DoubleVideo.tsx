@@ -3,14 +3,9 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Popup from './PopupVideo';
 
-interface VideoProps {
-    videoUrl: string;
-    thumbnailUrl: string;
-    altText?: string;
-    title?: string;
-}
-
-const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
+const DoubleVideo = ({ videos }: any) => {
+    const base = 'https://api.avrupagozestetikinfo.com';
+    console.log(videos);
     const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(null);
 
     const handleThumbnailClick = (index: number) => {
@@ -23,9 +18,9 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
 
     return (
         <div className="w-[100%] mt-2 sm:px-32 px-2 mx-auto grid grid-cols-2 gap-2">
-            {videos.map((video, index) => (
+            {videos?.videos?.map((videoObj: any, index: number) => (
                 <div
-                    key={index}
+                    key={videoObj?.id || `video-${index}`} // Benzersiz bir key değeri
                     className="relative w-full cursor-pointer"
                     onClick={() => handleThumbnailClick(index)}
                 >
@@ -34,8 +29,11 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         priority
                         width={900}
                         height={900}
-                        src={video.thumbnailUrl}
-                        alt={video.altText || `Video Thumbnail ${index + 1}`}
+                        src={
+                            base + videoObj?.thumbnail?.[0].formats?.large.url
+
+                        }
+                        alt={videoObj?.altText || `Video Thumbnail ${index + 1}`}
                         className="w-full rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
@@ -53,7 +51,7 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
             <Popup
                 title={
                     currentVideoIndex !== null
-                        ? videos[currentVideoIndex].title || 'Default Title'
+                        ? videos?.videos[currentVideoIndex]?.title || 'Default Title'
                         : ''
                 }
                 isOpen={currentVideoIndex !== null}
@@ -64,11 +62,15 @@ const DoubleVideo: React.FC<{ videos: VideoProps[] }> = ({ videos }) => {
                         className="w-full shadow-lg"
                         controls
                         controlsList="nofullscreen"
-                        autoPlay // Videonun otomatik oynatılmasını sağlar
+                        autoPlay
                         playsInline
                     >
                         <source
-                            src={videos[currentVideoIndex].videoUrl}
+                            src={
+                                videos?.videos[currentVideoIndex]?.video[0]?.url
+                                    ? `${base}${videos?.videos[currentVideoIndex]?.video[0]?.url}`
+                                    : ''
+                            }
                             type="video/mp4"
                         />
                         Tarayıcınız bu videoyu oynatmayı desteklemiyor.

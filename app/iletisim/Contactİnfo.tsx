@@ -5,7 +5,7 @@ import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const ContactInfo = () => {
     return (
-        <div className=" p-2 px-2 rounded-lg shadow-lg max-w-4xl mx-auto">
+        <div className=" pt-2 pb-[1px] px-4 rounded-lg shadow-lg container mx-auto">
             {/* Adres ve İletişim Bilgileri */}
             <div className="mb-6">
                 <h2 className="text-2xl font-bold text-blue-800 mb-4">İletişim Bilgileri</h2>
@@ -27,8 +27,8 @@ const ContactInfo = () => {
             </div>
 
             {/* Sosyal Medya */}
-            <div className="mt-6">
-                <h3 className="text-xl font-semibold text-blue-800 mb-0">Bizi Sosyal Medyada Takip Edin</h3>
+            <div className="mb-6">
+                <h3 className="text-xl font-semibold text-blue-800 mb-6">Bizi Sosyal Medyada Takip Edin</h3>
                 <div className="flex space-x-4 text-blue-600 text-2xl">
                     <Link
                         href="https://www.instagram.com/avrupagozestetik?igsh=dGx4MHFxNnNnNG53"

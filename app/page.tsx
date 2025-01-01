@@ -15,6 +15,7 @@ import TripleVideo from '@/components/TripleVideos/TripleVideos';
 import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos';
 import Image from 'next/image';
 import Link from 'next/link';
+import { video } from 'framer-motion/client';
 
 const Page = async () => {
     const base = 'https://api.avrupagozestetikinfo.com';
@@ -40,17 +41,17 @@ const Page = async () => {
     } = await fetchFotosHomepage();
     const VideoData = await fetchVideoDatas();
 
-
+    console.log(VideoData)
     // Video verilerini id'ye göre filtrele
     const sortedVideos = VideoData.sort((a: any, b: any) => a.id - b.id);
-    const firstTripleVideo = sortedVideos.find((video: any) => video.id === 76);
-    const firstSingleVideo = sortedVideos.find((video: any) => video.id === 66);
-    const secondTripleVideo = sortedVideos.find((video: any) => video.id === 67);
-    const secondSingleVideo = sortedVideos.find((video: any) => video.id === 68);
-    const thirdTripleVideo = sortedVideos.find((video: any) => video.id === 71);
-    const firstSixVideo = sortedVideos.find((video: any) => video.id === 72);
-    const fourthTripleVideo = sortedVideos.find((video: any) => video.id === 62);
-    const fifthTripleVideo = sortedVideos.find((video: any) => video.id === 74);
+    const firstTripleVideo = sortedVideos.find((video: any) => video.name === 'İlk Üçlü video');
+    const firstSingleVideo = sortedVideos.find((video: any) => video.name === 'İlk Təkli Video');
+    const secondTripleVideo = sortedVideos.find((video: any) => video.name === 'İkinci Üçlü Video');
+    const secondSingleVideo = sortedVideos.find((video: any) => video.name === 'İkinci Təkli Video');
+    const thirdTripleVideo = sortedVideos.find((video: any) => video.name === 'Üçüncü üçlü video');
+    const firstSixVideo = sortedVideos.find((video: any) => video.name === 'İlk Altılı Video');
+    const fourthTripleVideo = sortedVideos.find((video: any) => video.name === 'Dördüncü üçlü video');
+    const fifthTripleVideo = sortedVideos.find((video: any) => video.name === 'Beşinci üçlü video');
 
     return (
         <div className="max-w-7xl mx-auto w-full">

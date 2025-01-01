@@ -17,7 +17,7 @@ const PhoneForm: React.FC = () => {
     const [state, handleSubmit] = useForm("mjkkezeg"); // Formspree React SDK kullanımı
 
     if (state.succeeded) {
-        return <p>Form başarıyla gönderildi!</p>;
+        return <p className="text-green-600 font-bold">Form başarıyla gönderildi!</p>;
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -36,59 +36,55 @@ const PhoneForm: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h3 className="text-left text-2xl">Form bırakın biz sizi arayalım.</h3>
+        <form
+            className="text-center flex flex-col justify-center gap-3 px-4 py-4 bg-white shadow-lg rounded-lg border border-gray-200"
+            onSubmit={handleSubmit}
+        >
+            <h3 className="text-left my-1 text-2xl font-bold text-gray-700">
+                Form bırakın, biz sizi arayalım.
+            </h3>
 
             <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                    Ad
-                </label>
                 <input
                     type="text"
                     name="firstName"
                     id="firstName"
+                    placeholder="Ad"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
             </div>
 
             <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                    Soyad
-                </label>
                 <input
                     type="text"
                     name="lastName"
                     id="lastName"
+                    placeholder="Soyad"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
             </div>
 
             <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    E-posta
-                </label>
                 <input
                     type="email"
                     name="email"
                     id="email"
+                    placeholder="E-posta"
                     value={formData.email}
                     onChange={handleChange}
-                    className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
                 <ValidationError prefix="Email" field="email" errors={state.errors} />
             </div>
 
             <div>
-                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
-                    Telefon Numarası
-                </label>
                 <PhoneInput
                     country={'tr'}
                     value={formData.phoneNumber}
@@ -96,10 +92,10 @@ const PhoneForm: React.FC = () => {
                     inputProps={{
                         name: 'phoneNumber',
                         required: true,
-                        autoFocus: true,
+                        placeholder: 'Telefon Numarası',
                     }}
                     containerClass="phone-input-container"
-                    inputClass="phone-input"
+                    inputClass="phone-input mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     buttonClass="phone-input-button"
                     dropdownClass="phone-input-dropdown"
                 />
@@ -107,17 +103,14 @@ const PhoneForm: React.FC = () => {
             </div>
 
             <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                    Mesaj
-                </label>
                 <textarea
                     name="message"
                     id="message"
                     rows={4}
+                    placeholder="Herhangi bir işlem için fiyat bilgisi almak veya diğer konularda bilgi edinmek isterseniz, lütfen sorunuzu buraya yazınız."
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Herhangi bir işlem için fiyat bilgisi almak veya diğer konularda bilgi edinmek isterseniz, lütfen sorunuzu buraya yazınız."
-                    className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
                 <ValidationError prefix="Message" field="message" errors={state.errors} />
@@ -125,7 +118,7 @@ const PhoneForm: React.FC = () => {
 
             <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 px-4 rounded-md shadow-lg hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-lg font-semibold"
                 disabled={state.submitting}
             >
                 Gönder

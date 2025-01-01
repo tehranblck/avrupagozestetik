@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 
 const SingleVideo = ({ videos }: any) => {
+    console.log(videos)
     const videoData = videos?.videos[0];
     const base = 'https://api.avrupagozestetikinfo.com'
     const [isVideoVisible, setIsVideoVisible] = useState(false); // Video görünüyor mu?

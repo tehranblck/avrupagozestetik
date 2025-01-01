@@ -29,6 +29,11 @@ export const fetchFotosHomepage = async () => {
     const beşinciÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'Beşinci Üçlü Foto ANASAYFA');
     const altıncıÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'Altıncı Üçlü Foto ANASAYFA');
     const sekizinciAltılıFoto = sortedPhotos.find((photo: any) => photo.name === 'Sekizinci Altılı Foto ANASAYFA');
+    const ilkÜçlüDigerİslemler = sortedPhotos.find((photo: any) => photo.name === 'İlk Üçlü DİGER-İSLEMLER');
+    const ikinciÜçlüDigerİslemler = sortedPhotos.find((photo: any) => photo.name === 'İkinci Üçlü DİGER-İSLEMLER');
+    const ikinciAltılıDigerİslemler = sortedPhotos.find((photo: any) => photo.name === 'İkinci Altılı DİGER-İSLEMLER');
+    const ilkAltılıDigerİslemler = sortedPhotos.find((photo: any) => photo.name === 'İlk Altılı DİGER-İSLEMLER');
+
 
 
     return {
@@ -49,5 +54,9 @@ export const fetchFotosHomepage = async () => {
         beşinciÜçlüFoto,
         altıncıÜçlüFoto,
         sekizinciAltılıFoto,
+        ilkÜçlüDigerİslemler,
+        ikinciÜçlüDigerİslemler,
+        ikinciAltılıDigerİslemler,
+        ilkAltılıDigerİslemler
     };
 };

@@ -12,7 +12,6 @@ const AlertCard = ({ dest }: any) => {
       // IntersectionObserver oluştur
       const observer = new IntersectionObserver(
         ([entry]) => {
-          console.log(entry.isIntersecting);
           if (entry.isIntersecting) {
             // Animasyon başlangıcı
             element.style.transition = 'transform 0.7s ease-out, opacity 0.7s ease-out';

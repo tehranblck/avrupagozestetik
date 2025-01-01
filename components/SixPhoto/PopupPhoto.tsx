@@ -21,7 +21,6 @@ const PopupPhoto: React.FC<PopupProps> = ({
     children,
     onNext,
     onPrev,
-    title,
     currentPhotoIndex,
     totalPhotos,
 }) => {
@@ -62,12 +61,21 @@ const PopupPhoto: React.FC<PopupProps> = ({
         });
     };
 
+    // En yüksek kaliteli görsel URL'sini seç
+    const getBestQualityImage = (formats: any) => {
+        if (formats?.large?.url) return formats.large.url;
+        if (formats?.medium?.url) return formats.medium.url;
+        if (formats?.small?.url) return formats.small.url;
+        if (formats?.thumbnail?.url) return formats.thumbnail.url;
+        return '/default-image.jpg'; // Varsayılan resim
+    };
+
     if (!isOpen) return null;
 
     return (
         <div
             style={{ zIndex: 9999 }}
-            className="fixed top-0 w-full left-0 min-h-screen  backdrop-blur-sm flex items-center justify-center"
+            className="fixed top-0 w-full left-0 min-h-screen backdrop-blur-sm flex items-center justify-center"
             onClick={onClose} // Pop-up dışına tıklanırsa kapanır
         >
             <div
@@ -79,14 +87,16 @@ const PopupPhoto: React.FC<PopupProps> = ({
                 <button
                     onClick={onClose}
                     style={{ color: 'white' }}
-                    className="absolute top-0 right-0 text-white   rounded-full  text-4xl md:text-3xl focus:outline-none"
+                    className="absolute top-0 right-0 text-white rounded-full text-4xl md:text-3xl focus:outline-none"
                     aria-label="Close Popup"
                 >
                     <MdOutlineClose />
                 </button>
 
                 {/* Popup Content */}
-                <div className="mx-auto w-full flex justify-center">{children}</div>
+                <div className="mx-auto w-full flex justify-center">
+                    {children}
+                </div>
                 <div className="my-2 text-center">
                     <AskPriceButton />
                 </div>

@@ -3,7 +3,6 @@ import React from "react";
 
 const InfinitySlider = ({ items }: { items: any[] }) => {
     const base = 'https://api.avrupagozestetikinfo.com';  // URL'yi doğru yaptım
-    console.log(items);
 
     return (
         <div className="overflow-hidden w-full my-3 pt-4 pb-1">

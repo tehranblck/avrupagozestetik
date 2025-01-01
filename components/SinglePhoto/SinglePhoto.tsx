@@ -2,18 +2,14 @@
 import Image from 'next/image';
 import React from 'react';
 
-interface ResponsiveImageProps {
-    imageUrl: string; // Fotoğraf URL'si
-    altText?: string; // Erişilebilirlik için alternatif metin
-    className?: string; // Ek CSS sınıfları (opsiyonel)
-}
 
-const SinglePhoto: React.FC<ResponsiveImageProps> = ({ imageUrl, altText, className }) => {
+const SinglePhoto = ({ image }: any) => {
+    const base = 'https://api.avrupagozestetikinfo.com'
     return (
-        <div className={`w-full px-2 sm:px-32 overflow-hidden ${className || ''}`}>
+        <div className={`w-full px-2 sm:px-32 overflow-hidden ${image || ''}`}>
             <Image width={500} height={500}
-                src={imageUrl}
-                alt={altText || 'Image'}
+                src={base + image?.fotos[0]?.foto?.formats?.small.url}
+                alt={image?.fotos[0]?.hakkinda || 'Image'}
                 className="w-full rounded-lg h-auto object-cover"
             />
         </div>

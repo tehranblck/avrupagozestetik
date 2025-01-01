@@ -3,22 +3,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import PopupPhoto from './PopupPhoto';
 
-interface Photo {
-    formats?: {
-        large?: {
-            url: string;
-        };
-    };
-    url?: string;
-    documentId?: string;
-    createdAt?: string;
-}
-
-interface SixPhotoProps {
-    photos: Photo[];
-}
-
-const SixPhoto: React.FC<SixPhotoProps> = ({ photos }) => {
+const SixPhoto = ({ photos }: any) => {
     const base = 'https://api.avrupagozestetikinfo.com';
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number | null>(null);
 
@@ -31,7 +16,7 @@ const SixPhoto: React.FC<SixPhotoProps> = ({ photos }) => {
     };
 
     const handleNextPhoto = () => {
-        if (currentPhotoIndex !== null && currentPhotoIndex < photos.length - 1) {
+        if (currentPhotoIndex !== null && currentPhotoIndex < photos?.fotos?.length - 1) {
             setCurrentPhotoIndex((prev) => (prev !== null ? prev + 1 : null));
         }
     };
@@ -42,11 +27,27 @@ const SixPhoto: React.FC<SixPhotoProps> = ({ photos }) => {
         }
     };
 
+    const getPhotoUrl = (photo: any) => {
+        if (!photo?.foto?.formats) {
+            return '/default-image.jpg'; // Varsayılan resim
+        }
+        if (photo.foto.formats.large?.url) {
+            return `${base}${photo.foto.formats.large.url}`;
+        } else if (photo.foto.formats.medium?.url) {
+            return `${base}${photo.foto.formats.medium.url}`;
+        } else if (photo.foto.formats.small?.url) {
+            return `${base}${photo.foto.formats.small.url}`;
+        } else if (photo.foto.formats.thumbnail?.url) {
+            return `${base}${photo.foto.formats.thumbnail.url}`;
+        }
+        return '/default-image.jpg';
+    };
+
     return (
         <div className="w-[100%] sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
-            {photos.map((photo, index) => (
+            {photos?.fotos?.map((photo: any, index: number) => (
                 <div
-                    key={photo?.createdAt || `${photo?.url || ''}-${index}`}
+                    key={`${photo?.id || photo?.documentId || index}`} // Benzersiz key değeri
                     className="relative w-full cursor-pointer"
                     onClick={() => handleThumbnailClick(index)}
                 >
@@ -54,9 +55,9 @@ const SixPhoto: React.FC<SixPhotoProps> = ({ photos }) => {
                         priority
                         width={900}
                         height={900}
-                        src={base + (photo?.formats?.large?.url || photo?.url || '')}
-                        alt={photo?.documentId || `Photo ${index + 1}`}
-                        className="w-full rounded-lg object-cover h-full shadow-lg"
+                        src={getPhotoUrl(photo)}
+                        alt={photo?.hakkinda || `Photo ${index + 1}`}
+                        className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
                         <button
@@ -73,26 +74,26 @@ const SixPhoto: React.FC<SixPhotoProps> = ({ photos }) => {
                 isOpen={currentPhotoIndex !== null}
                 onClose={handleClosePopup}
                 onNext={
-                    photos.length > 1 && currentPhotoIndex !== null && currentPhotoIndex < photos.length - 1
+                    photos?.fotos?.length > 1 &&
+                        currentPhotoIndex !== null &&
+                        currentPhotoIndex < photos.fotos.length - 1
                         ? handleNextPhoto
                         : undefined
                 }
                 onPrev={
-                    photos.length > 1 && currentPhotoIndex !== null && currentPhotoIndex > 0
+                    photos?.fotos?.length > 1 &&
+                        currentPhotoIndex !== null &&
+                        currentPhotoIndex > 0
                         ? handlePreviousPhoto
                         : undefined
                 }
                 currentPhotoIndex={currentPhotoIndex}
-                totalPhotos={photos.length}
+                totalPhotos={photos?.fotos?.length || 0}
             >
-                {currentPhotoIndex !== null && (
+                {currentPhotoIndex !== null && photos?.fotos[currentPhotoIndex] && (
                     <Image
-                        src={
-                            photos[currentPhotoIndex]?.formats?.large?.url
-                                ? base + photos[currentPhotoIndex]?.formats.large.url
-                                : base + (photos[currentPhotoIndex]?.url || '')
-                        }
-                        alt={photos[currentPhotoIndex]?.documentId || 'Current Photo'}
+                        src={getPhotoUrl(photos.fotos[currentPhotoIndex])}
+                        alt={photos.fotos[currentPhotoIndex]?.hakkinda || 'Current Photo'}
                         width={900}
                         height={900}
                         className="rounded-lg object-cover shadow-lg"

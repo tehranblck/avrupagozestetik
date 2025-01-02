@@ -1,11 +1,7 @@
 export const fetchVideoDatas = async () => {
     const [videoRes, thumbnailRes] = await Promise.all([
-        fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.video', {
-            next: { revalidate: 10 },
-        }),
-        fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.thumbnail', {
-            next: { revalidate: 10 },
-        })
+        fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.video'),
+        fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.thumbnail')
     ]);
 
     if (!videoRes.ok || !thumbnailRes.ok) {

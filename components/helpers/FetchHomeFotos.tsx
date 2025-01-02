@@ -1,7 +1,6 @@
 export const fetchFotosHomepage = async () => {
-    const res = await fetch('https://api.avrupagozestetikinfo.com/api/fotos?populate[fotos][populate]=*', {
-        next: { revalidate: 10 },
-    });
+    const res = await fetch('https://api.avrupagozestetikinfo.com/api/fotos?populate[fotos][populate]=*'
+    )
 
     if (!res.ok) {
         throw new Error('Failed to fetch components');

@@ -40,6 +40,7 @@ const Page = async () => {
         sekizinciAltılıFoto,
     } = await fetchFotosHomepage();
     const VideoData = await fetchVideoDatas();
+    console.log(ilkTekliFoto)
 
     // Video verilerini id'ye göre filtrele
     const sortedVideos = VideoData.sort((a: any, b: any) => a.id - b.id);

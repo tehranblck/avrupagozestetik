@@ -15,116 +15,171 @@ import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos';
 import Image from 'next/image';
 import Link from 'next/link';
 import { fetchTextContents } from '@/components/helpers/FetchTextContents';
-import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary';
-
-interface VideoType {
-    name: string;
-    videos: any[];
-}
-
-interface MetinType {
-    Metin: string;
-    metin_alanis: Array<{
-        title: string;
-        body: string;
-    }>;
-}
 
 const Page = async () => {
-    try {
-        // Tüm fetch işlemlerini parallel yapma
-        const [fotolar, videolar, metinler] = await Promise.all([
-            fetchFotosHomepage(),
-            fetchVideoDatas(),
-            fetchTextContents()
-        ]);
+    const base = 'https://api.avrupagozestetikinfo.com';
 
-        // Video verilerini bir kez işle ve tekrar kullanma
-        const videoMap = new Map(videolar.map((video: VideoType) => [video.name, video]));
-        const getVideo = (name: string) => videoMap.get(name);
+    // Fotoğraf ve video verilerini çek
+    const {
+        ilkTekliFoto,
+        ilkÜçlüFoto,
+        ilkAltılıFoto,
+        ikinciÜçlüFoto,
+        ikinciAltılıFoto,
+        üçüncüÜçlüFoto,
+        ikinciTekliFoto,
+        üçüncüAltılıFoto,
+        dördüncüAltılıFoto,
+        beşinciAltılıFoto,
+        altıncıAltılıFoto,
+        yedinciAltılıFoto,
+        dördüncüÜçlüFoto,
+        beşinciÜçlüFoto,
+        altıncıÜçlüFoto,
+        sekizinciAltılıFoto,
+    } = await fetchFotosHomepage();
 
-        // Metin verilerini işle
-        const metinMap = metinler.reduce((acc: Record<string, any>, item: MetinType) => {
-            acc[item.Metin] = item.metin_alanis[0] || null;
-            return acc;
-        }, {});
+    console.log(ilkAltılıFoto)
 
-        return (
-            <ErrorBoundary>
-                <div className="max-w-7xl mx-auto w-full">
-                    {/* Header */}
-                    <div
-                        style={{
-                            borderBottomLeftRadius: '20px',
-                            borderBottomRightRadius: '20px',
-                            zIndex: 99,
-                        }}
-                        className="w-full fixed header top-0 right-0"
-                    >
-                        <div id="upScroll"></div>
-                        <HeaderBottom isVisible={true} />
-                        <Header isHomePage={true} />
-                    </div>
 
-                    <div id='blurbg' className="bg">
-                        <div className="flex items-center mt-36 justify-center w-full">
-                            <Link href={'/'} className="flex items-center justify-center">
-                                <Image alt="Logo" src="/logo.svg" width={150} height={120} />
-                            </Link>
-                        </div>
+    const VideoData = await fetchVideoDatas();
 
-                        {/* Fotoğraf ve Video Bileşenleri */}
-                        <SinglePhoto image={fotolar.ilkTekliFoto} />
-                        <ThreePhoto photos={fotolar.ilkÜçlüFoto} />
-                        {getVideo('İlk Üçlü video') && <TripleVideo videos={getVideo('İlk Üçlü video')} />}
-                        <SixPhoto photos={fotolar.ilkAltılıFoto} />
-                        {getVideo('İlk Təkli Video') && <SingleVideo videos={getVideo('İlk Təkli Video')} />}
-                        {getVideo('İkinci Üçlü Video') && <TripleVideo videos={getVideo('İkinci Üçlü Video')} />}
+    // Video verilerini id'ye göre filtrele
+    const sortedVideos = VideoData.sort((a: any, b: any) => a.id - b.id);
+    const firstTripleVideo = sortedVideos.find((video: any) => video.name === 'İlk Üçlü video');
+    const firstSingleVideo = sortedVideos.find((video: any) => video.name === 'İlk Təkli Video');
+    const secondTripleVideo = sortedVideos.find((video: any) => video.name === 'İkinci Üçlü Video');
+    const secondSingleVideo = sortedVideos.find((video: any) => video.name === 'İkinci Təkli Video');
+    const thirdTripleVideo = sortedVideos.find((video: any) => video.name === 'Üçüncü üçlü video');
+    const firstSixVideo = sortedVideos.find((video: any) => video.name === 'İlk Altılı Video');
+    const fourthTripleVideo = sortedVideos.find((video: any) => video.name === 'Dördüncü üçlü video');
+    const fifthTripleVideo = sortedVideos.find((video: any) => video.name === 'Beşinci üçlü video');
 
-                        {/* Metin Kartları */}
-                        <AlertCard text={metinMap['Metin1']} />
-                        <ThreePhoto photos={fotolar.ikinciÜçlüFoto} />
-                        {getVideo('Üçüncü üçlü video') && <TripleVideo videos={getVideo('Üçüncü üçlü video')} />}
-                        <SixPhoto photos={fotolar.ikinciAltılıFoto} />
-                        <AlertCard text={metinMap['Metin2']} />
-                        {getVideo('Dördüncü üçlü video') && <TripleVideo videos={getVideo('Dördüncü üçlü video')} />}
-                        <ThreePhoto photos={fotolar.üçüncüÜçlüFoto} />
-                        {getVideo('İlk Altılı Video') && <SixVideo videos={getVideo('İlk Altılı Video')} />}
-                        <AlertCard text={metinMap['Metin3']} />
-                        <SinglePhoto image={fotolar.ikinciTekliFoto} />
-                        {getVideo('İlk Altılı Video') && <SixVideo videos={getVideo('İlk Altılı Video')} />}
-                        <SixPhoto photos={fotolar.üçüncüAltılıFoto} />
-                        {getVideo('Beşinci üçlü video') && <TripleVideo videos={getVideo('Beşinci üçlü video')} />}
-                        <SixPhoto photos={fotolar.dördüncüAltılıFoto} />
-                        <AlertCard text={metinMap['Metin4']} />
-                        <SixPhoto photos={fotolar.beşinciAltılıFoto} />
-                        {getVideo('Beşinci üçlü video') && <TripleVideo videos={getVideo('Beşinci üçlü video')} />}
-                        <SixPhoto photos={fotolar.altıncıAltılıFoto} />
-                        <AlertCard text={metinMap['Metin5']} />
-                        <SixPhoto photos={fotolar.yedinciAltılıFoto} />
-                        {getVideo('İlk Altılı Video') && (
-                            <>
-                                <SixVideo videos={getVideo('İlk Altılı Video')} />
-                                <SixVideo videos={getVideo('İlk Altılı Video')} />
-                            </>
-                        )}
-                        <AlertCard text={metinMap['Metin6']} />
 
-                        {/* WhatsApp İletişim Butonu */}
-                        <AskQuestionButton />
-                    </div>
+
+    const dataTextContents = await fetchTextContents();
+    const Metin_1 = dataTextContents?.[0].metin_alanis[0]
+    const Metin_2 = dataTextContents?.[1].metin_alanis[0]
+    const Metin_3 = dataTextContents?.[2].metin_alanis[0]
+    const Metin_4 = dataTextContents?.[3].metin_alanis[0]
+    const Metin_5 = dataTextContents?.[4].metin_alanis[0]
+    const Metin_6 = dataTextContents?.[5].metin_alanis[0]
+
+
+    return (
+        <ErrorBoundary>
+            <div className="max-w-7xl mx-auto w-full">
+                {/* Header */}
+                <div
+                    style={{
+                        borderBottomLeftRadius: '20px',
+                        borderBottomRightRadius: '20px',
+                        zIndex: 99,
+                    }}
+                    className="w-full fixed header top-0 right-0"
+                >
+                    <div id="upScroll"></div>
+                    <HeaderBottom isVisible={true} />
+                    <Header isHomePage={true} />
                 </div>
-            </ErrorBoundary>
-        );
-    } catch (error) {
-        console.error('Sayfa yüklenirken hata:', error);
-        return (
-            <div className="flex flex-col items-center justify-center min-h-screen">
-                <h1 className="text-2xl font-bold mb-4">Bir hata oluştu</h1>
-                <p>Sayfa yüklenirken bir sorun oluştu. Lütfen daha sonra tekrar deneyin.</p>
+
+                <div id='blurbg' className="bg">
+                    <div className="flex items-center mt-36 justify-center w-full">
+                        <Link href={'/'} className="flex items-center justify-center">
+                            <Image alt="Logo" src="/logo.svg" width={150} height={120} />
+                        </Link>
+                    </div>
+
+                    {/* Fotoğraf ve Video Bileşenleri */}
+                    <SinglePhoto image={fotolar.ilkTekliFoto} />
+                    <ThreePhoto photos={fotolar.ilkÜçlüFoto} />
+                    {getVideo('İlk Üçlü video') && <TripleVideo videos={getVideo('İlk Üçlü video')} />}
+                    <SixPhoto photos={fotolar.ilkAltılıFoto} />
+                    {getVideo('İlk Təkli Video') && <SingleVideo videos={getVideo('İlk Təkli Video')} />}
+                    {getVideo('İkinci Üçlü Video') && <TripleVideo videos={getVideo('İkinci Üçlü Video')} />}
+
+                    {/* 9. İlk Uyarı Kartı */}
+                    <AlertCard text={Metin_1} />
+
+                    {/*  ikinci 3-lü Fotoğraf */}
+                    <ThreePhoto photos={ikinciÜçlüFoto} />
+
+                    {/* 11. Üçüncü Üçlü Video */}
+                    {thirdTripleVideo && <TripleVideo videos={thirdTripleVideo} />}
+
+                    {/* 12. İkinci Altılı Fotoğraflar */}
+                    <SixPhoto photos={ikinciAltılıFoto} />
+
+                    {/* 13. İkinci Uyarı Kartı */}
+                    <AlertCard text={Metin_2} />
+
+                    {/* 14. Dördüncü Üçlü Video */}
+                    {fourthTripleVideo && <TripleVideo videos={fourthTripleVideo} />}
+
+                    {/* 15. Üçüncü 3-lü Fotoğraf */}
+                    <ThreePhoto photos={üçüncüÜçlüFoto} />
+
+                    {/* 16. İlk Altılı Video */}
+                    {firstSixVideo && <SixVideo videos={firstSixVideo} />}
+
+                    {/* 17. Üçüncü Uyarı Kartı */}
+                    <AlertCard text={Metin_3} />
+
+                    {/* 18. İkinci Tekli Fotoğraf */}
+
+                    <SinglePhoto
+                        image={ikinciTekliFoto} />
+
+                    {/* 19. Altı Video */}
+                    <SixVideo videos={firstSixVideo} />
+
+                    {/* 20. Üçüncü Altılı Fotoğraflar */}
+                    <SixPhoto photos={üçüncüAltılıFoto} />
+
+                    {/* 21. Beşinci Üçlü Video */}
+                    {fifthTripleVideo && <TripleVideo videos={fifthTripleVideo} />}
+
+                    {/* 22. Dördüncü Altılı Fotoğraflar */}
+                    <SixPhoto photos={dördüncüAltılıFoto} />
+
+                    {/* 23. Dördüncü Uyarı Kartı */}
+                    <AlertCard text={Metin_4} />
+
+                    {/* 24. Beşinci Altılı Fotoğraflar */}
+                    <SixPhoto photos={beşinciAltılıFoto} />
+
+                    {/* 25. Altıncı Üçlü Video */}
+                    {fifthTripleVideo && <TripleVideo videos={fifthTripleVideo} />}
+
+                    {/* 26. Altıncı Altılı Fotoğraflar */}
+                    <SixPhoto photos={altıncıAltılıFoto} />
+
+                    {/* 27. Beşinci Uyarı Kartı */}
+                    <AlertCard text={Metin_5} />
+
+                    {/* 28. Yedinci Altılı Fotoğraflar */}
+                    <SixPhoto photos={yedinciAltılıFoto} />
+
+                    {/* 29. Altı Video */}
+                    <SixVideo videos={firstSixVideo} />
+                    <SixVideo videos={firstSixVideo} />
+
+                    {/* 30. Altıncı Uyarı Kartı */}
+                    <AlertCard text={Metin_6} />
+
+                    <SixVideo videos={firstSixVideo} />
+
+                    {/* 31. İkinci 3-lü Fotoğraf */}
+                    <ThreePhoto photos={dördüncüÜçlüFoto} />
+
+                    {/* 32. İkinci 3-lü Fotoğraf */}
+                    <ThreePhoto photos={beşinciÜçlüFoto} />
+                </div>
+
+                {/* 33. WhatsApp İletişim Butonu */}
+                <AskQuestionButton />
             </div>
-        );
-    }
+            );
 };
 
-export default Page;
+            export default Page;

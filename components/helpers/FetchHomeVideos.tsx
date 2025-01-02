@@ -2,15 +2,15 @@ export const fetchVideoDatas = async () => {
     try {
         const [videoRes, thumbnailRes] = await Promise.all([
             fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.video', {
-                next: { revalidate: 3600 },
+                next: { revalidate: 10 },
                 headers: {
-                    'Cache-Control': 'public, max-age=3600',
+                    'Cache-Control': 'public, max-age=10',
                 }
             }),
             fetch('https://api.avrupagozestetikinfo.com/api/home-page-videos?populate=videos.thumbnail', {
-                next: { revalidate: 3600 },
+                next: { revalidate: 10 },
                 headers: {
-                    'Cache-Control': 'public, max-age=3600',
+                    'Cache-Control': 'public, max-age=10',
                 }
             })
         ]);

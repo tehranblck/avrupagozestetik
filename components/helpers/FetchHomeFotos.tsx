@@ -3,9 +3,9 @@ export const fetchFotosHomepage = async () => {
         const res = await fetch(
             'https://api.avrupagozestetikinfo.com/api/fotos?populate[fotos][populate]=*',
             {
-                next: { revalidate: 3600 }, // 1 saat cache
+                next: { revalidate: 10 },
                 headers: {
-                    'Cache-Control': 'public, max-age=3600',
+                    'Cache-Control': 'public, max-age=10',
                 }
             }
         );

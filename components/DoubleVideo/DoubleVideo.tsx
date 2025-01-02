@@ -5,59 +5,81 @@ import Popup from './PopupVideo';
 
 const DoubleVideo = ({ videos }: any) => {
     const base = 'https://api.avrupagozestetikinfo.com';
-    console.log(videos);
     const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(null);
 
+    // Veri kontrolü
+    const videoList = videos?.videos || [];
+    const hasVideos = Array.isArray(videoList) && videoList.length > 0;
+
     const handleThumbnailClick = (index: number) => {
-        setCurrentVideoIndex(index); // Pop-up'ta açılacak videoyu ayarla
+        setCurrentVideoIndex(index);
     };
 
     const handleClosePopup = () => {
-        setCurrentVideoIndex(null); // Pop-up'ı kapat
+        setCurrentVideoIndex(null);
     };
+
+    // Video verisi yoksa veya boşsa
+    if (!hasVideos) {
+        return (
+            <div className="w-[100%] mt-2 sm:px-32 px-2 mx-auto grid grid-cols-2 gap-2">
+                <div className="relative w-full min-h-[200px] bg-gray-100 rounded-lg flex items-center justify-center">
+                    <p className="text-gray-500">Video bulunamadı</p>
+                </div>
+                <div className="relative w-full min-h-[200px] bg-gray-100 rounded-lg flex items-center justify-center">
+                    <p className="text-gray-500">Video bulunamadı</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="w-[100%] mt-2 sm:px-32 px-2 mx-auto grid grid-cols-2 gap-2">
-            {videos?.videos?.map((videoObj: any, index: number) => (
-                <div
-                    key={videoObj?.id || `video-${index}`} // Benzersiz bir key değeri
-                    className="relative w-full cursor-pointer"
-                    onClick={() => handleThumbnailClick(index)}
-                >
-                    {/* Kapak Fotoğrafı */}
-                    <Image
-                        priority
-                        width={900}
-                        height={900}
-                        src={
-                            base + videoObj?.thumbnail?.[0].formats?.large.url
+            {videoList.map((videoObj: any, index: number) => {
+                const thumbnailUrl = videoObj?.thumbnail?.[0]?.url
+                    ? `${base}${videoObj.thumbnail[0].url}`
+                    : '/default.svg';
 
-                        }
-                        alt={videoObj?.altText || `Video Thumbnail ${index + 1}`}
-                        className="w-full rounded-lg shadow-lg"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
-                        <button
-                            className="text-white text-3xl font-bold"
-                            aria-label="Play Video"
-                        >
-                            ▶
-                        </button>
+                const videoUrl = videoObj?.video?.[0]?.url
+                    ? `${base}${videoObj.video[0].url}`
+                    : '';
+
+                return (
+                    <div
+                        key={videoObj?.id || `video-${index}`}
+                        className="relative w-full cursor-pointer"
+                        onClick={() => handleThumbnailClick(index)}
+                    >
+                        <Image
+                            priority
+                            width={900}
+                            height={900}
+                            src={thumbnailUrl}
+                            alt={videoObj?.altText || `Video ${index + 1}`}
+                            className="w-full rounded-lg shadow-lg"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
+                            <button
+                                className="text-white text-3xl font-bold"
+                                aria-label="Play Video"
+                            >
+                                ▶
+                            </button>
+                        </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
 
-            {/* Popup */}
             <Popup
                 title={
-                    currentVideoIndex !== null
-                        ? videos?.videos[currentVideoIndex]?.title || 'Default Title'
+                    currentVideoIndex !== null && videoList[currentVideoIndex]
+                        ? videoList[currentVideoIndex]?.title || 'Video'
                         : ''
                 }
                 isOpen={currentVideoIndex !== null}
                 onClose={handleClosePopup}
             >
-                {currentVideoIndex !== null && (
+                {currentVideoIndex !== null && videoList[currentVideoIndex] && (
                     <video
                         className="w-full shadow-lg"
                         controls
@@ -67,8 +89,8 @@ const DoubleVideo = ({ videos }: any) => {
                     >
                         <source
                             src={
-                                videos?.videos[currentVideoIndex]?.video[0]?.url
-                                    ? `${base}${videos?.videos[currentVideoIndex]?.video[0]?.url}`
+                                videoList[currentVideoIndex]?.video?.[0]?.url
+                                    ? `${base}${videoList[currentVideoIndex].video[0].url}`
                                     : ''
                             }
                             type="video/mp4"

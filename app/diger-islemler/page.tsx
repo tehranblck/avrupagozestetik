@@ -16,6 +16,7 @@ const Page = async () => {
     const SingleVideoo = data.find((video: any) => video.name === 'Tekli Video DİGER-İSLEMLER');
 
     const { ikinciÜçlüDigerİslemler, ilkÜçlüDigerİslemler, ilkAltılıDigerİslemler, ikinciAltılıDigerİslemler } = await fetchFotosHomepage()
+    console.log(ilkÜçlüDigerİslemler)
 
 
 

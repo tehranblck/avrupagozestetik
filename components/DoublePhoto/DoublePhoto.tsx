@@ -4,6 +4,7 @@ import Image from 'next/image';
 import PopupPhoto from '../SixPhoto/PopupPhoto';
 
 const ThreePhoto = ({ photos }: any) => {
+    console.log(photos)
     const base = 'https://api.avrupagozestetikinfo.com';
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number | null>(null);
 

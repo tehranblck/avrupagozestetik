@@ -17,6 +17,19 @@ import Link from 'next/link';
 import { fetchTextContents } from '@/components/helpers/FetchTextContents';
 import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary';
 
+interface VideoType {
+    name: string;
+    videos: any[];
+}
+
+interface MetinType {
+    Metin: string;
+    metin_alanis: Array<{
+        title: string;
+        body: string;
+    }>;
+}
+
 const Page = async () => {
     try {
         // Tüm fetch işlemlerini parallel yapma
@@ -27,11 +40,11 @@ const Page = async () => {
         ]);
 
         // Video verilerini bir kez işle ve tekrar kullanma
-        const videoMap = new Map(videolar.map((video: any) => [video.name, video]));
+        const videoMap = new Map(videolar.map((video: VideoType) => [video.name, video]));
         const getVideo = (name: string) => videoMap.get(name);
 
         // Metin verilerini işle
-        const metinMap = metinler.reduce((acc: any, item: any) => {
+        const metinMap = metinler.reduce((acc: Record<string, any>, item: MetinType) => {
             acc[item.Metin] = item.metin_alanis[0] || null;
             return acc;
         }, {});

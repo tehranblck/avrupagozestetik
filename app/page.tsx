@@ -55,7 +55,8 @@ const Page = async () => {
     const fourthTripleVideo = sortedVideos.find((video: any) => video.name === 'Dördüncü üçlü video');
     const fifthTripleVideo = sortedVideos.find((video: any) => video.name === 'Beşinci üçlü video');
 
-
+    // Video bulma yardımcı fonksiyonu
+    const getVideo = (name: string) => sortedVideos.find((video: any) => video.name === name);
 
     const dataTextContents = await fetchTextContents();
     const Metin_1 = dataTextContents?.[0].metin_alanis[0]
@@ -67,119 +68,118 @@ const Page = async () => {
 
 
     return (
-        <ErrorBoundary>
-            <div className="max-w-7xl mx-auto w-full">
-                {/* Header */}
-                <div
-                    style={{
-                        borderBottomLeftRadius: '20px',
-                        borderBottomRightRadius: '20px',
-                        zIndex: 99,
-                    }}
-                    className="w-full fixed header top-0 right-0"
-                >
-                    <div id="upScroll"></div>
-                    <HeaderBottom isVisible={true} />
-                    <Header isHomePage={true} />
-                </div>
-
-                <div id='blurbg' className="bg">
-                    <div className="flex items-center mt-36 justify-center w-full">
-                        <Link href={'/'} className="flex items-center justify-center">
-                            <Image alt="Logo" src="/logo.svg" width={150} height={120} />
-                        </Link>
-                    </div>
-
-                    {/* Fotoğraf ve Video Bileşenleri */}
-                    <SinglePhoto image={fotolar.ilkTekliFoto} />
-                    <ThreePhoto photos={fotolar.ilkÜçlüFoto} />
-                    {getVideo('İlk Üçlü video') && <TripleVideo videos={getVideo('İlk Üçlü video')} />}
-                    <SixPhoto photos={fotolar.ilkAltılıFoto} />
-                    {getVideo('İlk Təkli Video') && <SingleVideo videos={getVideo('İlk Təkli Video')} />}
-                    {getVideo('İkinci Üçlü Video') && <TripleVideo videos={getVideo('İkinci Üçlü Video')} />}
-
-                    {/* 9. İlk Uyarı Kartı */}
-                    <AlertCard text={Metin_1} />
-
-                    {/*  ikinci 3-lü Fotoğraf */}
-                    <ThreePhoto photos={ikinciÜçlüFoto} />
-
-                    {/* 11. Üçüncü Üçlü Video */}
-                    {thirdTripleVideo && <TripleVideo videos={thirdTripleVideo} />}
-
-                    {/* 12. İkinci Altılı Fotoğraflar */}
-                    <SixPhoto photos={ikinciAltılıFoto} />
-
-                    {/* 13. İkinci Uyarı Kartı */}
-                    <AlertCard text={Metin_2} />
-
-                    {/* 14. Dördüncü Üçlü Video */}
-                    {fourthTripleVideo && <TripleVideo videos={fourthTripleVideo} />}
-
-                    {/* 15. Üçüncü 3-lü Fotoğraf */}
-                    <ThreePhoto photos={üçüncüÜçlüFoto} />
-
-                    {/* 16. İlk Altılı Video */}
-                    {firstSixVideo && <SixVideo videos={firstSixVideo} />}
-
-                    {/* 17. Üçüncü Uyarı Kartı */}
-                    <AlertCard text={Metin_3} />
-
-                    {/* 18. İkinci Tekli Fotoğraf */}
-
-                    <SinglePhoto
-                        image={ikinciTekliFoto} />
-
-                    {/* 19. Altı Video */}
-                    <SixVideo videos={firstSixVideo} />
-
-                    {/* 20. Üçüncü Altılı Fotoğraflar */}
-                    <SixPhoto photos={üçüncüAltılıFoto} />
-
-                    {/* 21. Beşinci Üçlü Video */}
-                    {fifthTripleVideo && <TripleVideo videos={fifthTripleVideo} />}
-
-                    {/* 22. Dördüncü Altılı Fotoğraflar */}
-                    <SixPhoto photos={dördüncüAltılıFoto} />
-
-                    {/* 23. Dördüncü Uyarı Kartı */}
-                    <AlertCard text={Metin_4} />
-
-                    {/* 24. Beşinci Altılı Fotoğraflar */}
-                    <SixPhoto photos={beşinciAltılıFoto} />
-
-                    {/* 25. Altıncı Üçlü Video */}
-                    {fifthTripleVideo && <TripleVideo videos={fifthTripleVideo} />}
-
-                    {/* 26. Altıncı Altılı Fotoğraflar */}
-                    <SixPhoto photos={altıncıAltılıFoto} />
-
-                    {/* 27. Beşinci Uyarı Kartı */}
-                    <AlertCard text={Metin_5} />
-
-                    {/* 28. Yedinci Altılı Fotoğraflar */}
-                    <SixPhoto photos={yedinciAltılıFoto} />
-
-                    {/* 29. Altı Video */}
-                    <SixVideo videos={firstSixVideo} />
-                    <SixVideo videos={firstSixVideo} />
-
-                    {/* 30. Altıncı Uyarı Kartı */}
-                    <AlertCard text={Metin_6} />
-
-                    <SixVideo videos={firstSixVideo} />
-
-                    {/* 31. İkinci 3-lü Fotoğraf */}
-                    <ThreePhoto photos={dördüncüÜçlüFoto} />
-
-                    {/* 32. İkinci 3-lü Fotoğraf */}
-                    <ThreePhoto photos={beşinciÜçlüFoto} />
-                </div>
-
-                {/* 33. WhatsApp İletişim Butonu */}
-                <AskQuestionButton />
+        <div className="max-w-7xl mx-auto w-full">
+            {/* Header */}
+            <div
+                style={{
+                    borderBottomLeftRadius: '20px',
+                    borderBottomRightRadius: '20px',
+                    zIndex: 99,
+                }}
+                className="w-full fixed header top-0 right-0"
+            >
+                <div id="upScroll"></div>
+                <HeaderBottom isVisible={true} />
+                <Header isHomePage={true} />
             </div>
-            );
+
+            <div id='blurbg' className="bg">
+                <div className="flex items-center mt-36 justify-center w-full">
+                    <Link href={'/'} className="flex items-center justify-center">
+                        <Image alt="Logo" src="/logo.svg" width={150} height={120} />
+                    </Link>
+                </div>
+
+                {/* Fotoğraf ve Video Bileşenleri */}
+                <SinglePhoto image={ilkTekliFoto} />
+                <ThreePhoto photos={ilkÜçlüFoto} />
+                {getVideo('İlk Üçlü video') && <TripleVideo videos={getVideo('İlk Üçlü video')} />}
+                <SixPhoto photos={ilkAltılıFoto} />
+                {getVideo('İlk Təkli Video') && <SingleVideo videos={getVideo('İlk Təkli Video')} />}
+                {getVideo('İkinci Üçlü Video') && <TripleVideo videos={getVideo('İkinci Üçlü Video')} />}
+
+                {/* 9. İlk Uyarı Kartı */}
+                <AlertCard text={Metin_1} />
+
+                {/*  ikinci 3-lü Fotoğraf */}
+                <ThreePhoto photos={ikinciÜçlüFoto} />
+
+                {/* 11. Üçüncü Üçlü Video */}
+                {thirdTripleVideo && <TripleVideo videos={thirdTripleVideo} />}
+
+                {/* 12. İkinci Altılı Fotoğraflar */}
+                <SixPhoto photos={ikinciAltılıFoto} />
+
+                {/* 13. İkinci Uyarı Kartı */}
+                <AlertCard text={Metin_2} />
+
+                {/* 14. Dördüncü Üçlü Video */}
+                {fourthTripleVideo && <TripleVideo videos={fourthTripleVideo} />}
+
+                {/* 15. Üçüncü 3-lü Fotoğraf */}
+                <ThreePhoto photos={üçüncüÜçlüFoto} />
+
+                {/* 16. İlk Altılı Video */}
+                {firstSixVideo && <SixVideo videos={firstSixVideo} />}
+
+                {/* 17. Üçüncü Uyarı Kartı */}
+                <AlertCard text={Metin_3} />
+
+                {/* 18. İkinci Tekli Fotoğraf */}
+
+                <SinglePhoto
+                    image={ikinciTekliFoto} />
+
+                {/* 19. Altı Video */}
+                <SixVideo videos={firstSixVideo} />
+
+                {/* 20. Üçüncü Altılı Fotoğraflar */}
+                <SixPhoto photos={üçüncüAltılıFoto} />
+
+                {/* 21. Beşinci Üçlü Video */}
+                {fifthTripleVideo && <TripleVideo videos={fifthTripleVideo} />}
+
+                {/* 22. Dördüncü Altılı Fotoğraflar */}
+                <SixPhoto photos={dördüncüAltılıFoto} />
+
+                {/* 23. Dördüncü Uyarı Kartı */}
+                <AlertCard text={Metin_4} />
+
+                {/* 24. Beşinci Altılı Fotoğraflar */}
+                <SixPhoto photos={beşinciAltılıFoto} />
+
+                {/* 25. Altıncı Üçlü Video */}
+                {fifthTripleVideo && <TripleVideo videos={fifthTripleVideo} />}
+
+                {/* 26. Altıncı Altılı Fotoğraflar */}
+                <SixPhoto photos={altıncıAltılıFoto} />
+
+                {/* 27. Beşinci Uyarı Kartı */}
+                <AlertCard text={Metin_5} />
+
+                {/* 28. Yedinci Altılı Fotoğraflar */}
+                <SixPhoto photos={yedinciAltılıFoto} />
+
+                {/* 29. Altı Video */}
+                <SixVideo videos={firstSixVideo} />
+                <SixVideo videos={firstSixVideo} />
+
+                {/* 30. Altıncı Uyarı Kartı */}
+                <AlertCard text={Metin_6} />
+
+                <SixVideo videos={firstSixVideo} />
+
+                {/* 31. İkinci 3-lü Fotoğraf */}
+                <ThreePhoto photos={dördüncüÜçlüFoto} />
+
+                {/* 32. İkinci 3-lü Fotoğraf */}
+                <ThreePhoto photos={beşinciÜçlüFoto} />
+            </div>
+
+            {/* 33. WhatsApp İletişim Butonu */}
+            <AskQuestionButton />
+        </div>
+    );
 };
 
-            export default Page;
+export default Page;

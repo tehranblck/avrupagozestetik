@@ -28,8 +28,10 @@ const PhoneForm: React.FC = () => {
     const handlePhoneChange = (value: string) => {
         setFormData({ ...formData, phoneNumber: value });
 
-        if (value.slice(value.indexOf(' ') + 1).startsWith('0')) {
-            setError('Telefon numarası 0 ile başlayamaz.');
+        // +90 ile başlayıp hemen ardından 0 geliyorsa hata göster
+        if (value.startsWith('+90') && value.slice(3, 4) === '0') {
+            alert('Telefon numarası +90’dan sonra 0 ile başlayamaz.');
+            setError('Telefon numarası +90’dan sonra 0 ile başlayamaz.');
         } else {
             setError('');
         }

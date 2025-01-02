@@ -13,11 +13,7 @@ interface LayoutProps {
 export const metadata = {
   title: 'Avrupa Göz Estetik',
   description: 'Avrupa göz estetik hakkında bilgi alın',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
-  charset: 'utf-8',
+
   icons: {
     icon: '/logo.svg',
   },

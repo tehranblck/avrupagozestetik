@@ -11,7 +11,7 @@ const CommentCard = ({ comment }: any) => {
             {/* User Image */}
             <div className="  relative rounded-full  ">
                 <Image
-                    src={imagePath ? base + imagePath : '/default-avatar.jpg'}
+                    src={imagePath ? base + imagePath : '/default.svg'}
                     alt={comment?.name || 'User Avatar'}
                     width={100}  // Sabit genişlik
                     height={100} // Sabit yükseklik

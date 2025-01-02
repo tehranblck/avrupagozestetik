@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import AskQuestionButton from '@/components/AskQuestionButton/AskQuestionButton';
@@ -56,7 +55,8 @@ const Page = async () => {
     const fourthTripleVideo = sortedVideos.find((video: any) => video.name === 'Dördüncü üçlü video');
     const fifthTripleVideo = sortedVideos.find((video: any) => video.name === 'Beşinci üçlü video');
 
-
+    // Video bulma yardımcı fonksiyonu
+    const getVideo = (name: string) => sortedVideos.find((video: any) => video.name === name);
 
     const dataTextContents = await fetchTextContents();
     const Metin_1 = dataTextContents?.[0].metin_alanis[0]
@@ -69,7 +69,7 @@ const Page = async () => {
 
     return (
         <div className="max-w-7xl mx-auto w-full">
-            {/* 1. Sabit Üst Menü */}
+            {/* Header */}
             <div
                 style={{
                     borderBottomLeftRadius: '20px',
@@ -83,33 +83,20 @@ const Page = async () => {
                 <Header isHomePage={true} />
             </div>
 
-            <div id='blurbg ' className="bg">
-                <div className="flex items-center  mt-36 justify-center w-full">
-                    {/* 2. Logo */}
+            <div id='blurbg' className="bg">
+                <div className="flex items-center mt-36 justify-center w-full">
                     <Link href={'/'} className="flex items-center justify-center">
                         <Image alt="Logo" src="/logo.svg" width={150} height={120} />
                     </Link>
                 </div>
 
-
-
-
-
-                {/* İlk Tekli Fotoğraf */}
+                {/* Fotoğraf ve Video Bileşenleri */}
                 <SinglePhoto image={ilkTekliFoto} />
-
-                {/* 4. İlk Üçlü Fotoğraflar */}
                 <ThreePhoto photos={ilkÜçlüFoto} />
-                {/* 5. Birinci Üçlü Video */}
-                {firstTripleVideo && <TripleVideo videos={firstTripleVideo} />}
-                {/* 6. İlk 6'lı Fotoğraf */}
+                {getVideo('İlk Üçlü video') && <TripleVideo videos={getVideo('İlk Üçlü video')} />}
                 <SixPhoto photos={ilkAltılıFoto} />
-
-                {/* 7. İlk Tekli Video */}
-                {firstSingleVideo && <SingleVideo videos={firstSingleVideo} />}
-
-                {/* 8. İkinci Üçlü Video */}
-                {secondTripleVideo && <TripleVideo videos={secondTripleVideo} />}
+                {getVideo('İlk Təkli Video') && <SingleVideo videos={getVideo('İlk Təkli Video')} />}
+                {getVideo('İkinci Üçlü Video') && <TripleVideo videos={getVideo('İkinci Üçlü Video')} />}
 
                 {/* 9. İlk Uyarı Kartı */}
                 <AlertCard text={Metin_1} />

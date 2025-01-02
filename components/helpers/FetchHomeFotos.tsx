@@ -41,7 +41,7 @@ export const fetchFotosHomepage = async () => {
             sortedPhotos,
             ilkTekliFoto: sortedPhotos.find((photo: any) => photo.name === 'İlk Tekli foto ANASAYFA'),
             ilkÜçlüFoto: sortedPhotos.find((photo: any) => photo.name === 'İlk Üçlü Foto ANASAYFA'),
-            ilkAltılıFoto: sortedPhotos.find((photo: any) => photo.name === 'İkinci Altılı Foto ANASAYFA'),
+            ilkAltılıFoto: sortedPhotos.find((photo: any) => photo.name === 'İlk Altılı Foto ANASAYFA'),
             ikinciÜçlüFoto: sortedPhotos.find((photo: any) => photo.name === 'İkinci Üçlü Foto ANASAYFA'),
             ikinciAltılıFoto: sortedPhotos.find((photo: any) => photo.name === 'İkinci Altılı Foto ANASAYFA'),
             üçüncüÜçlüFoto: sortedPhotos.find((photo: any) => photo.name === 'Üçüncü Üçlü Foto ANASAYFA'),

@@ -41,11 +41,11 @@ const ThreePhoto = ({ photos }: any) => {
         : [...safePhotos, ...Array(3 - safePhotos.length).fill({})];
 
     return (
-        <div className="w-full sm:px-32 mt-3 mx-auto grid grid-cols-3 gap-1 px-2">
+        <div className="w-full px-2 sm:px-4 md:px-12 mt-3 mx-auto grid grid-cols-3 gap-1">
             {photosToShow.map((photo: any, index: number) => (
                 <div
                     key={photo.id || `photo-${index}`}
-                    className="relative w-full cursor-pointer"
+                    className="relative w-full cursor-pointer aspect-square sm:aspect-[4/3]"
                     onClick={() => handleThumbnailClick(index)}
                 >
                     <Image

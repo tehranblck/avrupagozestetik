@@ -43,13 +43,13 @@ const NinePhoto = ({ photos }: any) => {
     };
 
     return (
-        <div className="w-[100%] sm:px-32 mt-2 mx-auto grid grid-cols-3 gap-1 px-2">
+        <div className="w-[100%] px-2 sm:px-4 md:px-12 mt-2 mx-auto grid grid-cols-3 gap-1">
             {photosToShow.map((photo: any, index: number) => {
                 const imageUrl = getPhotoUrl(photo);
                 return (
                     <div
                         key={photo?.createdAt || `photo-${index}`}
-                        className="relative w-full cursor-pointer"
+                        className="relative w-full cursor-pointer aspect-square sm:aspect-[4/3]"
                         onClick={() => handleThumbnailClick(index)}
                     >
                         <Image

@@ -42,11 +42,11 @@ const SixPhoto = ({ photos }: any) => {
         : [...safePhotos, ...Array(6 - safePhotos.length).fill({})];
 
     return (
-        <div className="w-[100%] sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
+        <div className="w-[100%] px-2 sm:px-4 md:px-12 mt-5 mx-auto grid grid-cols-3 gap-1">
             {photosToShow.map((photo: any, index: number) => (
                 <div
-                    key={`${photo?.id || photo?.documentId || index}`} // Benzersiz key değeri
-                    className="relative w-full cursor-pointer"
+                    key={`${photo?.id || photo?.documentId || index}`}
+                    className="relative w-full cursor-pointer aspect-square sm:aspect-[4/3]"
                     onClick={() => handleThumbnailClick(index)}
                 >
                     <Image

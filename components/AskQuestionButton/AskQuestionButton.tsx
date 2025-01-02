@@ -39,7 +39,7 @@ const AskQuestionButton: React.FC = () => {
                 <div className="fixed bottom-4 right-4 z-50">
                     <button
                         onClick={handleWhatsAppRedirect} // Butona tıkladığında WhatsApp'a yönlendirme yapılır
-                        className="bg-green-500 text-white px-5 py-3 flex items-center gap-3 font-medium rounded-lg shadow-lg border border-green-600 hover:bg-green-600 transition-all duration-300"
+                        className="bg-green-500 text-white px-4 py-2 flex items-center gap-3 font-medium rounded-lg shadow-lg border border-green-600 hover:bg-green-600 transition-all duration-300"
                     >
                         WhatsApp <FaWhatsapp className="text-2xl" />
                     </button>

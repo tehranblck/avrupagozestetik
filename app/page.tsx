@@ -15,7 +15,7 @@ import TripleVideo from '@/components/TripleVideos/TripleVideos';
 import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos';
 import Image from 'next/image';
 import Link from 'next/link';
-import { video } from 'framer-motion/client';
+import { fetchTextContents } from '@/components/helpers/FetchTextContents';
 
 const Page = async () => {
     const base = 'https://api.avrupagozestetikinfo.com';
@@ -41,7 +41,6 @@ const Page = async () => {
     } = await fetchFotosHomepage();
     const VideoData = await fetchVideoDatas();
 
-    console.log(VideoData)
     // Video verilerini id'ye göre filtrele
     const sortedVideos = VideoData.sort((a: any, b: any) => a.id - b.id);
     const firstTripleVideo = sortedVideos.find((video: any) => video.name === 'İlk Üçlü video');
@@ -52,6 +51,18 @@ const Page = async () => {
     const firstSixVideo = sortedVideos.find((video: any) => video.name === 'İlk Altılı Video');
     const fourthTripleVideo = sortedVideos.find((video: any) => video.name === 'Dördüncü üçlü video');
     const fifthTripleVideo = sortedVideos.find((video: any) => video.name === 'Beşinci üçlü video');
+
+
+
+    const dataTextContents = await fetchTextContents();
+    console.log(dataTextContents)
+    const Metin_1 = dataTextContents?.[0].metin_alanis[0]
+    const Metin_2 = dataTextContents?.[1].metin_alanis[0]
+    const Metin_3 = dataTextContents?.[2].metin_alanis[0]
+    const Metin_4 = dataTextContents?.[3].metin_alanis[0]
+    const Metin_5 = dataTextContents?.[4].metin_alanis[0]
+    const Metin_6 = dataTextContents?.[5].metin_alanis[0]
+
 
     return (
         <div className="max-w-7xl mx-auto w-full">
@@ -98,7 +109,7 @@ const Page = async () => {
                 {secondTripleVideo && <TripleVideo videos={secondTripleVideo} />}
 
                 {/* 9. İlk Uyarı Kartı */}
-                <AlertCard />
+                <AlertCard text={Metin_1} />
 
                 {/*  ikinci 3-lü Fotoğraf */}
                 <ThreePhoto photos={ikinciÜçlüFoto} />
@@ -110,7 +121,7 @@ const Page = async () => {
                 <SixPhoto photos={ikinciAltılıFoto} />
 
                 {/* 13. İkinci Uyarı Kartı */}
-                <AlertCard />
+                <AlertCard text={Metin_2} />
 
                 {/* 14. Dördüncü Üçlü Video */}
                 {fourthTripleVideo && <TripleVideo videos={fourthTripleVideo} />}
@@ -122,7 +133,7 @@ const Page = async () => {
                 {firstSixVideo && <SixVideo videos={firstSixVideo} />}
 
                 {/* 17. Üçüncü Uyarı Kartı */}
-                <AlertCard />
+                <AlertCard text={Metin_3} />
 
                 {/* 18. İkinci Tekli Fotoğraf */}
 
@@ -142,7 +153,7 @@ const Page = async () => {
                 <SixPhoto photos={dördüncüAltılıFoto} />
 
                 {/* 23. Dördüncü Uyarı Kartı */}
-                <AlertCard />
+                <AlertCard text={Metin_4} />
 
                 {/* 24. Beşinci Altılı Fotoğraflar */}
                 <SixPhoto photos={beşinciAltılıFoto} />
@@ -154,7 +165,7 @@ const Page = async () => {
                 <SixPhoto photos={altıncıAltılıFoto} />
 
                 {/* 27. Beşinci Uyarı Kartı */}
-                <AlertCard />
+                <AlertCard text={Metin_5} />
 
                 {/* 28. Yedinci Altılı Fotoğraflar */}
                 <SixPhoto photos={yedinciAltılıFoto} />
@@ -164,7 +175,7 @@ const Page = async () => {
                 <SixVideo videos={firstSixVideo} />
 
                 {/* 30. Altıncı Uyarı Kartı */}
-                <AlertCard />
+                <AlertCard text={Metin_6} />
 
                 <SixVideo videos={firstSixVideo} />
 

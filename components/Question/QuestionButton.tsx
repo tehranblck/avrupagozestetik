@@ -1,8 +1,10 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 
-const AlertCard = ({ dest }: any) => {
+const AlertCard = ({ dest, text }: any) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const { body, title } = text ? text : { body: '', title: '' }
+  console.log(text)
 
 
   useEffect(() => {
@@ -50,9 +52,9 @@ const AlertCard = ({ dest }: any) => {
           <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 z-50 w-full h-full"></div>
         </div>
         <div className="relative flex flex-col gap-2">
-          <p className="text-lg font-bold text-white">Bunu biliyor muydun?</p>
+          <p className="text-lg font-bold text-white">{title}</p>
           <p className="text-sm font-bold text-white">
-            Göz kapağı estetiği sonrasında genç bir göz çevresine sahip olmak, tüm yüzün görünümünü olumlu yönde değiştirebilir.
+            {body}
           </p>
         </div>
       </div>

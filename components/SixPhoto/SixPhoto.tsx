@@ -58,12 +58,7 @@ const SixPhoto = ({ photos }: any) => {
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
-                        <button
-                            className="text-white text-3xl font-bold"
-                            aria-label="View Photo"
-                        >
-                            🔍
-                        </button>
+
                     </div>
                 </div>
             ))}

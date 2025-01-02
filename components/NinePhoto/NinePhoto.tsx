@@ -61,12 +61,7 @@ const NinePhoto = ({ photos }: any) => {
                             className="w-full rounded-lg object-cover h-full shadow-lg"
                         />
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
-                            <button
-                                className="text-white text-xl font-bold"
-                                aria-label="View Photo"
-                            >
-                                🔍
-                            </button>
+
                         </div>
                     </div>
                 );

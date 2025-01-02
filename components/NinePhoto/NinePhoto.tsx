@@ -16,7 +16,7 @@ const NinePhoto = ({ photos }: any) => {
     };
 
     const handleNextPhoto = () => {
-        if (currentPhotoIndex !== null && currentPhotoIndex < photos.length - 1) {
+        if (currentPhotoIndex !== null && currentPhotoIndex < photosToShow.length - 1) {
             setCurrentPhotoIndex(currentPhotoIndex + 1);
         }
     };
@@ -27,27 +27,36 @@ const NinePhoto = ({ photos }: any) => {
         }
     };
 
+    // Fotoğraf listesini 9 elemana tamamla
+    const safePhotos = photos && Array.isArray(photos) ? photos : [];
+    const photosToShow = safePhotos.length >= 9
+        ? safePhotos
+        : [...safePhotos, ...Array(9 - safePhotos.length).fill({})];
+
+    const getPhotoUrl = (photo: any) => {
+        return photo?.formats?.large?.url ||
+            photo?.formats?.medium?.url ||
+            photo?.formats?.small?.url ||
+            photo?.url
+            ? `${base}${photo.url}`
+            : '/default.svg'; // Varsayılan resim
+    };
+
     return (
         <div className="w-[100%] sm:px-32 mt-2 mx-auto grid grid-cols-3 gap-1 px-2">
-            {photos?.map((photo: any, index: number) => {
-                const imageUrl =
-                    photo?.formats?.large?.url ||
-                    photo?.formats?.medium?.url ||
-                    photo?.formats?.small?.url ||
-                    photo?.url || // Eğer başka formatlar yoksa varsayılan `url` kullanılacak
-                    '/maint.jpg'; // Hata durumunda fallback image
+            {photosToShow.map((photo: any, index: number) => {
+                const imageUrl = getPhotoUrl(photo);
                 return (
                     <div
-                        key={photo?.createdAt || `photo-${index}`} // Benzersiz key kullanımı
+                        key={photo?.createdAt || `photo-${index}`}
                         className="relative w-full cursor-pointer"
                         onClick={() => handleThumbnailClick(index)}
                     >
-                        {/* Fotoğraf Thumbnail */}
                         <Image
                             priority
                             width={900}
                             height={900}
-                            src={`${base}${imageUrl}`}
+                            src={imageUrl}
                             alt={photo?.createdAt || `Photo ${index + 1}`}
                             className="w-full rounded-lg object-cover h-full shadow-lg"
                         />
@@ -70,17 +79,12 @@ const NinePhoto = ({ photos }: any) => {
                 onNext={handleNextPhoto}
                 onPrev={handlePreviousPhoto}
                 currentPhotoIndex={currentPhotoIndex}
-                totalPhotos={photos.length} // Tüm fotoğraflar için sınırlandırma
+                totalPhotos={photosToShow.length} // Tüm fotoğraflar için sınırlandırma
             >
                 {currentPhotoIndex !== null && (
                     <Image
-                        src={`${base}${photos[currentPhotoIndex]?.formats?.large?.url ||
-                            photos[currentPhotoIndex]?.formats?.medium?.url ||
-                            photos[currentPhotoIndex]?.formats?.small?.url ||
-                            photos[currentPhotoIndex]?.url || // Popup için uygun formatı seç
-                            '/maint.jpg' // Hata durumunda fallback image
-                            }`}
-                        alt={photos[currentPhotoIndex]?.altText || 'Current Photo'}
+                        src={getPhotoUrl(photosToShow[currentPhotoIndex])}
+                        alt={photosToShow[currentPhotoIndex]?.altText || 'Current Photo'}
                         width={900}
                         height={900}
                         className="rounded-lg object-cover shadow-lg"

@@ -63,11 +63,7 @@ const PopupPhoto: React.FC<PopupProps> = ({
 
     // En yüksek kaliteli görsel URL'sini seç
     const getBestQualityImage = (formats: any) => {
-        if (formats?.large?.url) return formats.large.url;
-        if (formats?.medium?.url) return formats.medium.url;
-        if (formats?.small?.url) return formats.small.url;
-        if (formats?.thumbnail?.url) return formats.thumbnail.url;
-        return '/default-image.jpg'; // Varsayılan resim
+        return formats?.url || '/default-image.jpg';
     };
 
     if (!isOpen) return null;

@@ -15,7 +15,7 @@ export const fetchFotosHomepage = async () => {
     // Fotoğrafları ID'ye göre adlandırma
     const ilkTekliFoto = sortedPhotos.find((photo: any) => photo.name === 'İlk Tekli foto ANASAYFA');
     const ilkÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'İlk Üçlü Foto ANASAYFA');
-    const ilkAltılıFoto = sortedPhotos.find((photo: any) => photo.name === 'İkinci Altılı Foto ANASAYFA');
+    const ilkAltılıFoto = sortedPhotos.find((photo: any) => photo.name === 'İlk Altılı Foto ANASAYFA');
     const ikinciÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'İkinci Üçlü Foto ANASAYFA');
     const ikinciAltılıFoto = sortedPhotos.find((photo: any) => photo.name === 'İkinci Altılı Foto ANASAYFA');
     const üçüncüÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'Üçüncü Üçlü Foto ANASAYFA');
@@ -29,7 +29,6 @@ export const fetchFotosHomepage = async () => {
     const beşinciÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'Beşinci Üçlü Foto ANASAYFA');
     const altıncıÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'Altıncı Üçlü Foto ANASAYFA');
     const sekizinciAltılıFoto = sortedPhotos.find((photo: any) => photo.name === 'Sekizinci Altılı Foto ANASAYFA');
-
 
     return {
         sortedPhotos,

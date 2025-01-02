@@ -4,6 +4,7 @@ import Image from 'next/image';
 import PopupPhoto from './PopupPhoto';
 
 const SixPhoto = ({ photos }: any) => {
+    console.log(photos)
     const base = 'https://api.avrupagozestetikinfo.com';
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number | null>(null);
 
@@ -16,7 +17,7 @@ const SixPhoto = ({ photos }: any) => {
     };
 
     const handleNextPhoto = () => {
-        if (currentPhotoIndex !== null && currentPhotoIndex < photos?.fotos?.length - 1) {
+        if (currentPhotoIndex !== null && currentPhotoIndex < photosToShow.length - 1) {
             setCurrentPhotoIndex((prev) => (prev !== null ? prev + 1 : null));
         }
     };
@@ -28,24 +29,21 @@ const SixPhoto = ({ photos }: any) => {
     };
 
     const getPhotoUrl = (photo: any) => {
-        if (!photo?.foto?.formats) {
-            return '/default-image.jpg'; // Varsayılan resim
+        if (!photo?.foto?.url) {
+            return '/default.svg'; // Varsayılan resim
         }
-        if (photo.foto.formats.large?.url) {
-            return `${base}${photo.foto.formats.large.url}`;
-        } else if (photo.foto.formats.medium?.url) {
-            return `${base}${photo.foto.formats.medium.url}`;
-        } else if (photo.foto.formats.small?.url) {
-            return `${base}${photo.foto.formats.small.url}`;
-        } else if (photo.foto.formats.thumbnail?.url) {
-            return `${base}${photo.foto.formats.thumbnail.url}`;
-        }
-        return '/default-image.jpg';
+        return `${base}${photo.foto.url}`;
     };
+
+    // Fotoğraf listesini 6 elemana tamamla
+    const safePhotos = photos?.fotos && Array.isArray(photos.fotos) ? photos.fotos : [];
+    const photosToShow = safePhotos.length >= 6
+        ? safePhotos
+        : [...safePhotos, ...Array(6 - safePhotos.length).fill({})];
 
     return (
         <div className="w-[100%] sm:px-32 mt-5 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1 px-2">
-            {photos?.fotos?.map((photo: any, index: number) => (
+            {photosToShow.map((photo: any, index: number) => (
                 <div
                     key={`${photo?.id || photo?.documentId || index}`} // Benzersiz key değeri
                     className="relative w-full cursor-pointer"
@@ -74,26 +72,26 @@ const SixPhoto = ({ photos }: any) => {
                 isOpen={currentPhotoIndex !== null}
                 onClose={handleClosePopup}
                 onNext={
-                    photos?.fotos?.length > 1 &&
+                    photosToShow.length > 1 &&
                         currentPhotoIndex !== null &&
-                        currentPhotoIndex < photos.fotos.length - 1
+                        currentPhotoIndex < photosToShow.length - 1
                         ? handleNextPhoto
                         : undefined
                 }
                 onPrev={
-                    photos?.fotos?.length > 1 &&
+                    photosToShow.length > 1 &&
                         currentPhotoIndex !== null &&
                         currentPhotoIndex > 0
                         ? handlePreviousPhoto
                         : undefined
                 }
                 currentPhotoIndex={currentPhotoIndex}
-                totalPhotos={photos?.fotos?.length || 0}
+                totalPhotos={photosToShow.length}
             >
-                {currentPhotoIndex !== null && photos?.fotos[currentPhotoIndex] && (
+                {currentPhotoIndex !== null && photosToShow[currentPhotoIndex] && (
                     <Image
-                        src={getPhotoUrl(photos.fotos[currentPhotoIndex])}
-                        alt={photos.fotos[currentPhotoIndex]?.hakkinda || 'Current Photo'}
+                        src={getPhotoUrl(photosToShow[currentPhotoIndex])}
+                        alt={photosToShow[currentPhotoIndex]?.hakkinda || 'Current Photo'}
                         width={900}
                         height={900}
                         className="rounded-lg object-cover shadow-lg"

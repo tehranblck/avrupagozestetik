@@ -43,8 +43,8 @@ const SixVideo = ({ videos }: any) => {
                         priority
                         width={900}
                         height={900}
-                        src={base + (video?.thumbnail?.[0]?.formats?.large?.url || '')}
-                        alt={video.createdAt || `Video Thumbnail ${index + 1}`}
+                        src={base + (video?.thumbnail?.[0]?.formats?.large?.url || '/maint.jpg')}
+                        alt={video?.createdAt || `Video Thumbnail ${index + 1}`}
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
@@ -59,12 +59,12 @@ const SixVideo = ({ videos }: any) => {
             ))}
 
             {/* Popup */}
-            <Popup
-                title={currentVideoIndex !== null ? videoData[currentVideoIndex]?.title || '' : ''}
-                isOpen={currentVideoIndex !== null}
-                onClose={handleClosePopup}
-            >
-                {currentVideoIndex !== null && (
+            {currentVideoIndex !== null && (
+                <Popup
+                    title={videoData[currentVideoIndex]?.title || 'Video'}
+                    isOpen={currentVideoIndex !== null}
+                    onClose={handleClosePopup}
+                >
                     <video
                         className="w-full shadow-lg"
                         controls
@@ -72,14 +72,11 @@ const SixVideo = ({ videos }: any) => {
                         autoPlay
                         playsInline
                     >
-                        <source
-                            src={base + (videoData[currentVideoIndex]?.video?.[0]?.url || '')}
-                            type="video/mp4"
-                        />
+                        <source src={base + (videoData[currentVideoIndex]?.video?.[0]?.url || '/videos/default.mp4')} type="video/mp4" />
                         Tarayıcınız bu videoyu oynatmayı desteklemiyor.
                     </video>
-                )}
-            </Popup>
+                </Popup>
+            )}
         </div>
     );
 };

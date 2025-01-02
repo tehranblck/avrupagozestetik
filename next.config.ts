@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ["api.avrupagozestetikinfo.com"], // Harici domain
+        domains: ["api.avrupagozestetikinfo.com",], // Harici domain
     },
 };
 

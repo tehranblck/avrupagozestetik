@@ -89,21 +89,16 @@ const Header = ({ isHomePage }: HeaderProps) => {
 
     return (
         <header
-            className={`w-full ${isHomePage ? null : 'fixed top-0  header'} p-5 z-30`} // fixed position ve z-index ayarlandı
+            className={`w-full ${isHomePage ? null : 'fixed top-0  header'} p-5 z-30`}
         >
             <div className="container mx-auto flex items-center justify-between gap-2 text-white">
-                {/* Logo ve diğer menüler (isteğe bağlı) */}
-                {/* <Link href={'/'} className="flex items-center">
-                    <Image alt="Logo" src="/logo.svg" width={100} height={60} />
-                </Link> */}
-
                 {/* Randevu Al Butonu */}
-                <div className={`flex-grow flex justify-center ${isHomePage ? null : 'w-full'} sm:justify-end sm:mt-0`}>
+                <div className={`flex-grow flex justify-center ${isHomePage ? null : 'w-full'} sm:justify-end`}>
                     <button
                         ref={buttonRef}
                         style={{ fontSize: '16px' }}
-                        className={`flex items-center justify-center bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300 px-4 py-2 ${isHomePage ? null : 'w-full'}`}
-                        onClick={toggleDropdown} // "Randevu Al" butonuna tıklayınca popup açılacak
+                        className={`flex items-center justify-center bg-[#FF0000] text-white rounded-lg font-semibold shadow-md transition-colors duration-300 px-4 py-2 ${isHomePage ? 'w-auto' : 'w-full sm:w-auto'}`}
+                        onClick={toggleDropdown}
                     >
                         Randevu Al
                         <MdKeyboardArrowDown
@@ -115,11 +110,11 @@ const Header = ({ isHomePage }: HeaderProps) => {
                     {isDropdownOpen && (
                         <div
                             ref={dropdownRef}
-                            className="absolute top-[calc(100%)] right-0 w-full sm:w-auto bg-white text-blue-600 rounded-lg shadow-lg py-2 z-[9999999999999]"
+                            className="absolute top-[calc(100%)] right-0 w-full sm:w-64 bg-white text-blue-600 rounded-lg shadow-lg py-2 z-[9999999999999]"
                         >
                             {/* Close Button */}
                             <button
-                                className="absolute top-4 right-4 text-red-500 text-3xl hover:text-red-700"
+                                className="absolute top-4 right-4 text-red-500 text-3xl hover:text-red-700 sm:top-2 sm:right-2 sm:text-2xl"
                                 onClick={closeDropdown}
                             >
                                 <IoClose />
@@ -128,14 +123,14 @@ const Header = ({ isHomePage }: HeaderProps) => {
                             {/* Dropdown Links */}
                             <Link
                                 href="#"
-                                onClick={openCategoryModal} // WhatsApp'tan randevu almak için kategori popup'ını açacak
-                                className="py-2 px-4 inline-block hover:bg-gray-100 rounded-md cursor-pointer"
+                                onClick={openCategoryModal}
+                                className="block w-full text-center sm:text-left py-3 sm:py-2 px-4 hover:bg-gray-100 rounded-md cursor-pointer"
                             >
                                 WhatsApp'tan randevu al
                             </Link>
                             <Link
                                 href="/iletisim"
-                                className="block w-full px-4 py-2 hover:bg-gray-100"
+                                className="block w-full text-center sm:text-left py-3 sm:py-2 px-4 hover:bg-gray-100"
                             >
                                 Form Doldur
                             </Link>
@@ -143,40 +138,38 @@ const Header = ({ isHomePage }: HeaderProps) => {
                     )}
                 </div>
 
-                {
-                    isHomePage ? (
-                        <div className="relative flex-grow flex justify-end sm:justify-end sm:mt-0">
-                            <Link
-                                href={'/diger-islemler'}
-                                style={{ fontSize: '16px' }}
-                                className="flex items-center  px-4 py-2 bg-[#2b80f6] text-white rounded-lg font-semibold shadow-md transition-colors duration-300"
-                            >
-                                Diğer işlemler <FaAngleRight className=' text-xl' />
-                            </Link>
-                        </div>
-                    ) : null
-                }
+                {isHomePage && (
+                    <div className="relative flex-grow-0 flex justify-end sm:ml-4">
+                        <Link
+                            href={'/diger-islemler'}
+                            style={{ fontSize: '16px' }}
+                            className="flex items-center px-4 py-2 bg-[#2b80f6] text-white rounded-lg font-semibold shadow-md transition-colors duration-300 whitespace-nowrap"
+                        >
+                            Diğer işlemler <FaAngleRight className='ml-2 text-xl' />
+                        </Link>
+                    </div>
+                )}
             </div>
 
             {/* Kategori Seçimi Popup */}
             {isCategoryModalOpen && (
                 <div className="fixed z-[999999999999] top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center backdrop-blur-sm">
-                    <div className="bg-white border-2 border-red-500 p-6 rounded-lg shadow-lg w-80">
+                    <div className="bg-white border-2 border-red-500 p-6 rounded-lg shadow-lg w-[90%] sm:w-80 max-h-[90vh] overflow-y-auto">
                         <h2 className="text-lg font-semibold text-center mb-4">Kategori Seçin</h2>
                         <div className="space-y-1">
                             {categories.map((category) => (
                                 <button
                                     key={category}
-                                    onClick={() => handleCategorySelect(category)} // Kategoriye tıklayınca WhatsApp yönlendirmesi yapılır
-                                    className="w-full text-left px-4 py-2 border rounded-md hover:bg-gray-100"
+                                    onClick={() => handleCategorySelect(category)}
+                                    className="w-full text-left px-4 py-3 sm:py-2 border rounded-md hover:bg-gray-100"
                                 >
                                     {category}
                                 </button>
                             ))}
                         </div>
                         <button
-                            onClick={() => setIsCategoryModalOpen(false)} // Modalı kapatır
-                            className="mt-4 w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600"
+                            onClick={() => setIsCategoryModalOpen(false)}
+                            className="mt-4 w-full bg-red-500 text-white py-3 sm:py-2 rounded-md hover:bg-red-600"
                         >
                             Kapat
                         </button>

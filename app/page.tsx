@@ -144,13 +144,13 @@ const Page = async () => {
 
 
                 {/* 25. Altıncı Altılı Fotoğraflar */}
-                <SixPhoto photos={altıncıAltılıFoto} />++++++++++++++++++++++
+                <SixPhoto photos={altıncıAltılıFoto} />
 
                 {/* 26. Beşinci Uyarı Kartı */}
-                <AlertCard text={Metin_5} />+++++++++++++++++++++
+                <AlertCard text={Metin_5} />
 
                 {/* 27. Yedinci Altılı Fotoğraflar */}
-                <SixPhoto photos={yedinciAltılıFoto} />+++++++++++++++++++++
+                <SixPhoto photos={yedinciAltılıFoto} />
 
 
                 {/* 28. Altıncı Uyarı Kartı */}

@@ -78,7 +78,7 @@ const SingleVideo = ({ videos }: any) => {
                         alt={videoData?.documentId || `Video Thumbnail`}
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
+                    <div className="absolute inset-0 flex items-center justify-center  rounded-lg">
                         <button
                             className="text-white text-6xl font-bold"
                             aria-label="Play Video"

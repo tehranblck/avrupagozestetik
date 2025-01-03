@@ -6,6 +6,7 @@ import Popup from '../DoubleVideo/PopupVideo';
 const SixVideo = ({ videos }: any) => {
     const videoData = videos?.videos || [];
     const base = 'https://api.avrupagozestetikinfo.com';
+    console.log(videoData)
 
     const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(null);
 
@@ -43,7 +44,7 @@ const SixVideo = ({ videos }: any) => {
                         priority
                         width={900}
                         height={900}
-                        src={base + (video?.thumbnail?.[0]?.formats?.large?.url || '/maint.jpg')}
+                        src={base + (video?.thumbnail?.[0]?.url || '/maint.jpg')}
                         alt={video?.createdAt || `Video Thumbnail ${index + 1}`}
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />

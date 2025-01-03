@@ -63,7 +63,7 @@ const SingleVideo = ({ videos }: any) => {
     };
 
     return (
-        <div className="w-[100%] sm:px-32 px-2  mx-auto">
+        <div className="w-[100%] sm:px-16 px-2  mx-auto">
             {!isVideoVisible ? (
                 <div
                     className="relative w-full cursor-pointer"

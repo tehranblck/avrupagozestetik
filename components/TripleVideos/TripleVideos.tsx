@@ -29,7 +29,7 @@ const TripleVideo = ({ videos }: any) => {
     }, [currentVideoIndex]);
 
     return (
-        <div className="w-[100%] sm:px-32 mx-auto grid grid-cols-3 md:grid-cols-3 gap-1 px-2">
+        <div className="w-[100%] sm:px-16 mx-auto grid grid-cols-3 md:grid-cols-3 gap-1 px-2">
             {videoData.map((video: any, index: number) => (
                 <div
                     key={video.createdAt || index}

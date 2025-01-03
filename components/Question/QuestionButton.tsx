@@ -43,7 +43,7 @@ const AlertCard = ({ dest, text }: any) => {
   }, []);
 
   return (
-    <div className="px-1  sm:px-32">
+    <div className="px-1  sm:px-16">
       <div
         ref={cardRef}
         className="relative  w-full p-4 rounded-2xl overflow-hidden cursor-pointer transition-transform duration-200 hover:-translate-y-1"

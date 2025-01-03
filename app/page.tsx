@@ -172,31 +172,6 @@ const Page = async () => {
                 <ThreePhoto photos={beşinciÜçlüFoto} />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
 
             {/* 33. WhatsApp İletişim Butonu */}

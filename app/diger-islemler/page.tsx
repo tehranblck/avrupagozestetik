@@ -31,7 +31,7 @@ const Page = async () => {
 
 
             </div>
-            <div className="bg">
+            <div className="bg flex flex-col gap-2">
                 <CategoriesText text1Classes='text-sm mt-40' text1='Bu sayfamızda burun estetiği, yüz germe ve medikal estetik gibi çeşitli uygulamalarımızın öncesi ve sonrası değişimlerinden bazılarını inceleyebilirsiniz.' />
                 <div className="mt-5">
                     <ThreePhoto photos={ilkÜçlüDigerİslemler} />
@@ -40,8 +40,9 @@ const Page = async () => {
                 <ThreePhoto photos={ikinciÜçlüDigerİslemler} />
                 <SingleVideo videos={SingleVideoo} />
                 <SixPhoto photos={ilkAltılıDigerİslemler} />
+                <SixPhoto photos={ikinciAltılıDigerİslemler} />
             </div>
-            <SixPhoto photos={ikinciAltılıDigerİslemler} />
+
         </div>
     )
 }

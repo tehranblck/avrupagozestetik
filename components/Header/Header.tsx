@@ -91,9 +91,9 @@ const Header = ({ isHomePage }: HeaderProps) => {
         <header
             className={`w-full ${isHomePage ? null : 'fixed top-0  header'} p-5 z-30`}
         >
-            <div className="container mx-auto flex items-center justify-between gap-2 text-white">
+            <div className="container mx-auto flex items-center justify-between sm:justify-center sm:gap-32 gap-2 text-white">
                 {/* Randevu Al Butonu */}
-                <div className={`flex-grow flex justify-center ${isHomePage ? null : 'w-full'} sm:justify-end`}>
+                <div className={` flex justify-center ${isHomePage ? null : 'w-full'} sm:justify-end`}>
                     <button
                         ref={buttonRef}
                         style={{ fontSize: '16px' }}
@@ -139,7 +139,7 @@ const Header = ({ isHomePage }: HeaderProps) => {
                 </div>
 
                 {isHomePage && (
-                    <div className="relative flex-grow-0 flex justify-end sm:ml-4">
+                    <div className="relative flex justify-end ">
                         <Link
                             href={'/diger-islemler'}
                             style={{ fontSize: '16px' }}

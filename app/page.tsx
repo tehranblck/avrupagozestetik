@@ -37,8 +37,6 @@ const Page = async () => {
         yedinciAltılıFoto,
         dördüncüÜçlüFoto,
         beşinciÜçlüFoto,
-        altıncıÜçlüFoto,
-        sekizinciAltılıFoto,
     } = await fetchFotosHomepage();
 
     const VideoData = await fetchVideoDatas();

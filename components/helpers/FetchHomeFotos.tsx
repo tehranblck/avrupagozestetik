@@ -34,8 +34,6 @@ export const fetchFotosHomepage = async () => {
         const yedinciAltılıFoto = sortedPhotos.find((photo: any) => photo.name === 'Yedinci Altılı Foto ANASAYFA');
         const dördüncüÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'Dördüncü Üçlü Foto ANASAYFA');
         const beşinciÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'Beşinci Üçlü Foto ANASAYFA');
-        const altıncıÜçlüFoto = sortedPhotos.find((photo: any) => photo.name === 'Altıncı Üçlü Foto ANASAYFA');
-        const sekizinciAltılıFoto = sortedPhotos.find((photo: any) => photo.name === 'Sekizinci Altılı Foto ANASAYFA');
 
         return {
             sortedPhotos,

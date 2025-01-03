@@ -62,7 +62,7 @@ const SixVideo = ({ videos }: any) => {
                     />
                     <div className="absolute inset-0 flex items-center justify-center  rounded-lg">
                         <button
-                            className="text-white text-md font-bold"
+                            className="text-white text-6xl font-bold"
                             aria-label="Play Video"
                         >
                             ▶

@@ -6,7 +6,19 @@ import Popup from '../DoubleVideo/PopupVideo';
 const SixVideo = ({ videos }: any) => {
     const videoData = videos?.videos || [];
     const base = 'https://api.avrupagozestetikinfo.com';
-    console.log(videoData)
+    console.log(videoData);
+
+    // En az 6 video öğesi olacak şekilde doldur
+    const minVideos = 6;
+    const completeVideoData = [...videoData];
+
+    while (completeVideoData.length < minVideos) {
+        completeVideoData.push({
+            title: 'Default Video',
+            thumbnail: [{ url: '/default.svg' }],
+            video: [{ url: '/videos/default.mp4' }],
+        });
+    }
 
     const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(null);
 
@@ -33,7 +45,7 @@ const SixVideo = ({ videos }: any) => {
 
     return (
         <div className="w-[100%] px-2 mt-2 sm:px-32 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1">
-            {videoData.map((video: any, index: number) => (
+            {completeVideoData.map((video: any, index: number) => (
                 <div
                     key={video.createdAt || index}
                     className="relative w-full cursor-pointer"
@@ -44,7 +56,7 @@ const SixVideo = ({ videos }: any) => {
                         priority
                         width={900}
                         height={900}
-                        src={base + (video?.thumbnail?.[0]?.url || '/maint.jpg')}
+                        src={base + (video?.thumbnail?.[0]?.url || '/default.svg')}
                         alt={video?.createdAt || `Video Thumbnail ${index + 1}`}
                         className="w-full h-full object-cover rounded-lg shadow-lg"
                     />
@@ -62,7 +74,7 @@ const SixVideo = ({ videos }: any) => {
             {/* Popup */}
             {currentVideoIndex !== null && (
                 <Popup
-                    title={videoData[currentVideoIndex]?.title || 'Video'}
+                    title={completeVideoData[currentVideoIndex]?.title || 'Video'}
                     isOpen={currentVideoIndex !== null}
                     onClose={handleClosePopup}
                 >
@@ -73,7 +85,7 @@ const SixVideo = ({ videos }: any) => {
                         autoPlay
                         playsInline
                     >
-                        <source src={base + (videoData[currentVideoIndex]?.video?.[0]?.url || '/videos/default.mp4')} type="video/mp4" />
+                        <source src={base + (completeVideoData[currentVideoIndex]?.video?.[0]?.url || '/videos/default.mp4')} type="video/mp4" />
                         Tarayıcınız bu videoyu oynatmayı desteklemiyor.
                     </video>
                 </Popup>

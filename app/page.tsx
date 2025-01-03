@@ -80,7 +80,7 @@ const Page = async () => {
                 <Header isHomePage={true} />
             </div>
 
-            <div id='blurbg' className="bg">
+            <div id='blurbg' className="bg flex flex-col gap-2">
                 <div className="flex items-center mt-40 justify-center w-full">
 
                 </div>

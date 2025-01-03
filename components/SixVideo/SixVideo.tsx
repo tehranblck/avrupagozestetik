@@ -44,7 +44,7 @@ const SixVideo = ({ videos }: any) => {
     }, [currentVideoIndex]);
 
     return (
-        <div className="w-[100%] px-2 mt-2 sm:px-32 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1">
+        <div className="w-[100%] px-2  sm:px-32 mx-auto grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-1">
             {completeVideoData.map((video: any, index: number) => (
                 <div
                     key={video.createdAt || index}

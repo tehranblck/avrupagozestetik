@@ -9,7 +9,7 @@ const SinglePhoto = ({ image }: any) => {
         : '/default.svg'; // Default image olarak yerel bir resim kullanabilirsiniz.
 
     return (
-        <div className={`w-full px-2 sm:px-32 overflow-hidden ${image || ''}`}>
+        <div className={`w-full px-2 sm:px-32  overflow-hidden ${image || ''}`}>
             <Image
                 width={500}
                 height={500}

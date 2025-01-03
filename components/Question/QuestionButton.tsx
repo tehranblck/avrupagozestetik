@@ -43,10 +43,10 @@ const AlertCard = ({ dest, text }: any) => {
   }, []);
 
   return (
-    <div className="px-1 sm:px-32">
+    <div className="px-1  sm:px-32">
       <div
         ref={cardRef}
-        className="relative mt-2 w-full p-4 rounded-2xl overflow-hidden cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+        className="relative  w-full p-4 rounded-2xl overflow-hidden cursor-pointer transition-transform duration-200 hover:-translate-y-1"
       >
         <div className="absolute inset-0 -z-10 filter blur-lg">
           <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 z-50 w-full h-full"></div>

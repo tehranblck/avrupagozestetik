@@ -104,7 +104,7 @@ const Page = async () => {
                 <ThreePhoto photos={ikinciÜçlüFoto} />
 
                 {/* 11. Üçüncü Üçlü Video */}
-                {thirdTripleVideo && <TripleVideo videos={thirdTripleVideo} />}
+                <TripleVideo videos={thirdTripleVideo} />
 
                 {/* 12. İkinci Altılı Fotoğraflar */}
                 <SixPhoto photos={ikinciAltılıFoto} />

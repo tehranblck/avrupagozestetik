@@ -15,7 +15,7 @@ export const metadata = {
   description: 'Avrupa göz estetik hakkında bilgi alın',
 
   icons: {
-    icon: '/logo.svg',
+    icon: '/logo.png',
   },
 
 };

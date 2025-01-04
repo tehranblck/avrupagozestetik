@@ -57,12 +57,11 @@ const Page = async () => {
     const dördüncüAltılıVideo = sortedVideos.find((video: any) => video.name === 'Dördüncü Altılı Video ANASAYFA')
 
     const dataTextContents = await fetchTextContents();
-    const Metin_1 = dataTextContents?.[0].metin_alanis[0];
-    const Metin_2 = dataTextContents?.[1].metin_alanis[0];
-    const Metin_3 = dataTextContents?.[2].metin_alanis[0];
-    const Metin_4 = dataTextContents?.[3].metin_alanis[0];
-    const Metin_5 = dataTextContents?.[4].metin_alanis[0];
-    const Metin_6 = dataTextContents?.[5].metin_alanis[0];
+    const Metin_1 = dataTextContents?.[0]?.metin_alanis[0];
+    const Metin_2 = dataTextContents?.[1]?.metin_alanis[0];
+    const Metin_3 = dataTextContents?.[2]?.metin_alanis[0];
+    const Metin_4 = dataTextContents?.[3]?.metin_alanis[0];
+
 
     return (
         <div className="max-w-7xl mx-auto w-full">
@@ -110,7 +109,7 @@ const Page = async () => {
                 <SixPhoto photos={ikinciAltılıFoto} />
 
                 {/* 13. İkinci Uyarı Kartı */}
-                <AlertCard text={Metin_2} />
+                <AlertCard text={Metin_1} />
 
                 {/* 14. Dördüncü Üçlü Video */}
                 <TripleVideo videos={fourthTripleVideo} />
@@ -137,7 +136,7 @@ const Page = async () => {
                 <SixPhoto photos={dördüncüAltılıFoto} />
 
                 {/* 22. Dördüncü Uyarı Kartı */}
-                <AlertCard text={Metin_4} />
+                <AlertCard text={Metin_2} />
 
                 {/* 23. Beşinci Altılı Fotoğraflar */}
                 <SixPhoto photos={beşinciAltılıFoto} />
@@ -146,7 +145,7 @@ const Page = async () => {
                 <SixPhoto photos={altıncıAltılıFoto} />
 
                 {/* 26. Beşinci Uyarı Kartı */}
-                <AlertCard text={Metin_5} />
+                <AlertCard text={Metin_3} />
 
                 {/* 27. Yedinci Altılı Fotoğraflar */}
                 <SixPhoto photos={yedinciAltılıFoto} />
@@ -160,7 +159,7 @@ const Page = async () => {
 
 
                 {/* 28. Altıncı Uyarı Kartı */}
-                <AlertCard text={Metin_6} />
+                <AlertCard text={Metin_4} />
 
                 {/* 18. Dördüncü Altili Video */}
                 <SixVideo videos={dördüncüAltılıVideo} />

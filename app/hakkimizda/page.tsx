@@ -6,7 +6,9 @@ import React from 'react'
 
 const page = async () => {
     const base = 'https://api.avrupagozestetikinfo.com'
-    const fetchHakkimizda = await fetch('https://api.avrupagozestetikinfo.com/api/hakkimizda?populate=*')
+    const fetchHakkimizda = await fetch('https://api.avrupagozestetikinfo.com/api/hakkimizda?populate=*', {
+        next: { revalidate: 10 },
+    })
     const data = (await fetchHakkimizda.json()).data
     const { Hakkimizda_yazisi, foto_1, foto_2 } = data
     const foto1Src = base + foto_1?.url
@@ -19,8 +21,6 @@ const page = async () => {
                 <div style={{ top: '5.5rem' }} className=' fixed  top-28 rounded-lg  z-20 w-full' >
                     <Button />
                 </div>
-
-
             </div>
             <div className="bg">
                 <CategoriesText text1='Avrupa' text1Classes='text-5xl mt-44' text2='Göz & Estetik' />

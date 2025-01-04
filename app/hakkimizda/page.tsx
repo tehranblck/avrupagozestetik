@@ -10,7 +10,7 @@ const page = async () => {
     const data = (await fetchHakkimizda.json()).data
     const { Hakkimizda_yazisi, foto_1, foto_2 } = data
     const foto1Src = base + foto_1?.url
-    const foto2Src = base + foto_1?.url
+    const foto2Src = base + foto_2?.url
     console.log(data)
     return (
         <div>

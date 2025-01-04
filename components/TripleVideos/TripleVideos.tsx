@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Popup from '../DoubleVideo/PopupVideo';
 
 const TripleVideo = ({ videos }: any) => {
+    console.log(videos)
     const videoData = videos?.videos || [];
     const base = 'https://api.avrupagozestetikinfo.com';
     const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(null);

@@ -98,7 +98,7 @@ const Page = async () => {
                 <TripleVideo videos={secondTripleVideo} />
 
                 {/* 9. İlk Uyarı Kartı */}
-                <AlertCard text={Metin_1} />
+                {/* <AlertCard text={Metin_1} /> */}
 
                 {/*  ikinci 3-lü Fotoğraf */}
                 <ThreePhoto photos={ikinciÜçlüFoto} />
@@ -125,7 +125,7 @@ const Page = async () => {
                 <SixPhoto photos={üçüncüAltılıFoto} />
 
                 {/* 17. Üçüncü Uyarı Kartı */}
-                <AlertCard text={Metin_3} />
+                {/* <AlertCard text={Metin_3} /> */}
 
                 {/* 18. İkinci Tekli Fotoğraf */}
                 <SinglePhoto image={ikinciTekliFoto} />

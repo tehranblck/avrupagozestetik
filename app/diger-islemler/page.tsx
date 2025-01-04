@@ -12,7 +12,7 @@ import React from 'react'
 
 const Page = async () => {
     const data = await fetchVideoDatas()
-    const firstTripleVideo = data.find((video: any) => video.name === 'Üçlü Video DİGER-İSLEMLER');
+    const firstTripleVideo = data.find((video: any) => video.name === 'İkili Video DİGER-İSLEMLER');
     const SingleVideoo = data.find((video: any) => video.name === 'Tekli Video DİGER-İSLEMLER');
 
     const { ikinciÜçlüDigerİslemler, ilkÜçlüDigerİslemler, ilkAltılıDigerİslemler, ikinciAltılıDigerİslemler } = await fetchFotosHomepage()

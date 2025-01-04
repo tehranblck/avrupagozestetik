@@ -33,24 +33,24 @@ const page = async () => {
                 </div>
             </div>
 
-            <div className="bg">
+            <div className="bg ">
                 <CategoriesText text1Classes='text-4xl mt-44' text1='Mutlu Danışan' text2='tablomuz' paragraph='Mutluluğunuz sevincimizdir' />
                 <InfinitySlider items={items} />
 
                 {FirstTripleVideo && <TripleVideo videos={FirstTripleVideo} />}
-                <div className='flex flex-col w-full items-center gap-3  px-2'>
+                <div className='flex flex-col w-full py-2 items-center gap-3  px-2'>
                     {yorums[0] && <CommentCard comment={yorums[0]} />}
                     {yorums[1] && <CommentCard comment={yorums[1]} />}
                 </div>
 
                 {SecondTripleVideo && <TripleVideo videos={SecondTripleVideo} />}
-                <div className='flex flex-col gap-3 px-2'>
+                <div className='flex flex-col py-2 gap-3 px-2'>
                     {yorums[2] && <CommentCard comment={yorums[2]} />}
                     {yorums[3] && <CommentCard comment={yorums[3]} />}
                 </div>
 
                 {ThirdTripleVideo && <TripleVideo videos={ThirdTripleVideo} />}
-                <div className='flex flex-col gap-3 px-2'>
+                <div className='flex flex-col gap-3 py-2 px-2'>
                     {yorums[4] && <CommentCard comment={yorums[4]} />}
                     {yorums[5] && <CommentCard comment={yorums[5]} />}
                 </div>

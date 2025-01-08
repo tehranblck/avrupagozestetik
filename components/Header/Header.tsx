@@ -4,6 +4,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { IoClose } from 'react-icons/io5'; // Close icon (X)
 import Link from 'next/link';
 import { FaAngleRight } from "react-icons/fa";
+import WhatsappTracker from '../WhatsappTracker';
 
 interface HeaderProps {
     isHomePage: boolean;
@@ -11,7 +12,7 @@ interface HeaderProps {
 
 const Header = ({ isHomePage }: HeaderProps) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false); // Kategori popup durumu
+    const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -79,12 +80,9 @@ const Header = ({ isHomePage }: HeaderProps) => {
         setIsDropdownOpen(false); // "Randevu Al" dropdown'ını kapat
     };
 
-    // Kategoriye tıklanınca WhatsApp'a dinamik mesaj göndermek
+    // Kategoriye tıklanınca sadece modalı kapat
     const handleCategorySelect = (category: string) => {
-        const whatsappMessage = `Merhaba, ${category} hakkında bilgi almak istiyorum.`;
-        const whatsappUrl = `https://wa.me/905327044102?text=${encodeURIComponent(whatsappMessage)}`;
-        window.open(whatsappUrl, '_blank'); // Yeni sekmede WhatsApp'a yönlendirme
-        setIsCategoryModalOpen(false); // Kategori popup'ını kapat
+        setIsCategoryModalOpen(false);
     };
 
     return (
@@ -121,15 +119,14 @@ const Header = ({ isHomePage }: HeaderProps) => {
                             </button>
 
                             {/* Dropdown Links */}
-                            <Link
-                                href="#"
-                                onClick={openCategoryModal}
+                            <button
+                                onClick={() => openCategoryModal()}
                                 className="block w-full text-center sm:text-left py-3 sm:py-2 px-4 hover:bg-gray-100 rounded-md cursor-pointer"
                             >
                                 WhatsApp'tan randevu al
-                            </Link>
+                            </button>
                             <Link
-                                href="/iletisim"
+                                href="/iletisim#form"
                                 className="block w-full text-center sm:text-left py-3 sm:py-2 px-4 hover:bg-gray-100"
                             >
                                 Form Doldur
@@ -158,13 +155,18 @@ const Header = ({ isHomePage }: HeaderProps) => {
                         <h2 className="text-lg font-semibold text-center mb-4">Kategori Seçin</h2>
                         <div className="space-y-1">
                             {categories.map((category) => (
-                                <button
+                                <WhatsappTracker
                                     key={category}
-                                    onClick={() => handleCategorySelect(category)}
-                                    className="w-full text-left px-4 py-3 sm:py-2 border rounded-md hover:bg-gray-100"
+                                    href={`https://wa.me/905327044102?text=${encodeURIComponent(`Merhaba, ${category} hakkında bilgi almak istiyorum.`)}`}
+                                    linkId={`Whatsapp ${category} Header`}
                                 >
-                                    {category}
-                                </button>
+                                    <div
+                                        onClick={() => handleCategorySelect(category)}
+                                        className="w-full text-left px-4 py-3 sm:py-2 border rounded-md hover:bg-gray-100 cursor-pointer"
+                                    >
+                                        {category}
+                                    </div>
+                                </WhatsappTracker>
                             ))}
                         </div>
                         <button

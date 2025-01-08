@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaWhatsapp } from 'react-icons/fa';
 import AskQuestionButton from '@/components/AskQuestionButton/AskQuestionButton';
 import ThreePhoto from '@/components/DoublePhoto/DoublePhoto';
 import { fetchFotosHomepage } from '@/components/helpers/FetchHomeFotos';
@@ -12,11 +11,9 @@ import SixPhoto from '@/components/SixPhoto/SixPhoto';
 import SixVideo from '@/components/SixVideo/SixVideo';
 import TripleVideo from '@/components/TripleVideos/TripleVideos';
 import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos';
-import Image from 'next/image';
-import Link from 'next/link';
 import { fetchTextContents } from '@/components/helpers/FetchTextContents';
-import DoubleVideo from '@/components/DoubleVideo/DoubleVideo';
-import { video } from 'framer-motion/client';
+import WhatsappTracker from '@/components/WhatsappTracker';
+
 
 const Page = async () => {
     const base = 'https://api.avrupagozestetikinfo.com';
@@ -49,7 +46,6 @@ const Page = async () => {
     const secondSingleVideo = sortedVideos.find((video: any) => video.name === 'İkinci Təkli Video');
     const thirdTripleVideo = sortedVideos.find((video: any) => video.name === 'Üçüncü üçlü video');
     const firstSixVideo = sortedVideos.find((video: any) => video.name === 'İlk Altılı Video');
-    console.log(firstSixVideo)
     const fourthTripleVideo = sortedVideos.find((video: any) => video.name === 'Dördüncü üçlü video');
     const fifthTripleVideo = sortedVideos.find((video: any) => video.name === 'Beşinci üçlü video');
     const ikinciAltiliVideo = sortedVideos.find((video: any) => video.name === 'İkinci Altılı Video ANASAYFA')
@@ -174,7 +170,10 @@ const Page = async () => {
             </div>
 
             {/* 33. WhatsApp İletişim Butonu */}
-            <AskQuestionButton />
+            <WhatsappTracker linkId='Ana sayfa Whatsapp' href='https://wa.me/905327044102'>
+                <AskQuestionButton />
+            </WhatsappTracker>
+
         </div>
     );
 };

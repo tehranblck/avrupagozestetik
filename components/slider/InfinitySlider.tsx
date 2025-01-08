@@ -22,7 +22,6 @@ const InfinitySlider = ({ items }: { items: any[] }) => {
     ]
 
     const Items = items?.length > 0 ? items : Slides
-    console.log(Items)
 
     return (
         <div className="overflow-hidden w-full my-3 pt-4 pb-1">

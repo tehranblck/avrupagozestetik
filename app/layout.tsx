@@ -25,7 +25,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body>
-        <div>
+        <div className='hidden lg:flex justify-center items-center h-screen'>
+          <p>Sitemiz sadece Mobil ve Tablet cihazlarda görüntülenebilmektedir. Daha iyi bir deneyim için lütfen Tablet veya mobilden giriş yapın</p>
+        </div>
+        <div className='block lg:hidden'>
 
           <main>{children}</main>
           <Footer />

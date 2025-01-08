@@ -7,7 +7,6 @@ const SingleVideo = ({ videos }: any) => {
     const [isVideoVisible, setIsVideoVisible] = useState(false); // Video görünüyor mu?
     const [hasPlayed, setHasPlayed] = useState(false); // Video oynatıldı mı?
     const videoRef = useRef<HTMLVideoElement | null>(null);
-    console.log(videos)
     // Videoları güvenli bir şekilde kontrol et ve varsayılan değeri oluştur
     const safeVideos = videos?.videos && Array.isArray(videos.videos) ? videos.videos : [];
     const videoData = safeVideos.length > 0 ? safeVideos[0] : { thumbnail: [{}], video: [{}] };

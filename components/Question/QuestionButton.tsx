@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from 'react';
 const AlertCard = ({ dest, text }: any) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const { body, title } = text ? text : { body: '', title: '' }
-  console.log(text)
 
 
   useEffect(() => {

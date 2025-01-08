@@ -6,7 +6,6 @@ import Popup from '../DoubleVideo/PopupVideo';
 const SixVideo = ({ videos }: any) => {
     const videoData = videos?.videos || [];
     const base = 'https://api.avrupagozestetikinfo.com';
-    console.log(videoData);
 
     // En az 6 video öğesi olacak şekilde doldur
     const minVideos = 6;

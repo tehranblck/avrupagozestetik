@@ -5,6 +5,7 @@ import WhatsAppButton from '@/components/WhatsappButton/WhatsappButton'
 import React from 'react'
 import ContactInfo from './Contactİnfo'
 import PhoneForm from '@/components/fform/Form'
+import WhatsappTracker from '@/components/WhatsappTracker'
 
 const page = () => {
     return (
@@ -16,7 +17,9 @@ const page = () => {
             <div className='container mx-auto mt-16 '>
                 <div className="div text-left sm:text-center">
                     <CategoriesText paragraphAlign='text-left' paragraph='Hızlıca bize ulaşmak için WhatsApp butonuna tıklayarak bize yazabilirsiniz.' />
-                    <WhatsAppButton />
+                    <WhatsappTracker href='https://wa.me/905327044102' linkId='Whatsapp Iletisim sayfasi'>
+                        <WhatsAppButton />
+                    </WhatsappTracker>
                 </div>
             </div>
             <ContactInfo />

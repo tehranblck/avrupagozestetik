@@ -9,6 +9,7 @@ interface WhatsappTrackerProps {
 }
 
 const WhatsappTracker: React.FC<WhatsappTrackerProps> = ({ linkId, href, children }) => {
+    const token = 'f970a4df600e35c76e94cebc4cdbe2d141637ce7b402bf3c0b829e5f7fc7ee5bbf868bf3e49c910bfcaa9507009264e65e228409d09297d9507742681bfe0cd48710ff182337f2e844e2cad1263ce91193e0727e3ede76a64d67cadf51e19b681fb041c1de1e3742292b1ea0fd4999b35bf7c57f14aaa0866c84322610e30edd'
     const handleClick = async () => {
         try {
             const currentDate = new Date();
@@ -28,7 +29,7 @@ const WhatsappTracker: React.FC<WhatsappTrackerProps> = ({ linkId, href, childre
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+                        'Authorization': `Bearer ${token}`,
                     },
                     body: JSON.stringify({
                         data: {
@@ -41,7 +42,7 @@ const WhatsappTracker: React.FC<WhatsappTrackerProps> = ({ linkId, href, childre
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+                        'Authorization': `Bearer ${token}`,
                     },
                     body: JSON.stringify({
                         data: {

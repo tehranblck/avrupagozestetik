@@ -17,14 +17,14 @@ const WhatsappTracker: React.FC<WhatsappTrackerProps> = ({ linkId, href, childre
             const year = currentDate.getFullYear();
             const formattedDate = `${year}-${month}-${day}`;
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/click-trackers?filters[linkin_yeri]=${linkId}&filters[tarih]=${formattedDate}`);
+            const response = await fetch(`https://api.avrupagozestetikinfo.com/api/click-trackers?filters[linkin_yeri]=${linkId}&filters[tarih]=${formattedDate}`);
             const data = await response.json();
 
             if (data.data.length > 0) {
                 const trackerId = data.data[0].documentId;
                 const currentCount = parseInt(data.data[0].tiklanma_sayisi, 10);
 
-                await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/click-trackers/${trackerId}`, {
+                await fetch(`https://api.avrupagozestetikinfo.com/api/click-trackers/${trackerId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const WhatsappTracker: React.FC<WhatsappTrackerProps> = ({ linkId, href, childre
                     }),
                 });
             } else {
-                await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/click-trackers`, {
+                await fetch(`https://api.avrupagozestetikinfo.com/api/click-trackers`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -8,8 +8,7 @@ const AskQuestionButton: React.FC = () => {
 
     // WhatsApp'a yönlendirme işlemi
     const handleWhatsAppRedirect = () => {
-        const whatsappMessage = "Merhaba, size nasıl yardımcı olabilirim?";
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+        const whatsappUrl = `https://wa.me/${phoneNumber}`;
         window.open(whatsappUrl, '_blank'); // Yeni sekmede WhatsApp'a yönlendirme
     };
 

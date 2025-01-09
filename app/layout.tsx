@@ -4,6 +4,7 @@ import Footer from '@/components/Footer/Footer';
 import ScrollUp from '@/components/ScrollUp/ScrollUp';
 import './globals.css'
 import AskQuestionButton from '@/components/AskQuestionButton/AskQuestionButton';
+import GoogleAnalytics from '@/components/GoogleAnaltyics';
 
 interface LayoutProps {
   children: ReactNode;
@@ -25,6 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body>
+        <GoogleAnalytics />
         <div className='hidden lg:flex justify-center items-center h-screen'>
           <p>Sitemiz sadece Mobil ve Tablet cihazlarda görüntülenebilmektedir. Daha iyi bir deneyim için lütfen Tablet veya mobilden giriş yapın</p>
         </div>

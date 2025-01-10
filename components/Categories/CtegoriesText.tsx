@@ -40,7 +40,7 @@ const CategoriesText: React.FC<CategoriesTextProps> = ({ text1, text2, paragraph
                 {text1}{isMobile ? <br /> : ' '} {text2}
             </div>
             <div
-                style={{ fontFamily: 'Glacial Indifference Regular' }}
+                style={{ fontFamily: '"Open Sans", serif', }}
                 className={`${paragraphAlign}   sm:text-center px-5 text-gray-700 font-medium  lg:text-base lg:pr-10`}
             >
                 {paragraph}

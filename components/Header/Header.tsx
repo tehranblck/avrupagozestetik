@@ -108,11 +108,11 @@ const Header = ({ isHomePage }: HeaderProps) => {
                     {isDropdownOpen && (
                         <div
                             ref={dropdownRef}
-                            className="absolute top-[calc(100%)] right-0 w-full sm:w-64 bg-white text-blue-600 rounded-lg shadow-lg py-2 z-[9999999999999]"
+                            className="absolute top-[calc(100%)] right-0 w-full  bg-white text-blue-600 rounded-lg shadow-lg py-2 z-[9999999999999]"
                         >
                             {/* Close Button */}
                             <button
-                                className="absolute top-4 right-4 text-red-500 text-3xl hover:text-red-700 sm:top-2 sm:right-2 sm:text-2xl"
+                                className="absolute top-4 right-4 text-red-500 text-3xl hover:text-red-700 text-center sm:text-2xl"
                                 onClick={closeDropdown}
                             >
                                 <IoClose />
@@ -121,13 +121,13 @@ const Header = ({ isHomePage }: HeaderProps) => {
                             {/* Dropdown Links */}
                             <button
                                 onClick={() => openCategoryModal()}
-                                className="block w-full text-center sm:text-left py-3 sm:py-2 px-4 hover:bg-gray-100 rounded-md cursor-pointer"
+                                className="block w-full text-center sm:text-center py-3 sm:py-2 px-4 hover:bg-gray-100 rounded-md cursor-pointer"
                             >
                                 WhatsApp'tan randevu al
                             </button>
                             <Link
                                 href="/iletisim#form"
-                                className="block w-full text-center sm:text-left py-3 sm:py-2 px-4 hover:bg-gray-100"
+                                className="block w-full text-center sm:text-center py-3 sm:py-2 px-4 hover:bg-gray-100"
                             >
                                 Form Doldur
                             </Link>

@@ -13,6 +13,7 @@ import TripleVideo from '@/components/TripleVideos/TripleVideos';
 import { fetchVideoDatas } from '@/components/helpers/FetchHomeVideos';
 import { fetchTextContents } from '@/components/helpers/FetchTextContents';
 import WhatsappTracker from '@/components/WhatsappTracker';
+import CookieBanner from '@/components/Cookie/Cookie';
 
 
 const Page = async () => {
@@ -61,6 +62,7 @@ const Page = async () => {
 
     return (
         <div className="max-w-7xl mx-auto w-full">
+            <CookieBanner />
             {/* Header */}
             <div
                 style={{

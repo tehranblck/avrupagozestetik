@@ -14,8 +14,8 @@ const ContactInfo = () => {
                 </p>
                 <p className="text-gray-700 mt-2">
                     <strong>Telefon:</strong>{' '}
-                    <Link href="tel:+905327044102" className="text-blue-500 hover:underline">
-                        +905327044102
+                    <Link href="tel:+905301790402" className="text-blue-500 hover:underline">
+                        +905301790402
                     </Link>
                 </p>
                 <p className="text-gray-700 mt-2">

@@ -172,7 +172,7 @@ const Page = async () => {
             </div>
 
             {/* 33. WhatsApp İletişim Butonu */}
-            <WhatsappTracker linkId='Ana sayfa Whatsapp' href='https://wa.me/905327044102'>
+            <WhatsappTracker linkId='Ana sayfa Whatsapp' href='https://wa.me/905301790402'>
                 <AskQuestionButton />
             </WhatsappTracker>
 

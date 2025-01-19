@@ -157,7 +157,7 @@ const Header = ({ isHomePage }: HeaderProps) => {
                             {categories.map((category) => (
                                 <WhatsappTracker
                                     key={category}
-                                    href={`https://wa.me/905327044102?text=${encodeURIComponent(`Merhaba, ${category} hakkında bilgi almak istiyorum.`)}`}
+                                    href={`https://wa.me/905301790402?text=${encodeURIComponent(`Merhaba, ${category} hakkında bilgi almak istiyorum.`)}`}
                                     linkId={`Whatsapp ${category} Header`}
                                 >
                                     <div

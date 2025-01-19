@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const AskQuestionButton: React.FC = () => {
-    const phoneNumber = '+905327044102'; // WhatsApp numarası
+    const phoneNumber = '+905301790402'; // WhatsApp numarası
     const [isButtonVisible, setIsButtonVisible] = useState(true); // Buton görünürlüğü durumu
 
     // WhatsApp'a yönlendirme işlemi

@@ -31,10 +31,10 @@ const CookieBanner: React.FC = () => {
             {isVisible && (
                 <>
                     {/* Arka plan bulanıklığı */}
-                    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
+                    <div style={{ zIndex: '10' }} className="fixed inset-0 w-full h-full bg-black bg-opacity-50 backdrop-blur-md "></div>
 
                     {/* Cookie banner popup'ı */}
-                    <div className="fixed inset-0 flex justify-center items-center z-50">
+                    <div style={{ zIndex: '999999999999999' }} className="fixed inset-0 flex justify-center items-center z-50">
                         <div className="bg-white p-6 rounded-lg shadow-xl max-w-lg w-full">
                             <h2 className="text-xl font-semibold text-center mb-4">
                                 Dikkat: Sitemizde yer alan hasta fotoğrafları ve içeriklerin izinsiz kopyalanması, paylaşılması veya kullanılması kesinlikle yasaktır.

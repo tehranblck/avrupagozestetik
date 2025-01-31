@@ -7,6 +7,7 @@ const SingleVideo = ({ videos }: any) => {
     const [isVideoVisible, setIsVideoVisible] = useState(false); // Video görünüyor mu?
     const [hasPlayed, setHasPlayed] = useState(false); // Video oynatıldı mı?
     const videoRef = useRef<HTMLVideoElement | null>(null);
+    const videoContainerRef = useRef<HTMLDivElement | null>(null);
     // Videoları güvenli bir şekilde kontrol et ve varsayılan değeri oluştur
     const safeVideos = videos?.videos && Array.isArray(videos.videos) ? videos.videos : [];
     const videoData = safeVideos.length > 0 ? safeVideos[0] : { thumbnail: [{}], video: [{}] };
@@ -32,8 +33,27 @@ const SingleVideo = ({ videos }: any) => {
 
         observer.observe(videoElement);
 
+        // Video dışında bir yere tıklandığında videoyu kapat
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                isVideoVisible &&
+                videoContainerRef.current &&
+                !videoContainerRef.current.contains(event.target as Node)
+            ) {
+                setIsVideoVisible(false);
+                setHasPlayed(false);
+                if (videoRef.current) {
+                    videoRef.current.pause();
+                    videoRef.current.currentTime = 0;
+                }
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+
         return () => {
             observer.disconnect();
+            document.removeEventListener('click', handleClickOutside);
         };
     }, [isVideoVisible, hasPlayed]);
 
@@ -87,17 +107,19 @@ const SingleVideo = ({ videos }: any) => {
                     </div>
                 </div>
             ) : (
-                <video
-                    ref={videoRef}
-                    className="mx-auto object-cover lg:h-[400px] sm:w-[80%] shadow-lg w-full"
-                    controls
-                    controlsList="nofullscreen"
-                    aria-label="Video Player"
-                    playsInline
-                >
-                    <source src={getVideoUrl()} type="video/mp4" />
-                    Tarayıcınız bu videoyu oynatmayı desteklemiyor.
-                </video>
+                <div ref={videoContainerRef}>
+                    <video
+                        ref={videoRef}
+                        className="mx-auto object-cover lg:h-[400px] sm:w-[80%] shadow-lg w-full"
+                        controls
+                        controlsList="nofullscreen"
+                        aria-label="Video Player"
+                        playsInline
+                    >
+                        <source src={getVideoUrl()} type="video/mp4" />
+                        Tarayıcınız bu videoyu oynatmayı desteklemiyor.
+                    </video>
+                </div>
             )}
         </div>
     );

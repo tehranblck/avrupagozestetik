@@ -10,7 +10,7 @@ const ContactInfo = () => {
             <div className="mb-6">
                 <h2 className="text-2xl font-bold text-blue-800 mb-4">İletişim Bilgileri</h2>
                 <p className="text-gray-700">
-                    <strong>Adres:</strong> Muradiye Mahallesi Nüzhetiye Cad, Deryadil Sokağı No:1, 34357 Beşiktaş
+                    <strong>Adres:</strong> Aksaray, Millet Cd. No:5 D:4, 34096, 34096 Fatih/İstanbul, Türkiye
                 </p>
                 <p className="text-gray-700 mt-2">
                     <strong>Telefon:</strong>{' '}
@@ -20,8 +20,8 @@ const ContactInfo = () => {
                 </p>
                 <p className="text-gray-700 mt-2">
                     <strong>Email:</strong>{' '}
-                    <Link href="mailto:info@example.com" className="text-blue-500 hover:underline">
-                        info@example.com
+                    <Link href="mailto:avrupagozestetikinfo@gmail.com" className="text-blue-500 hover:underline">
+                        avrupagozestetikinfo@gmail.com
                     </Link>
                 </p>
             </div>
